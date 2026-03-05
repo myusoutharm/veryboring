@@ -1,0 +1,384 @@
+/* App-specific styles */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom cursor effects */
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(127, 86, 217, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+/* Card hover effects */
+.card-glass {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(127, 86, 217, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-glass:hover::before {
+  opacity: 1;
+}
+
+/* Glare effect for cards */
+.card-glass::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg) translateY(-100%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.card-glass:hover::after {
+  transform: rotate(45deg) translateY(100%);
+}
+
+/* Button liquid fill effect */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(135deg, #6b45c0 0%, #7F56D9 100%);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  height: 100%;
+}
+
+/* Text reveal animation */
+@keyframes text-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.text-reveal {
+  animation: text-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Parallax layers */
+.parallax-slow {
+  will-change: transform;
+}
+
+.parallax-fast {
+  will-change: transform;
+}
+
+/* Gradient text animation */
+@keyframes gradient-text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-gradient-text {
+  background: linear-gradient(90deg, #7F56D9, #4A90E2, #FF6B9D, #7F56D9);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-text 4s ease infinite;
+}
+
+/* Noise texture overlay */
+.noise-texture {
+  position: relative;
+}
+
+.noise-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Glow pulse animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(127, 86, 217, 0.4),
+                0 0 40px rgba(127, 86, 217, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(127, 86, 217, 0.6),
+                0 0 80px rgba(127, 86, 217, 0.4);
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Magnetic button effect */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Section reveal */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Counter animation */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-animate {
+  animation: count-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .font-display {
+    letter-spacing: 0.01em;
+  }
+  
+  .card-glass::after {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-float,
+  .animate-pulse,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
+/* HubSpot Form Styling (developer embed — renders inline HTML, not iframe) */
+.hs-form-html form {
+  color: #ffffff;
+}
+
+.hs-form-html h1,
+.hs-form-html h2,
+.hs-form-html h3,
+.hs-form-html h4,
+.hs-form-html h5,
+.hs-form-html h6,
+.hs-form-html p {
+  color: #ffffff !important;
+}
+
+.hs-form-html .hs-form-field {
+  margin-bottom: 1.5rem;
+}
+
+.hs-form-html label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.hs-form-html input[type="text"],
+.hs-form-html input[type="email"],
+.hs-form-html input[type="tel"],
+.hs-form-html textarea,
+.hs-form-html select {
+  width: 100%;
+  padding: 0.75rem 1rem !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.5rem !important;
+  color: #ffffff !important;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.hs-form-html input[type="text"]:focus,
+.hs-form-html input[type="email"]:focus,
+.hs-form-html input[type="tel"]:focus,
+.hs-form-html textarea:focus,
+.hs-form-html select:focus {
+  outline: none !important;
+  border-color: rgba(127, 86, 217, 0.6) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.15) !important;
+}
+
+.hs-form-html input[type="text"]::placeholder,
+.hs-form-html input[type="email"]::placeholder,
+.hs-form-html input[type="tel"]::placeholder,
+.hs-form-html textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.hs-form-html select option {
+  background: #1a1a2e;
+  color: #ffffff;
+}
+
+.hs-form-html textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.hs-form-html .hs-submit {
+  margin-top: 1rem;
+}
+
+.hs-form-html input[type="submit"] {
+  background: linear-gradient(135deg, #7F56D9 0%, #6b45c0 100%) !important;
+  color: #ffffff !important;
+  padding: 0.875rem 2rem !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(127, 86, 217, 0.3);
+}
+
+.hs-form-html input[type="submit"]:hover {
+  background: linear-gradient(135deg, #6b45c0 0%, #5a3aa0 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(127, 86, 217, 0.4);
+}
+
+.hs-form-html input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.hs-form-html .hs-error-msgs {
+  color: #fca5a5 !important;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.hs-form-html .hs-form-required {
+  color: #fca5a5 !important;
+}
+
+.hs-form-html .hs-form-booleancheckbox-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hs-form-html input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: #7F56D9;
+  cursor: pointer;
+}
+
+.hs-form-html .hs-form-booleancheckbox-display label {
+  margin-bottom: 0 !important;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.hs-form-html .submitted-message {
+  color: #86efac !important;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(134, 239, 172, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(134, 239, 172, 0.2);
+}
+
+@media (max-width: 640px) {
+  .hs-form-html input[type="text"],
+  .hs-form-html input[type="email"],
+  .hs-form-html input[type="tel"],
+  .hs-form-html textarea,
+  .hs-form-html select {
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.95rem;
+  }
+
+  .hs-form-html input[type="submit"] {
+    width: 100%;
+    padding: 0.75rem 1.5rem !important;
+  }
+}

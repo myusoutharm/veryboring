@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Teko:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 80% 8%;
+    --foreground: 0 0% 100%;
+    --card: 260 60% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 260 60% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 258 70% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 40% 18%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 260 30% 20%;
+    --muted-foreground: 260 20% 70%;
+    --accent: 217 70% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 260 30% 25%;
+    --input: 260 30% 20%;
+    --ring: 258 70% 60%;
+    --radius: 0.625rem;
+    
+    --purple: #7F56D9;
+    --dark-bg: #0C0425;
+    --light-bg: #F3F0FB;
+    --blue: #4A90E2;
+    --pink: #FF6B9D;
+    --green: #50C878;
+    --yellow: #FFD700;
+    --orange: #FF8C42;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#0C0425] text-white antialiased;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Teko', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Teko', sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .font-accent {
+    font-family: 'Kalam', cursive;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #7F56D9 0%, #4A90E2 50%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-purple {
+    background: linear-gradient(135deg, #0C0425 0%, #1a0b3d 50%, #0C0425 100%);
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 40px rgba(127, 86, 217, 0.4),
+                0 0 80px rgba(127, 86, 217, 0.2);
+  }
+  
+  .glow-blue {
+    box-shadow: 0 0 40px rgba(74, 144, 226, 0.4),
+                0 0 80px rgba(74, 144, 226, 0.2);
+  }
+  
+  .btn-primary {
+    @apply relative overflow-hidden px-8 py-4 bg-[#7F56D9] text-white font-semibold rounded-lg transition-all duration-300;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-[#6b45c0];
+    box-shadow: 0 0 30px rgba(127, 86, 217, 0.6);
+    transform: translateY(-2px);
+  }
+  
+  .card-glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  
+  .noise-overlay {
+    position: relative;
+  }
+  
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+}
+
+@layer utilities {
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0C0425;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7F56D9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b45c0;
+}
+
+/* Selection */
+::selection {
+  background: rgba(127, 86, 217, 0.4);
+  color: white;
+}

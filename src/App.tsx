@@ -209,9 +209,9 @@ function App() {
             ref={headlineRef}
             className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none mb-6"
           >
-            {splitText('BORING WORK,')}
+            {splitText('BORING WORK')}
             <br />
-            <span className="text-gradient">{splitText('BRILLIANTLY DONE.')}</span>
+            <span className="text-gradient">{splitText('BRILLIANTLY DONE')}</span>
           </h1>
           <p
             ref={subheadlineRef}

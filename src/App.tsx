@@ -83,16 +83,19 @@ function App() {
         }
       })
 
-      gsap.to(headlineRef.current, {
-        filter: 'blur(10px)',
-        opacity: 0,
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top center',
-          end: '50% top',
-          scrub: 1,
-        }
-      })
+      // Only apply scroll fade effect on desktop (not mobile)
+      if (window.innerWidth >= 768) {
+        gsap.to(headlineRef.current, {
+          filter: 'blur(10px)',
+          opacity: 0,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: '50% top',
+            scrub: 1,
+          }
+        })
+      }
     }, heroRef)
 
     return () => ctx.revert()
@@ -117,9 +120,9 @@ function App() {
     loadHubSpotScript()
   }, [])
 
-  const splitText = (text: string) => {
+  const splitText = (text: string, className?: string) => {
     return text.split('').map((char, i) => (
-      <span key={i} className="char inline-block" style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}>
+      <span key={i} className={`char inline-block ${className || ''}`} style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}>
         {char}
       </span>
     ))
@@ -209,7 +212,7 @@ function App() {
           >
             {splitText('BORING WORK')}
             <br />
-            <span className="text-gradient">{splitText('BRILLIANTLY DONE')}</span>
+            {splitText('BRILLIANTLY DONE', 'text-gradient')}
           </h1>
           <p
             ref={subheadlineRef}

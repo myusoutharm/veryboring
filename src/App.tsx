@@ -11,8 +11,6 @@ import {
   Menu,
   X,
   Linkedin,
-  Twitter,
-  Github,
   Phone,
   Mail,
   MapPin,
@@ -565,7 +563,7 @@ function App() {
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-4 px-4 text-white/80">Free trial</td>
-                        <td className="py-4 px-4 text-center text-green-accent">3 months</td>
+                        <td className="py-4 px-4 text-center text-green-accent">6 months</td>
                         <td className="py-4 px-4 text-center text-pink-accent">14 days</td>
                       </tr>
                       <tr className="border-b border-white/5">
@@ -731,14 +729,8 @@ function App() {
                 Boring work automated, brilliant results delivered.
               </p>
               <div className="flex items-center gap-4">
-                <a href="#" className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-purple/20 transition-colors">
+                <a href="https://www.linkedin.com/company/satechnology" className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-purple/20 transition-colors">
                   <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-purple/20 transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-purple/20 transition-colors">
-                  <Github className="w-5 h-5" />
                 </a>
               </div>
             </div>

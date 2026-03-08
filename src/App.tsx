@@ -88,7 +88,7 @@ function App() {
         opacity: 0,
         scrollTrigger: {
           trigger: heroRef.current,
-          start: 'top top',
+          start: 'top center',
           end: '50% top',
           scrub: 1,
         }

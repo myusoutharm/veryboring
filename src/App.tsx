@@ -698,15 +698,17 @@ function App() {
             Let&apos;s discuss how we can automate your workflows and free your team to focus on what matters most.
           </p>
 
-          <a href="tel:+16048005781" className="btn-primary inline-flex items-center gap-2 text-lg mb-4">
-            <Phone className="w-5 h-5" />
-            +1-604-800-5781
-          </a>
+          <div className="flex flex-col items-center gap-4 mb-8">
+            <a href="tel:+16048005781" className="btn-primary inline-flex items-center justify-center gap-2 text-lg w-full max-w-xs">
+              <Phone className="w-5 h-5" />
+              +1-604-800-5781
+            </a>
 
-          <a href="mailto:contact@southarm.ca" className="btn-primary inline-flex items-center gap-2 text-lg mb-8">
-            <Mail className="w-5 h-5" />
-            contact@southarm.ca
-          </a>
+            <a href="mailto:contact@southarm.ca" className="btn-primary inline-flex items-center justify-center gap-2 text-lg w-full max-w-xs">
+              <Mail className="w-5 h-5" />
+              contact@southarm.ca
+            </a>
+          </div>
 
           {/* HubSpot Form */}
           <div className="max-w-2xl mx-auto bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-2xl mb-12">

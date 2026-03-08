@@ -208,7 +208,7 @@ function App() {
           <p className="font-accent text-xl md:text-2xl text-purple mb-4">We make boring disappeared.</p>
           <h1
             ref={headlineRef}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-none mb-6"
           >
             {splitText('BORING WORK')}
             <br />

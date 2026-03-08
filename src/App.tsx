@@ -755,7 +755,7 @@ function App() {
               </ul>
             </div>
 
-            <div>
+            {/* <div>
               <h4 className="font-display text-lg font-bold mb-4">Company</h4>
               <ul className="space-y-3">
                 <li><a href="#" className="text-white/60 hover:text-white transition-colors">About Us</a></li>
@@ -763,7 +763,7 @@ function App() {
                 <li><a href="#" className="text-white/60 hover:text-white transition-colors">Blog</a></li>
                 <li><a href="#contact" className="text-white/60 hover:text-white transition-colors">Contact</a></li>
               </ul>
-            </div>
+            </div> */}
 
             <div>
               <h4 className="font-display text-lg font-bold mb-4">Contact</h4>

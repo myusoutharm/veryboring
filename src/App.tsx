@@ -218,7 +218,7 @@ function App() {
             ref={subheadlineRef}
             className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10"
           >
-            We automate the boring. You focus on the vision. Transform your business with security-first IT services and AI-assisted automation.
+            We automate the boring. You focus on the vision. Transform your business with AI-assisted automation and security-focused IT solutions.
           </p>
           <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#launch-partner" className="btn-primary flex items-center gap-2 text-lg">

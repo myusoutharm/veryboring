@@ -18,7 +18,6 @@ import {
   CheckCircle2,
   Cpu,
   Shield,
-  DollarSign,
   Users,
   Gift,
   Star,
@@ -542,14 +541,12 @@ function App() {
                         <th className="text-left py-4 px-4 font-display text-lg">Feature</th>
                         <th className="text-center py-4 px-4 font-display text-lg text-green-accent">
                           <div className="flex items-center justify-center gap-2">
-                            <Gift className="w-5 h-5" />
                             Launch Partner
                           </div>
                         </th>
                         <th className="text-center py-4 px-4 font-display text-lg text-pink-accent">
                           <div className="flex items-center justify-center gap-2">
-                            <DollarSign className="w-5 h-5" />
-                            Regular Rate
+                            Standard
                           </div>
                         </th>
                       </tr>

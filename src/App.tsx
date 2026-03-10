@@ -112,6 +112,21 @@ function App() {
       script.src = 'https://js-na3.hsforms.net/forms/embed/developer/343022072.js'
       script.defer = true
       script.async = true
+      script.onerror = () => {
+        console.warn('HubSpot script blocked or failed to load. Falling back to static form.')
+        // Optionally, show a fallback form or message in the #hubspot-form-container div
+        const container = document.getElementById('hubspot-form-container')
+        if (container) {
+          container.innerHTML = `
+            <div class="text-center">
+              <p class="text-white/80 mb-4">The contact form is blocked by your browser. Click below to open it in a new tab:</p>
+              <a href="https://5o85iw.share-na3.hsforms.com/2PkbYexfbQ3y6125GUUs0kw" target="_blank" rel="noopener noreferrer" class="text-purple hover:text-purple/80 transition-colors underline">
+                Open Contact Form
+              </a>
+            </div>
+          `
+        }
+      }
       document.body.appendChild(script)
     }
 

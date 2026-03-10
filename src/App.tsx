@@ -575,11 +575,6 @@ function App() {
                         <td className="py-4 px-4 text-center text-pink-accent">N/A</td>
                       </tr>
                       <tr className="border-b border-white/5">
-                        <td className="py-4 px-4 text-white/80">Support</td>
-                        <td className="py-4 px-4 text-center text-green-accent">Included</td>
-                        <td className="py-4 px-4 text-center text-pink-accent">Regular</td>
-                      </tr>
-                      <tr className="border-b border-white/5">
                         <td className="py-4 px-4 text-white/80">Custom Solutions</td>
                         <td className="py-4 px-4 text-center"><CheckCircle2 className="w-5 h-5 text-green-accent mx-auto" /></td>
                         <td className="py-4 px-4 text-center"><CheckCircle2 className="w-5 h-5 text-green-accent mx-auto" /></td>
@@ -596,8 +591,8 @@ function App() {
                       </tr>
                       <tr>
                         <td className="py-4 px-4 text-white/80">Ongoing Support</td>
-                        <td className="py-4 px-4 text-center"><CheckCircle2 className="w-5 h-5 text-green-accent mx-auto" /></td>
-                        <td className="py-4 px-4 text-center"><CheckCircle2 className="w-5 h-5 text-green-accent mx-auto" /></td>
+                        <td className="py-4 px-4 text-center"><CheckCircle2 className="w-5 h-5 text-green-accent mx-auto" />(Free)</td>
+                        <td className="py-4 px-4 text-center"><CheckCircle2 className="w-5 h-5 text-green-accent mx-auto" />(Paid)</td>
                       </tr>
                     </tbody>
                   </table>

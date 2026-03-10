@@ -567,11 +567,16 @@ function App() {
                       <tr className="border-b border-white/5">
                         <td className="py-4 px-4 text-white/80">Free trial</td>
                         <td className="py-4 px-4 text-center text-green-accent">6 months</td>
-                        <td className="py-4 px-4 text-center text-pink-accent">14 days</td>
+                        <td className="py-4 px-4 text-center text-pink-accent">N/A</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-4 px-4 text-white/80">Ongoing Rate</td>
                         <td className="py-4 px-4 text-center text-green-accent">Discounted</td>
+                        <td className="py-4 px-4 text-center text-pink-accent">N/A</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 text-white/80">Support</td>
+                        <td className="py-4 px-4 text-center text-green-accent">Included</td>
                         <td className="py-4 px-4 text-center text-pink-accent">Regular</td>
                       </tr>
                       <tr className="border-b border-white/5">

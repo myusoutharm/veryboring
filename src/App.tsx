@@ -397,7 +397,7 @@ function App() {
                 {[
                   { icon: CheckCircle2, text: 'Custom solution built tailored for your workflow' },
                   { icon: CheckCircle2, text: 'Full development costs covered by us' },
-                  { icon: CheckCircle2, text: '3 months of free usage after deployment' },
+                  { icon: CheckCircle2, text: '6 months of free usage after deployment' },
                   { icon: CheckCircle2, text: 'Heavily discounted ongoing price' },
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">

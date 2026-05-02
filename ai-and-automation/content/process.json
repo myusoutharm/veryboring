@@ -1,0 +1,35 @@
+{
+  "eyebrow": "How We Work",
+  "section_title": "THE PROCESS",
+  "section_description": "A proven methodology that delivers results. From discovery to deployment, we are with you every step.",
+  "steps": [
+    {
+      "number": "01",
+      "icon": "search",
+      "title": "Discover",
+      "description": "We identify the boring and repetitive tasks in your business — the work that takes time but adds no unique value.",
+      "color": "purple"
+    },
+    {
+      "number": "02",
+      "icon": "map",
+      "title": "Analyze",
+      "description": "We map the full workflow, understand edge cases, and define exactly what success looks like for your automation.",
+      "color": "blue"
+    },
+    {
+      "number": "03",
+      "icon": "code",
+      "title": "Develop",
+      "description": "We build AI-assisted solutions tailored to your workflow — no generic off-the-shelf software.",
+      "color": "pink"
+    },
+    {
+      "number": "04",
+      "icon": "rocket",
+      "title": "Deploy",
+      "description": "We deploy, monitor, and fine-tune the automation until it reliably meets your business goals.",
+      "color": "green"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "brand": {
+    "name": "Very Boring Technologies",
+    "description": "Reliable managed IT services for businesses that just want things to work. Security-first, privacy-respecting, and straightforward."
+  },
+  "sections": [
+    {
+      "title": "Company",
+      "links": [
+        {
+          "text": "Main Website",
+          "href": "https://veryboring.ai"
+        },
+        {
+          "text": "About Us",
+          "href": "https://veryboring.ai"
+        }
+      ]
+    },
+    {
+      "title": "Services",
+      "links": [
+        {
+          "text": "Managed IT",
+          "href": "#services"
+        },
+        {
+          "text": "Pricing",
+          "href": "#pricing"
+        },
+        {
+          "text": "Contact",
+          "href": "#contact"
+        }
+      ]
+    },
+    {
+      "title": "Contact",
+      "links": [
+        {
+          "text": "604-800-5781",
+          "href": "tel:+16048005781"
+        },
+        {
+          "text": "contact@southarm.ca",
+          "href": "mailto:contact@southarm.ca"
+        },
+        {
+          "text": "Vancouver, BC"
+        }
+      ]
+    }
+  ],
+  "copyright": "© 2025 South Arm Technology Services Ltd. All rights reserved.",
+  "legal_links": [
+    {
+      "text": "Privacy Policy",
+      "href": "#"
+    },
+    {
+      "text": "Terms",
+      "href": "#"
+    }
+  ]
+}

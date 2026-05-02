@@ -1,0 +1,54 @@
+{
+  "eyebrow": "What We Do",
+  "section_title": "OUR SERVICES",
+  "section_description": "Intelligence that never sleeps. We transform repetitive tasks into automated workflows — so your team can focus on work that actually matters.",
+  "items": [
+    {
+      "icon": "cpu",
+      "title": "Report Automation",
+      "description": "Eliminate hours of manual data gathering and formatting. We build pipelines that pull, process, and deliver reports automatically on your schedule.",
+      "color": "purple"
+    },
+    {
+      "icon": "globe",
+      "title": "Browser Automation",
+      "description": "Automate any web-based workflow — data entry, scraping, form submissions, and multi-step processes that currently eat your team's time.",
+      "color": "pink"
+    },
+    {
+      "icon": "mic",
+      "title": "Voice Agents",
+      "description": "AI-powered voice agents that handle inbound calls, answer FAQs, qualify leads, and escalate to humans only when needed.",
+      "color": "blue"
+    },
+    {
+      "icon": "message",
+      "title": "Chatbots",
+      "description": "Intelligent chat interfaces trained on your business knowledge — for customer support, internal helpdesk, or lead qualification.",
+      "color": "green"
+    },
+    {
+      "icon": "bar-chart",
+      "title": "NL Query Dashboard",
+      "description": "Ask your data questions in plain English. We build natural-language query interfaces that let anyone in your team pull insights without SQL.",
+      "color": "purple"
+    },
+    {
+      "icon": "trending-up",
+      "title": "Predictive Analytics",
+      "description": "Go from reactive to proactive. We build models that forecast demand, flag anomalies, and surface opportunities before they become problems.",
+      "color": "blue"
+    },
+    {
+      "icon": "code",
+      "title": "Custom Development",
+      "description": "Need something bespoke? We design and build custom AI-assisted tools tailored to your specific workflow and technology stack.",
+      "color": "pink"
+    }
+  ],
+  "it_services_callout": {
+    "text": "Also need security-first IT infrastructure — managed endpoints, network, and 24/7 support?",
+    "link_text": "See our IT Services →",
+    "link_href": "/it-services"
+  }
+}

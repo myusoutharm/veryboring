@@ -1,0 +1,18 @@
+{
+  "eyebrow": "What They Say",
+  "section_title": "TESTIMONIALS",
+  "items": [
+    {
+      "quote": "Professional, knowledgeable and most importantly responsive. Understands our business and what is critical to keep things running smoothly. Always on the lookout to cut costs and improve efficiencies. Perfect supplement to any business that either lacks internal IT resources or has a small team.",
+      "author": "Jason S",
+      "title": "Director of IT, Tap & Barrel Group",
+      "initials": "JS"
+    },
+    {
+      "quote": "Highly dependable, always solution based and a real pleasure to communicate with. Their support for our business has been extremely beneficial and we highly recommend him and his service.",
+      "author": "Zach B",
+      "title": "Owner, Beach Ave Bar & Grill",
+      "initials": "ZB"
+    }
+  ]
+}

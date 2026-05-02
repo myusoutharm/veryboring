@@ -93,3 +93,5 @@ Desktop.ini
 # other
 ignore/
 package-lock.json
+uploads/
+preview/

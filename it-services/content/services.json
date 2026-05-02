@@ -1,0 +1,42 @@
+{
+  "section_title": "What We Offer",
+  "section_description": "Comprehensive IT services built on security and trust, not surveillance.",
+  "items": [
+    {
+      "icon": "🔐",
+      "title": "Security-First Architecture",
+      "description": "Traditional IT tools are like a stranger having a master key to your house. We use 'Zero-Trust'—we don't keep a key. Instead, we use secure, private tunnels that only open when needed.",
+      "link": "services.html#security"
+    },
+    {
+      "icon": "💻",
+      "title": "Endpoint Management",
+      "description": "PC and Mac management without invasive monitoring. Patching, updates, and configuration management that respects user privacy.",
+      "link": "services.html#endpoints"
+    },
+    {
+      "icon": "🌐",
+      "title": "Network Management",
+      "description": "Robust network infrastructure, monitoring, and optimization. From firewalls to WiFi, we ensure your network runs smoothly and securely.",
+      "link": "services.html#network"
+    },
+    {
+      "icon": "💾",
+      "title": "Backup & Recovery",
+      "description": "Automated backup solutions with tested recovery procedures. Because data loss isn't acceptable—we make sure you're always protected.",
+      "link": "services.html#backup"
+    },
+    {
+      "icon": "📞",
+      "title": "Unlimited Support",
+      "description": "24/7 professional support when you need it. No ticket limits, no tier restrictions. Direct access to your support team.",
+      "link": "services.html#support"
+    },
+    {
+      "icon": "🔧",
+      "title": "Proactive Maintenance",
+      "description": "Regular system maintenance, health checks, and optimization. We prevent problems before they impact your business.",
+      "link": "services.html#maintenance"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "eyebrow": "Ready to Transform?",
+  "section_title": "READY TO ELIMINATE THE BORING?",
+  "section_description": "Free your team to focus on what matters most.",
+  "trust_badges": [
+    "Free consultation",
+    "No commitment required"
+  ],
+  "phone": "+1-604-800-5781",
+  "email": "contact@southarm.ca",
+  "worker_url": "https://veryboring.minghuiyu.workers.dev",
+  "form": {
+    "title": "Get in Touch",
+    "submit_button": "Send Message",
+    "fields": [
+      {
+        "name": "company",
+        "hubspot_name": "company",
+        "label": "Company Name",
+        "type": "text",
+        "placeholder": "Your Company",
+        "required": true
+      },
+      {
+        "name": "contact",
+        "hubspot_name": "firstname",
+        "label": "Your Name",
+        "type": "text",
+        "placeholder": "Your Name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "hubspot_name": "email",
+        "label": "Email Address",
+        "type": "email",
+        "placeholder": "you@company.com",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "hubspot_name": "phone",
+        "label": "Phone",
+        "type": "tel",
+        "placeholder": "604-000-0000",
+        "required": false
+      },
+      {
+        "name": "message",
+        "hubspot_name": "message",
+        "label": "Tell Us About Your Workflow",
+        "type": "textarea",
+        "placeholder": "What repetitive tasks are you looking to automate?",
+        "rows": 4,
+        "required": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "brand": {
+    "name": "Very Boring Technologies",
+    "tagline": "Boring work automated, brilliant results delivered.",
+    "linkedin": "https://www.linkedin.com/company/satechnology"
+  },
+  "sections": [
+    {
+      "title": "Services",
+      "links": [
+        { "text": "AI & Automation", "href": "#services" },
+        { "text": "Launch Partner Program", "href": "#launch-partner" },
+        { "text": "Pricing", "href": "#pricing" },
+        { "text": "IT Services", "href": "/it-services" }
+      ]
+    },
+    {
+      "title": "Contact",
+      "links": [
+        { "text": "501-550 Broadway West, Vancouver BC V5Z 1E9", "href": null },
+        { "text": "contact@southarm.ca", "href": "mailto:contact@southarm.ca" },
+        { "text": "Tel: 604-800-5781", "href": "tel:+16048005781" },
+        { "text": "Fax: 778-776-9400", "href": null }
+      ]
+    }
+  ],
+  "copyright": "© 2025 South Arm Technology Services Ltd. (d.b.a Very Boring Technologies). All rights reserved.",
+  "legal_links": [
+    { "text": "Privacy Policy", "href": "#" },
+    { "text": "Terms of Service", "href": "#" }
+  ]
+}

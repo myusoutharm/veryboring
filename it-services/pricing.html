@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans | Very Boring Technologies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="subpage">
+
+<div id="top-bar" class="top-bar"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <div class="nav-content" id="nav-content"></div>
+  </div>
+</nav>
+
+<header class="subpage-header section-dark">
+  <div class="container">
+    <h1 id="page-title">Loading Pricing...</h1>
+    <p id="page-intro" class="hero-text"></p>
+  </div>
+</header>
+
+<main class="container">
+  <section id="pricing-plans" class="pricing-grid-detailed">
+    <!-- Content injected here -->
+  </section>
+
+  <section class="section-subtle" style="border-radius: 24px; margin-top: 60px;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Included in All Plans</h2>
+      </div>
+      <div class="grid" id="common-features"></div>
+    </div>
+  </section>
+  
+  <p id="pricing-footnote" class="pricing-reminder" style="margin: 60px 0;"></p>
+</main>
+
+<footer id="footer"></footer>
+
+<script src="scripts.js"></script>
+<script>
+  async function loadDetailedPricing() {
+    try {
+      // Load navigation
+      const navRes = await fetch('content/navigation.json');
+      const navData = await navRes.json();
+      renderNavigation(navData);
+
+      const response = await fetch('content/pricing_detailed.json');
+      const data = await response.json();
+      
+      document.getElementById('page-title').textContent = data.page_title;
+      document.getElementById('page-intro').textContent = data.intro;
+      document.getElementById('pricing-footnote').textContent = data.footnote;
+      
+      const planContainer = document.getElementById('pricing-plans');
+      planContainer.innerHTML = data.plans.map(plan => `
+        <div class="pricing-card-detailed card">
+          <h3>${plan.name}</h3>
+          <div class="price-box">
+            <span class="currency">$</span>
+            <span class="amount">${plan.price.replace('$', '')}</span>
+            <span class="term">${plan.term}</span>
+          </div>
+          <p class="plan-desc">${plan.description}</p>
+          <ul class="feature-list" style="grid-template-columns: 1fr; margin-bottom: 24px;">
+            ${plan.features.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+          <div class="plan-best-for"><strong>Best for:</strong> ${plan.best_for}</div>
+        </div>
+      `).join('');
+
+      const commonContainer = document.getElementById('common-features');
+      commonContainer.innerHTML = data.common_features.map(f => `
+        <div class="card" style="text-align: center;">
+          <h4>${f.title}</h4>
+          <p>${f.desc}</p>
+        </div>
+      `).join('');
+      
+      const footerRes = await fetch('content/footer.json');
+      const footerData = await footerRes.json();
+      renderFooter(footerData);
+      
+      handleAnchorLinks();
+      
+    } catch (error) {
+      console.error('Error loading detailed pricing:', error);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDetailedPricing);
+</script>
+
+</body>
+</html>

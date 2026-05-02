@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# Very Boring Technologies - Web Properties
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the web properties for Very Boring Technologies, architected as a multi-domain project hosted on Cloudflare Pages.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project uses a sub-directory architecture to host multiple brands/services under a single Cloudflare Page deployment:
 
-## React Compiler
+- **`/it-services`**: The primary content for `southarm.ca`.
+- **`/ai-and-automation`**: The primary content for `veryboring.ai`.
+- **`_worker.js`**: An advanced Cloudflare Page that handles domain-based routing.
+- **`/contact-api`**: A separate Cloudflare Page for server-side form handling.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Domain Routing
 
-## Expanding the ESLint configuration
+Routing is handled automatically by the `_worker.js` file based on the incoming `Host` header:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Domain | Default Path |
+| :--- | :--- |
+| **southarm.ca** | Serves content from `/it-services` |
+| **veryboring.ai** | Serves content from `/ai-and-automation` |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The `_worker.js` script ensures that:
+1. Visitors to the root of a domain are served the correct landing page.
+2. Assets (CSS/JS) and data (JSON) are correctly prefixed when requested.
+3. Cross-domain navigation remains possible while maintaining site isolation.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Deployment
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The site is deployed to **Cloudflare Pages**. 
+
+### Deploy Command
+
+To deploy from your local machine using the current branch:
+
+```bash
+npx wrangler pages deploy . --project-name veryboring-site --branch newsite
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Build Settings (Cloudflare Dashboard)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+If deploying via the Cloudflare Dashboard Git integration:
+- **Build Command**: `exit 0` (No build step required for static files)
+- **Build Output Directory**: `.`
+- **Root Directory**: `/`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Maintenance
+
+- **Adding Content**: Place new static files in either the `/it-services` or `/ai-and-automation` folders.
+- **Modifying Routing**: Update the `_worker.js` file if you add new domains or change the default landing folders.

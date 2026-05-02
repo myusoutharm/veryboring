@@ -321,7 +321,7 @@ function renderContact(data) {
             </div>
             ${fieldsHTML}
             <!-- reCAPTCHA widget -->
-            <div class="g-recaptcha" data-sitekey="6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI" style="margin-bottom: 20px;"></div>
+            <div class="g-recaptcha" style="margin-bottom: 20px;"></div>
             <button type="submit" id="form-submit" class="btn btn-primary btn-lg" style="width:100%">
               ${data.form.submit_button}
             </button>
@@ -330,6 +330,34 @@ function renderContact(data) {
       </div>
     </div>
   `;
+
+  // Manually render reCAPTCHA since the container is added dynamically
+  const recaptchaContainer = contact.querySelector('.g-recaptcha');
+  if (recaptchaContainer) {
+    const initRecaptcha = () => {
+      if (window.grecaptcha && window.grecaptcha.render) {
+        try {
+          grecaptcha.render(recaptchaContainer, {
+            'sitekey': '6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI'
+          });
+        } catch (e) {
+          console.warn('reCAPTCHA render error:', e);
+        }
+      }
+    };
+
+    if (window.grecaptcha && window.grecaptcha.render) {
+      initRecaptcha();
+    } else {
+      const interval = setInterval(() => {
+        if (window.grecaptcha && window.grecaptcha.render) {
+          initRecaptcha();
+          clearInterval(interval);
+        }
+      }, 200);
+      setTimeout(() => clearInterval(interval), 10000);
+    }
+  }
 
   document.getElementById('contact-form').addEventListener('submit', handleContactSubmit);
 }

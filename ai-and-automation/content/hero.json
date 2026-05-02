@@ -1,0 +1,11 @@
+{
+  "eyebrow": "We make boring disappear.",
+  "headline_plain": "BORING WORK",
+  "headline_gradient": "BRILLIANTLY DONE",
+  "subheadline": "We automate the boring. You focus on the vision. Transform your business with AI-assisted automation.",
+  "ctas": [
+    { "text": "Apply for Launch Partner", "href": "#launch-partner", "variant": "primary" },
+    { "text": "Explore Services", "href": "#services", "variant": "outline" }
+  ],
+  "visual_id": "automation"
+}

@@ -1,0 +1,35 @@
+{
+  "badge": "Limited Time Opportunity",
+  "section_title": "LAUNCH PARTNER PROGRAM",
+  "headline": "We'll build your automation solution for FREE.",
+  "what_you_get": {
+    "title": "What You Get",
+    "items": [
+      "Custom solution built tailored for your workflow",
+      "Full development costs covered by us",
+      "6 months of free usage after deployment",
+      "Heavily discounted ongoing price"
+    ]
+  },
+  "what_we_need": {
+    "title": "What We Need From You",
+    "items": [
+      "A point of contact from your team",
+      "Active participation in testing and refining the solution",
+      "Use the product in your everyday business operations"
+    ]
+  },
+  "looking_for": {
+    "title": "What We Are Looking For",
+    "items": [
+      "Clear workflows that can be automated",
+      "Team commitment to collaborate",
+      "Use cases with broader market applicability"
+    ]
+  },
+  "cta_headline": "Ready to eliminate your boring work?",
+  "ctas": [
+    { "text": "Apply for Launch Partner Program", "href": "#contact", "variant": "primary" },
+    { "text": "Standard Consultation", "href": "#pricing", "variant": "outline" }
+  ]
+}

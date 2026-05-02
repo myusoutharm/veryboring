@@ -1,0 +1,27 @@
+{
+  "section_title": "Simple, Transparent Pricing",
+  "section_description": "Flat monthly pricing, support, patching, and security monitoring included.",
+  "column_labels": {
+    "type": "User/Device Type",
+    "rate": "Monthly Rate"
+  },
+  "tiers": [
+    {
+      "name": "Standard User",
+      "price": "$100 / month"
+    },
+    {
+      "name": "Shared Device",
+      "price": "$100 / month"
+    },
+    {
+      "name": "Lite User",
+      "price": "$20 / month"
+    },
+    {
+      "name": "Tablet (Optional)",
+      "price": "$8 / month"
+    }
+  ],
+  "footnote": "24-month term pricing. Conditions apply. Premium applies for shorter commitments."
+}

@@ -1,0 +1,69 @@
+{
+  "page_title": "Transparent Pricing Plans",
+  "intro": "No hidden fees. No complex tiers. Just straightforward pricing designed for your business needs.",
+  "plans": [
+    {
+      "name": "Standard User",
+      "price": "$100",
+      "term": "per user / month",
+      "description": "Full management and security for active staff members.",
+      "features": [
+        "Unlimited Remote & On-site Support",
+        "24/7 Security Monitoring & Response",
+        "Full OS & Application Patching",
+        "Managed Antivirus & EDR",
+        "Secure Remote Access (VPN)",
+        "Strategic IT Consulting"
+      ],
+      "best_for": "Core team members who require daily IT support and maximum security."
+    },
+    {
+      "name": "Shared Device",
+      "price": "$100",
+      "term": "per device / month",
+      "description": "Ideal for kiosks, meeting rooms, or common area workstations.",
+      "features": [
+        "Full Device Management",
+        "Security Hardening",
+        "Automated Updates",
+        "Hardware Health Monitoring",
+        "Guest Access Lockdown",
+        "Remote Support Included"
+      ],
+      "best_for": "Reception desks, training rooms, and shared manufacturing floor devices."
+    },
+    {
+      "name": "Lite User",
+      "price": "$20",
+      "term": "per user / month",
+      "description": "Basic security and support for occasional users.",
+      "features": [
+        "Security Updates & Patching",
+        "Managed Antivirus",
+        "Email Support",
+        "Discounted Hourly Project Rates",
+        "Access to Client Portal"
+      ],
+      "best_for": "Part-time staff or users with very limited IT requirements."
+    },
+    {
+      "name": "Tablet (Optional)",
+      "price": "$8",
+      "term": "per device / month",
+      "description": "MDM management for mobile tablets.",
+      "features": [
+        "Mobile Device Management (MDM)",
+        "App Distribution",
+        "Remote Wipe & Security",
+        "Inventory Tracking"
+      ],
+      "best_for": "Field tablets, POS systems, and inventory scanners."
+    }
+  ],
+  "common_features": [
+    { "title": "24/7 Monitoring", "desc": "We watch your infrastructure around the clock." },
+    { "title": "Professional Setup", "desc": "One-time on-boarding fee ensures your environment is hardened from day one." },
+    { "title": "Flexible Terms", "desc": "24-month base with shorter terms available." }
+  ],
+  "footnote": "Prices in CAD. 24-month commitment required for advertised rates. Shorter commitments available with a premium."
+}

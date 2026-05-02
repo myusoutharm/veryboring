@@ -1,0 +1,26 @@
+{
+  "section_title": "Why Choose Our Managed IT?",
+  "section_description": "We built our service for businesses that value reliability and trust.",
+  "items": [
+    {
+      "title": "Security-First Architecture",
+      "description": "No traditional RMM invasive monitoring. Zero-trust security principles with least-privilege access. We verify everything, trust nothing.",
+      "link": "why-us.html#architecture"
+    },
+    {
+      "title": "Automation First",
+      "description": "Privacy-respecting automation that handles patching, updates, and configuration without unnecessary surveillance or data collection.",
+      "link": "why-us.html#automation"
+    },
+    {
+      "title": "Transparent Technology Stack",
+      "description": "You know exactly what tools we use. No black boxes. Open standards and auditable security practices throughout.",
+      "link": "why-us.html#transparency"
+    },
+    {
+      "title": "You Own Your Data",
+      "description": "Your backups belong to you. M365, Google Workspace, or any cloud platform—we back up your data so you control it, not a third-party vendor.",
+      "link": "why-us.html#ownership"
+    }
+  ]
+}

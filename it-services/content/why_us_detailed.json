@@ -1,0 +1,46 @@
+{
+  "page_title": "Why Choose Very Boring IT?",
+  "intro": "We do things differently. We focus on transparency, data ownership, and high-performance infrastructure without the typical IT 'black box' mentality.",
+  "differentiators": [
+    {
+      "id": "architecture",
+      "title": "Security-First Architecture",
+      "full_description": "We don't leave your systems exposed to the public internet. Instead, we use a two-layered defense: first, a 'hidden road' (WireGuard) that only we can access, and second, a unique, high-security key (SSH) for the actual login. Most IT providers leave your 'front door' visible on the main highway 24/7; we make sure your door isn't even on the map until we need to open it.",
+      "benefits": [
+        "Reduced attack surface",
+        "Higher privacy standards",
+        "Modern encryption protocols"
+      ]
+    },
+    {
+      "id": "automation",
+      "title": "Automation First",
+      "full_description": "We don't bill by the hour, so we're incentivized to fix things permanently. We use industry-leading automation to handle the 'boring' stuff—patching, updates, and configuration—so our team can focus on high-value strategic work for your business. Our automation is privacy-respecting and auditable.",
+      "benefits": [
+        "Consistent configurations",
+        "Faster security patching",
+        "Fewer human errors"
+      ]
+    },
+    {
+      "id": "transparency",
+      "title": "Transparent Tech Stack",
+      "full_description": "We believe you should know exactly how your IT is being managed. We provide a full bill of materials for the tools we use. No hidden vendor lock-ins or proprietary black boxes. We use open standards and best-in-class tools that you can audit at any time.",
+      "benefits": [
+        "No vendor lock-in",
+        "Auditable security",
+        "Clear technical roadmap"
+      ]
+    },
+    {
+      "id": "ownership",
+      "title": "You Own Your Data",
+      "full_description": "Your business data is your most valuable asset. We ensure that you always have direct, independent access to your backups and configurations. If you ever decide to move on, you won't find your data held hostage by proprietary backup formats or cloud portals you don't control.",
+      "benefits": [
+        "Sovereign data control",
+        "Portable backups",
+        "Complete platform independence"
+      ]
+    }
+  ]
+}

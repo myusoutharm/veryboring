@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Choose Us | Very Boring Technologies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="subpage">
+
+<div id="top-bar" class="top-bar"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <div class="nav-content" id="nav-content"></div>
+  </div>
+</nav>
+
+<header class="subpage-header section-dark">
+  <div class="container">
+    <h1 id="page-title">Loading...</h1>
+    <p id="page-intro" class="hero-text"></p>
+  </div>
+</header>
+
+<main id="why-us-detailed" class="container">
+  <!-- Content will be injected here -->
+</main>
+
+<footer id="footer"></footer>
+
+<script src="scripts.js"></script>
+<script>
+  async function loadDetailedWhyUs() {
+    try {
+      // Load navigation
+      const navRes = await fetch('content/navigation.json');
+      const navData = await navRes.json();
+      renderNavigation(navData);
+
+      const response = await fetch('content/why_us_detailed.json');
+      const data = await response.json();
+      
+      document.getElementById('page-title').textContent = data.page_title;
+      document.getElementById('page-intro').textContent = data.intro;
+      
+      const container = document.getElementById('why-us-detailed');
+      container.innerHTML = data.differentiators.map(diff => `
+        <section id="${diff.id}" class="detailed-item section-white">
+          <div class="detailed-info">
+            <h2>${diff.title}</h2>
+            <p>${diff.full_description}</p>
+            <div class="benefits-grid">
+              ${diff.benefits.map(b => `
+                <div class="benefit-tag">${b}</div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+      `).join('');
+      
+      const footerRes = await fetch('content/footer.json');
+      const footerData = await footerRes.json();
+      renderFooter(footerData);
+      
+      handleAnchorLinks();
+      
+    } catch (error) {
+      console.error('Error loading detailed why-us:', error);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDetailedWhyUs);
+</script>
+
+</body>
+</html>

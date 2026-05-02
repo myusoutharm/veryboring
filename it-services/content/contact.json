@@ -1,0 +1,59 @@
+{
+  "section_title": "Ready to Upgrade Your IT?",
+  "section_description": "Let's talk about how we can improve your infrastructure and security posture. Reliable, transparent, and absolutely \"boring\" so you can focus on work.",
+  "ctas": [
+    {
+      "text": "Call 604-800-5781",
+      "href": "tel:+16048005781",
+      "variant": "outline-white"
+    }
+  ],
+  "worker_url": "https://veryboring.minghuiyu.workers.dev",
+  "form": {
+    "title": "Get in Touch",
+    "submit_button": "Send Message",
+    "fields": [
+      {
+        "name": "company",
+        "hubspot_name": "company",
+        "label": "Company Name",
+        "type": "text",
+        "placeholder": "Your Company",
+        "required": true
+      },
+      {
+        "name": "contact",
+        "hubspot_name": "firstname",
+        "label": "Contact Name",
+        "type": "text",
+        "placeholder": "Your Name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "hubspot_name": "email",
+        "label": "Email Address",
+        "type": "email",
+        "placeholder": "you@company.com",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "hubspot_name": "phone",
+        "label": "Phone",
+        "type": "tel",
+        "placeholder": "604-000-0000",
+        "required": false
+      },
+      {
+        "name": "message",
+        "hubspot_name": "message",
+        "label": "Tell Us About Your IT Needs",
+        "type": "textarea",
+        "placeholder": "Current challenges, team size, timeline...",
+        "rows": 4,
+        "required": false
+      }
+    ]
+  }
+}

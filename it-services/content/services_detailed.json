@@ -1,0 +1,78 @@
+{
+  "page_title": "Our Managed IT Services",
+  "intro": "We provide comprehensive, security-focused IT management that allows your business to thrive without the complexity of traditional IT overhead.",
+  "services": [
+    {
+      "id": "security",
+      "title": "Security-First Architecture",
+      "icon": "🔐",
+      "full_description": "Our security is a two-step process. First, we create a private 'hidden road' (WireGuard) that only serves you — your systems aren't even visible to the public internet. Second, once on that road, we still need a specific, secure key (SSH) to enter each system. This is much safer than traditional IT tools that leave your front door visible to the whole world 24/7.",
+      "features": [
+        "Hub-and-spoke VPN topology",
+        "Least-privilege access controls",
+        "No traditional RMM backdoors",
+        "Encrypted management traffic"
+      ]
+    },
+    {
+      "id": "endpoints",
+      "title": "Endpoint Management",
+      "icon": "💻",
+      "full_description": "We manage your PC and Mac fleets with a focus on stability and privacy. Unlike traditional providers who monitor every click, we focus on state-based configuration management. We ensure your devices are patched, compliant, and secure without intruding on user privacy or system performance.",
+      "features": [
+        "Automated OS & App patching",
+        "Remote configuration & policy enforcement",
+        "Privacy-respecting inventory management",
+        "Performance monitoring & health checks"
+      ]
+    },
+    {
+      "id": "network",
+      "title": "Network Management",
+      "icon": "🌐",
+      "full_description": "Your network is the backbone of your business. We design, deploy, and manage high-performance networks using industry-standard equipment. From multi-WAN failover to secure guest WiFi, we ensure your connectivity is fast, reliable, and completely transparent to your team.",
+      "features": [
+        "Advanced Firewall & Router management",
+        "Multi-site VPN connectivity",
+        "Managed WiFi with seamless roaming",
+        "Real-time bandwidth monitoring"
+      ]
+    },
+    {
+      "id": "backup",
+      "title": "Backup & Recovery",
+      "icon": "💾",
+      "full_description": "Data loss is the single biggest threat to most modern businesses. We implement multi-tier backup strategies that include local 'fast-restore' copies and encrypted off-site cloud storage. We don't just back up your data; we regularly test recovery to ensure your business can be back online in hours, not days.",
+      "features": [
+        "Daily automated backups",
+        "Encrypted off-site storage",
+        "Regular restore testing",
+        "Immutable backup copies"
+      ]
+    },
+    {
+      "id": "support",
+      "title": "Unlimited Support",
+      "icon": "📞",
+      "full_description": "We believe support should be a partnership, not a transaction. Our 'Unlimited' model means your team can call us whenever they need help, without worrying about hourly rates or ticket limits. This encourages early reporting of minor issues before they become major disasters.",
+      "features": [
+        "24/7 emergency support",
+        "No hourly billing or surcharges",
+        "Dedicated primary technician",
+        "Remote & on-site assistance"
+      ]
+    },
+    {
+      "id": "maintenance",
+      "title": "Proactive Maintenance",
+      "icon": "🔧",
+      "full_description": "The best IT support is the kind you never have to call. We perform deep-dive health checks and regular maintenance on your entire stack. By identifying failing hardware or misconfigured software early, we maintain maximum uptime and predictable performance for your team.",
+      "features": [
+        "Monthly system health reports",
+        "Proactive hardware replacement plans",
+        "Security audits and hardening",
+        "Firmware & BIOS lifecycle management"
+      ]
+    }
+  ]
+}

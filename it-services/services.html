@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services | Very Boring Technologies</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body class="subpage">
+
+  <div id="top-bar" class="top-bar"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="nav-content" id="nav-content"></div>
+    </div>
+  </nav>
+
+  <header class="subpage-header section-dark">
+    <div class="container">
+      <h1 id="page-title">Loading Services...</h1>
+      <p id="page-intro" class="hero-text"></p>
+    </div>
+  </header>
+
+  <main id="services-detailed" class="container">
+    <!-- Content will be injected here -->
+  </main>
+  <section id="contact" class="section-accent"></section>
+
+  <footer id="footer"></footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    async function loadDetailedServices() {
+      try {
+        // Load navigation
+        const navRes = await fetch('content/navigation.json');
+        const navData = await navRes.json();
+        renderNavigation(navData);
+
+        const response = await fetch('content/services_detailed.json');
+        const data = await response.json();
+
+        document.getElementById('page-title').textContent = data.page_title;
+        document.getElementById('page-intro').textContent = data.intro;
+
+        const container = document.getElementById('services-detailed');
+        container.innerHTML = data.services.map(service => `
+        <section id="${service.id}" class="detailed-item section-white">
+          <div class="detailed-grid">
+            <div class="detailed-info">
+              <h2>${service.title}</h2>
+              <p>${service.full_description}</p>
+              <ul class="feature-list">
+                ${service.features.map(f => `<li>${f}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        </section>
+      `).join('');
+
+        // Load footer separately since it's shared
+        const footerRes = await fetch('content/footer.json');
+        const footerData = await footerRes.json();
+        renderFooter(footerData);
+
+        // Load contact section
+        const contactRes = await fetch('content/contact.json');
+        const contactData = await contactRes.json();
+        renderContact(contactData);
+
+        handleAnchorLinks();
+        initScrollAnimations();
+
+      } catch (error) {
+        console.error('Error loading detailed services:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDetailedServices);
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+{
+  "logo": "AI + Automation",
+  "home_href": "index.html",
+  "branches": [
+    {
+      "name": "IT Services",
+      "href": "/it-services",
+      "active": false
+    },
+    {
+      "name": "AI Automation",
+      "href": "/ai-and-automation",
+      "active": true
+    }
+  ],
+  "links": [
+    {
+      "text": "Services",
+      "href": "#services"
+    },
+    {
+      "text": "Process",
+      "href": "#process"
+    },
+    {
+      "text": "Launch Partner",
+      "href": "#launch-partner",
+      "highlight": true
+    },
+    {
+      "text": "Pricing",
+      "href": "#pricing"
+    },
+    {
+      "text": "Testimonials",
+      "href": "#testimonials"
+    }
+  ],
+  "cta": {
+    "text": "Get Started",
+    "href": "#contact"
+  }
+}

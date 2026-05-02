@@ -1,0 +1,34 @@
+{
+  "logo": "IT Services",
+  "home_href": "index.html",
+  "branches": [
+    {
+      "name": "IT Services",
+      "href": "/it-services",
+      "active": true
+    },
+    {
+      "name": "AI Automation",
+      "href": "/ai-and-automation",
+      "active": false
+    }
+  ],
+  "links": [
+    {
+      "text": "Services",
+      "href": "services.html"
+    },
+    {
+      "text": "Why Us",
+      "href": "why-us.html"
+    },
+    {
+      "text": "Pricing",
+      "href": "pricing.html"
+    }
+  ],
+  "cta": {
+    "text": "Contact Us",
+    "href": "index.html#contact"
+  }
+}

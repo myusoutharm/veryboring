@@ -9,6 +9,10 @@
   "phone": "+1-604-800-5781",
   "email": "contact@southarm.ca",
   "worker_url": "https://veryboring-23x.pages.dev",
+  "recaptcha": {
+    "mode": "v3",
+    "site_key": "6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI"
+  },
   "form": {
     "title": "Get in Touch",
     "submit_button": "Send Message",

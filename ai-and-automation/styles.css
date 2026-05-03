@@ -13,9 +13,10 @@
   --pink-dim: rgba(219, 39, 119, 0.1);
   --green: #059669;
   --green-dim: rgba(5, 150, 105, 0.1);
+  --boliblue: rgba(27, 56, 102, 1);
 
   --bg: #ffffff;
-  --bg-alt: #b3ffc4;
+  --bg-alt: rgba(217, 217, 191, 1);
   /* CMYK 30 0 23 0 */
   --hero-bg: #4924aa;
   /* CMYK 70 85 30 5 */
@@ -362,7 +363,7 @@ nav.scrolled {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--purple) 0%, #6b45c0 100%);
+  background: linear-gradient(135deg, var(--blue) 0%, #6b45c0 100%);
   color: #fff;
   box-shadow: 0 4px 20px var(--purple-glow);
 }
@@ -398,9 +399,7 @@ nav.scrolled {
   align-items: center;
   justify-content: center;
   padding: 140px 0 60px;
-  background: radial-gradient(circle at top right, rgba(109, 40, 217, 0.5), transparent),
-    radial-gradient(circle at bottom left, rgba(67, 56, 202, 0.5), transparent),
-    var(--hero-bg);
+  background: var(--boliblue);
   color: var(--text-on-dark);
   overflow: hidden;
 }

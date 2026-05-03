@@ -328,7 +328,7 @@ function renderPricing(data) {
         ${escapeHtml(it.description)}
         <a href="${escapeAttr(it.link_href)}">${escapeHtml(it.link_text)}</a>
         <br><br>
-        <a href="pricing.html" class="read-more">See Full AI Pricing & FAQ →</a>
+        <a href="pricing.html" class="read-more">AI + Automation Full Pricing & FAQ →</a>
       </div>
 
       <div class="section-cta">

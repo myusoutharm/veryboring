@@ -106,7 +106,10 @@ async function loadContent() {
   try {
     const entries = Object.entries(contentFiles);
     const responses = await Promise.all(entries.map(([, file]) => fetch(file)));
-    const jsons = await Promise.all(responses.map(r => r.json()));
+    const jsons = await Promise.all(responses.map(r => {
+      if (!r.ok) throw new Error(`Failed to load ${r.url}: ${r.status}`);
+      return r.json();
+    }));
     const content = Object.fromEntries(entries.map(([key], i) => [key, jsons[i]]));
 
     renderNavigation(content.navigation);

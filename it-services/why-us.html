@@ -32,15 +32,18 @@
 
 <script src="scripts.js"></script>
 <script>
+  async function getContent(key, file) {
+    if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
+    const res = await fetch(file);
+    return res.json();
+  }
+
   async function loadDetailedWhyUs() {
     try {
-      // Load navigation
-      const navRes = await fetch('content/navigation.json');
-      const navData = await navRes.json();
+      const navData = await getContent('navigation', 'content/navigation.json');
       renderNavigation(navData);
 
-      const response = await fetch('content/why_us_detailed.json');
-      const data = await response.json();
+      const data = await getContent('why_us_detailed', 'content/why_us_detailed.json');
       
       document.getElementById('page-title').textContent = data.page_title;
       document.getElementById('page-intro').textContent = data.intro;
@@ -60,8 +63,7 @@
         </section>
       `).join('');
       
-      const footerRes = await fetch('content/footer.json');
-      const footerData = await footerRes.json();
+      const footerData = await getContent('footer', 'content/footer.json');
       renderFooter(footerData);
       
       handleAnchorLinks();

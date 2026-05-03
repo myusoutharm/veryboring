@@ -1,7 +1,11 @@
+import { applyServerRenderedHtml } from "./worker/renderers/index.js";
+import { buildSeoMeta, createRobotsTxtResponse, createSitemapResponse } from "./worker/seo.js";
+import { getContentKeys } from "./worker/content-map.js";
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const hostHeader = request.headers.get('host') || "";
+    const hostHeader = request.headers.get("host") || "";
     const host = hostHeader.split(":")[0].toLowerCase();
     const path = url.pathname;
     const method = request.method.toUpperCase();
@@ -14,7 +18,14 @@ export default {
       "veryboring-23x.pages.dev",
     ]);
 
-    // ── /api/contact ────────────────────────────────────────────────────────────
+    if (path === "/robots.txt") {
+      return createRobotsTxtResponse(url.origin);
+    }
+
+    if (path === "/sitemap.xml") {
+      return createSitemapResponse(host, url.origin);
+    }
+
     if (path === "/api/contact") {
       if (method === "OPTIONS") return new Response(null, { status: 204 });
       if (method !== "POST") return json({ message: "Method Not Allowed" }, 405);
@@ -86,132 +97,86 @@ export default {
       }
     }
 
-    // ── Asset routing ───────────────────────────────────────────────────────────
     const isProjectFolder =
-      path.startsWith('/it-services/') || path.startsWith('/ai-and-automation/');
+      path.startsWith("/it-services/") || path.startsWith("/ai-and-automation/");
 
-    // Determine which site folder this request maps to
     let siteFolder = null;
 
     if (southarmHosts.has(host)) {
-      if (path === '/' || path === '') {
-        return renderPage(env, url, '/it-services/', 'it-services');
+      if (path === "/" || path === "") {
+        return renderPage(env, url, "/it-services/", "it-services");
       }
       if (isProjectFolder) {
         return maybeRenderPage(env, request, url, path);
       }
-      if (path.includes('.')) {
+      if (path.endsWith(".html")) {
+        return renderPage(env, url, "/it-services/", "it-services", path.replace(/^\//, ""));
+      }
+      if (path.includes(".")) {
         url.pathname = `/it-services${path}`;
         return env.ASSETS.fetch(url);
       }
-      siteFolder = 'it-services';
+      siteFolder = "it-services";
     }
 
     if (veryboringHosts.has(host)) {
-      if (path === '/' || path === '') {
-        return renderPage(env, url, '/ai-and-automation/', 'ai-and-automation');
+      if (path === "/" || path === "") {
+        return renderPage(env, url, "/ai-and-automation/", "ai-and-automation");
       }
       if (isProjectFolder) {
         return maybeRenderPage(env, request, url, path);
       }
-      if (path.includes('.')) {
+      if (path.endsWith(".html")) {
+        return renderPage(env, url, "/ai-and-automation/", "ai-and-automation", path.replace(/^\//, ""));
+      }
+      if (path.includes(".")) {
         url.pathname = `/ai-and-automation${path}`;
         return env.ASSETS.fetch(url);
       }
-      siteFolder = 'ai-and-automation';
+      siteFolder = "ai-and-automation";
     }
 
-    // For Pages preview URLs (*.pages.dev), detect folder from path
     if (!siteFolder && isProjectFolder) {
       return maybeRenderPage(env, request, url, path);
     }
 
     return env.ASSETS.fetch(request);
-  }
-};
-
-// ── SEO Meta Definitions ────────────────────────────────────────────────────
-
-const SEO_META = {
-  'it-services': {
-    default: {
-      title: 'Managed IT Services | Very Boring Technologies',
-      description: 'Security-first managed IT services for growing businesses. Flat-rate pricing, 24/7 support, and zero-trust architecture. Serving the Greater Vancouver area.',
-      ogType: 'website',
-    },
-    'index.html': {
-      title: 'Managed IT Services | Very Boring Technologies',
-      description: 'Security-first managed IT services for growing businesses. Flat-rate pricing, 24/7 support, and zero-trust architecture. Serving the Greater Vancouver area.',
-    },
-    'services.html': {
-      title: 'Our IT Services | Very Boring Technologies',
-      description: 'Explore our full suite of managed IT services: security architecture, endpoint management, network management, backup & recovery, and unlimited support.',
-    },
-    'pricing.html': {
-      title: 'IT Services Pricing | Very Boring Technologies',
-      description: 'Simple, transparent flat-rate pricing for managed IT services. No surprise bills. Includes support, patching, and security monitoring.',
-    },
-    'why-us.html': {
-      title: 'Why Choose Us | Very Boring Technologies',
-      description: 'Learn why businesses choose Very Boring Technologies for their managed IT. Privacy-respecting, security-first, and straightforward.',
-    },
-  },
-  'ai-and-automation': {
-    default: {
-      title: 'AI & Automation | Very Boring Technologies',
-      description: 'AI-powered automation solutions for your business workflows. Build voice agents, automate repetitive processes, and integrate with your existing tools.',
-      ogType: 'website',
-    },
-    'index.html': {
-      title: 'AI & Automation Services | Very Boring Technologies',
-      description: 'AI-powered automation for your business. Voice agents, workflow automation, and custom AI integrations. Join our Launch Partner program.',
-    },
   },
 };
 
-// ── Page Rendering ───────────────────────────────────────────────────────────
-
-/**
- * Determines if a path is an HTML page and applies SSR enrichment if so.
- */
 async function maybeRenderPage(env, request, url, path) {
-  const isHtml = path.endsWith('.html') || path.endsWith('/') || !path.includes('.');
+  const isHtml = path.endsWith(".html") || path.endsWith("/") || !path.includes(".");
   if (!isHtml) {
     return env.ASSETS.fetch(request);
   }
 
-  // Derive folder and filename from path
-  const parts = path.replace(/^\//, '').split('/');
-  const folder = parts[0]; // 'it-services' or 'ai-and-automation'
-  const file = parts.slice(1).join('/') || 'index.html';
+  const parts = path.replace(/^\//, "").split("/");
+  const folder = parts[0];
+  const file = parts.slice(1).join("/") || "index.html";
 
   return renderPage(env, url, `/${folder}/`, folder, file);
 }
 
-async function renderPage(env, url, basePath, folder, file = 'index.html') {
-  // Build the asset URL for the HTML skeleton
+async function renderPage(env, url, basePath, folder, file = "index.html") {
   const htmlUrl = new URL(url);
   htmlUrl.pathname = `${basePath}${file}`;
 
-  // Fetch HTML + all JSON content files in parallel
   const contentKeys = getContentKeys(folder, file);
-  const contentPaths = contentKeys.map(k => `${basePath}content/${k}.json`);
+  const contentPaths = contentKeys.map((k) => `${basePath}content/${k}.json`);
 
   const [htmlRes, ...jsonResponses] = await Promise.all([
     env.ASSETS.fetch(htmlUrl),
-    ...contentPaths.map(p => {
+    ...contentPaths.map((p) => {
       const u = new URL(url);
       u.pathname = p;
       return env.ASSETS.fetch(u);
     }),
   ]);
 
-  // If not an HTML response or fetch failed, pass through as-is
-  if (!htmlRes.ok || !htmlRes.headers.get('content-type')?.includes('text/html')) {
+  if (!htmlRes.ok || !htmlRes.headers.get("content-type")?.includes("text/html")) {
     return htmlRes;
   }
 
-  // Parse JSON content — skip files that failed to load
   const contentEntries = await Promise.all(
     jsonResponses.map(async (res, i) => {
       if (!res.ok) return null;
@@ -226,16 +191,15 @@ async function renderPage(env, url, basePath, folder, file = 'index.html') {
 
   const content = Object.fromEntries(contentEntries.filter(Boolean));
 
-  // Build injection: window.__CONTENT__ + SEO meta tags
-  const seoMeta = buildSeoMeta(folder, file, content);
+  const seoMeta = buildSeoMeta(folder, file, content, url);
   const contentScript = `<script>window.__CONTENT__ = ${JSON.stringify(content)};</script>`;
   const injection = `${seoMeta}\n${contentScript}`;
 
   let html = await htmlRes.text();
+  html = applyServerRenderedHtml(html, folder, file, content);
 
-  // Inject before </head>
-  if (html.includes('</head>')) {
-    html = html.replace('</head>', `${injection}\n</head>`);
+  if (html.includes("</head>")) {
+    html = html.replace("</head>", `${injection}\n</head>`);
   } else {
     html = injection + html;
   }
@@ -243,74 +207,11 @@ async function renderPage(env, url, basePath, folder, file = 'index.html') {
   return new Response(html, {
     status: 200,
     headers: {
-      'Content-Type': 'text/html; charset=UTF-8',
-      'Cache-Control': 'public, max-age=60, stale-while-revalidate=300',
+      "Content-Type": "text/html; charset=UTF-8",
+      "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
     },
   });
 }
-
-/**
- * Returns the list of content JSON keys relevant for a given site folder and page.
- */
-function getContentKeys(folder, file) {
-  if (folder === 'it-services') {
-    if (file === 'index.html' || file === '') {
-      return ['navigation', 'hero', 'services', 'why-us', 'pricing', 'testimonials', 'contact', 'footer'];
-    }
-    if (file === 'services.html') {
-      return ['navigation', 'services_detailed', 'contact', 'footer'];
-    }
-    if (file === 'pricing.html') {
-      return ['navigation', 'pricing', 'pricing_detailed', 'footer'];
-    }
-    if (file === 'why-us.html') {
-      return ['navigation', 'why-us', 'why_us_detailed', 'contact', 'footer'];
-    }
-    return ['navigation', 'footer'];
-  }
-
-  if (folder === 'ai-and-automation') {
-    return ['navigation', 'hero', 'services', 'process', 'launch-partner', 'pricing', 'metrics', 'testimonials', 'contact', 'footer'];
-  }
-
-  return [];
-}
-
-/**
- * Builds SEO <meta> tags from content data and the SEO_META config.
- */
-function buildSeoMeta(folder, file, content) {
-  const folderMeta = SEO_META[folder] || {};
-  const pageMeta = { ...(folderMeta.default || {}), ...(folderMeta[file] || {}) };
-
-  const title = pageMeta.title || 'Very Boring Technologies';
-  const description = pageMeta.description || '';
-  const ogType = pageMeta.ogType || 'website';
-
-  // Pull the first hero headline for richer meta if available
-  const heroHeadline =
-    content?.hero?.slides?.[0]?.headline ||
-    content?.hero?.headline ||
-    '';
-
-  const finalDescription = description || heroHeadline;
-
-  return `
-  <!-- SEO: injected by edge worker -->
-  <meta name="description" content="${escAttr(finalDescription)}">
-  <meta property="og:title" content="${escAttr(title)}">
-  <meta property="og:description" content="${escAttr(finalDescription)}">
-  <meta property="og:type" content="${escAttr(ogType)}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escAttr(title)}">
-  <meta name="twitter:description" content="${escAttr(finalDescription)}">`.trim();
-}
-
-function escAttr(str) {
-  return String(str || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-// ── Helpers ──────────────────────────────────────────────────────────────────
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {

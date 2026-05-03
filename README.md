@@ -7,6 +7,14 @@ This repository contains the web properties for Very Boring Technologies, archit
 ```
 /
 ├── _worker.js              # Cloudflare Pages edge worker: routing, SSR enrichment, form API
+├── worker/                 # Worker modules (SEO, sitemap, site renderers)
+│   ├── seo.js
+│   ├── escape.js
+│   ├── content-map.js
+│   └── renderers/
+│       ├── index.js
+│       ├── it-services.js
+│       └── ai-and-automation.js
 ├── it-services/            # southarm.ca — Managed IT Services site
 │   ├── index.html          # Skeleton HTML
 │   ├── scripts.js          # Dynamic content renderer
@@ -22,14 +30,11 @@ This repository contains the web properties for Very Boring Technologies, archit
 │   ├── styles.css
 │   └── content/
 │       └── ...
-└── contact-api/            # (Legacy) Standalone Cloudflare Worker for form handling
-    ├── index.js
-    └── wrangler.toml
 ```
 
-## Content Architecture (JS-Driven with Edge SSR)
+## Content Architecture (JS-Driven with Edge Prerendering)
 
-This project follows a **"Content-as-Data"** approach combined with **Edge-Side Rendering** for SEO.
+This project follows a **"Content-as-Data"** approach combined with **Edge-Side HTML prerendering** for SEO.
 
 ### How It Works
 
@@ -40,13 +45,15 @@ Browser Request
 _worker.js (Cloudflare Edge)
       │
       ├─ Fetches skeleton HTML + all JSON content files in parallel
+      ├─ Renders crawlable HTML into each content section (`#hero`, `#services`, etc.)
       ├─ Injects SEO <meta> tags into <head>
+      ├─ Injects canonical URL + robots directives
       ├─ Injects window.__CONTENT__ = { ...all JSON data } into <head>
       │
       ▼
 Browser receives fully enriched HTML
       │
-      ├─ Search crawlers: read meta tags + can index any server-rendered text
+      ├─ Search crawlers: receive real page copy in initial HTML (no JS execution required)
       └─ scripts.js: reads window.__CONTENT__ (no fetch needed) → renders DOM
 ```
 
@@ -54,16 +61,17 @@ Browser receives fully enriched HTML
 
 | Layer | File | Purpose |
 | :--- | :--- | :--- |
-| **Structure** | `index.html` | Lightweight skeleton with empty `<section id="...">` containers |
+| **Structure** | `index.html` | Lightweight skeleton containers (`<section id="...">`) |
 | **Content** | `content/*.json` | All marketing copy, pricing, nav links — edit here to update the site |
-| **Rendering** | `scripts.js` | Reads content and builds DOM; uses `window.__CONTENT__` if available, falls back to `fetch()` for local dev |
+| **Edge Rendering** | `_worker.js` | Fetches JSON and injects prerendered HTML + SEO meta/canonical tags |
+| **Client Hydration** | `scripts.js` | Rebuilds interactive UI from `window.__CONTENT__` (or `fetch()` fallback for local dev) |
 
 ### SEO Meta Tags
 
-SEO titles and descriptions are defined in the `SEO_META` object at the top of `_worker.js`. Edit this object to update page titles and meta descriptions without deploying content changes.
+SEO titles and descriptions are defined in the `SEO_META` object in `worker/seo.js`. Edit this object to update page titles and meta descriptions without deploying content changes.
 
 ```javascript
-// _worker.js
+// worker/seo.js
 const SEO_META = {
   'it-services': {
     'index.html': {
@@ -78,14 +86,20 @@ const SEO_META = {
 
 ### Benefits
 
-- **SEO-Friendly**: Crawlers receive fully-tagged HTML including `<meta description>`, Open Graph, and Twitter Card tags — injected at the edge before the response is sent.
+- **SEO-Friendly**: Crawlers receive semantic body content in the initial response, plus `<meta description>`, Open Graph, Twitter Card, canonical, and robots tags.
 - **Fast**: `scripts.js` skips all JSON `fetch()` calls in production; data is already inline in `window.__CONTENT__`.
 - **Maintainable**: Update marketing copy in `/content/*.json`. No HTML or JS changes needed.
 - **Local Dev Works**: When running locally (no edge worker), `scripts.js` falls back to fetching JSON files directly.
 
+### SEO Discovery Files
+
+`_worker.js` also serves:
+- `GET /robots.txt` (host-aware sitemap reference)
+- `GET /sitemap.xml` (domain-specific URL list for `southarm.ca` and `veryboring.ai`)
+
 ## Form & Backend Logic
 
-Form submissions are handled by the **`/api/contact` endpoint in `_worker.js`** (not the `/contact-api` folder, which is legacy). This endpoint:
+Form submissions are handled by the **`/api/contact` endpoint in `_worker.js`**. This endpoint:
 
 1. Validates the request content type and payload.
 2. Verifies the **reCAPTCHA v3** token with Google (including score and action checks).
@@ -106,12 +120,6 @@ Routing is handled automatically by `_worker.js` based on the incoming `Host` he
 ## Deployment
 
 The site is deployed to **Cloudflare Pages** via GitHub integration. Every push to the configured branch triggers an automatic deployment — no build step is required.
-
-### Manual Deploy Command
-
-```bash
-npx wrangler pages deploy . --project-name veryboring-site --branch newsite
-```
 
 ### Cloudflare Dashboard Build Settings
 
@@ -139,7 +147,7 @@ npx wrangler pages deploy . --project-name veryboring-site --branch newsite
 | Task | What to Edit |
 | :--- | :--- |
 | Update marketing copy or pricing | `/it-services/content/*.json` or `/ai-and-automation/content/*.json` |
-| Update page SEO titles/descriptions | `SEO_META` object in `_worker.js` |
+| Update page SEO titles/descriptions | `SEO_META` object in `worker/seo.js` |
 | Add a new domain | `southarmHosts` / `veryboringHosts` sets in `_worker.js` |
-| Add a new sub-page | Create the `.html` file and add its content keys to `getContentKeys()` in `_worker.js` |
+| Add a new sub-page | Create the `.html` file, add content keys in `worker/content-map.js`, and add renderer output in `worker/renderers/*.js` |
 | Change form fields | Update the `fields` array in the relevant `contact.json` |

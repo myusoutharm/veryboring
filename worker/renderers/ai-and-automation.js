@@ -159,7 +159,7 @@ function renderAiFooter(data) {
         <div class="footer-brand"><a href="index.html" class="logo">${escHtml(data?.brand?.name || "")}</a><p>${escHtml(data?.brand?.tagline || "")}</p></div>
         ${(data.sections || []).map((section) => `<div class="footer-section"><h4>${escHtml(section.title || "")}</h4><ul>${(section.links || []).map((link) => `<li>${link.href ? `<a href="${escAttr(link.href)}">${escHtml(link.text || "")}</a>` : escHtml(link.text || "")}</li>`).join("")}</ul></div>`).join("")}
       </div>
-      <div class="footer-bottom"><p>${escHtml(data.copyright || "")}</p><a href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer"><img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="Quality Gate Status"></a></div>
+      <div class="footer-bottom"><p>${escHtml(data.copyright || "")}</p><div class="footer-badges"><a href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer"><img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="Quality Gate Status"></a><a href="https://codecov.io/gh/myusoutharm/veryboring" target="_blank" rel="noopener noreferrer"><img src="https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY" alt="codecov"></a></div></div>
     </div>`;
 }
 

@@ -1393,6 +1393,12 @@ footer {
   color: var(--text-dim);
 }
 
+.footer-badges {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
 .footer-legal {
   display: flex;
   gap: 20px;

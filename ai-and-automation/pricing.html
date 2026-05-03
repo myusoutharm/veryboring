@@ -33,7 +33,10 @@
         <table class="pricing-table" style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr id="table-headers">
-              <!-- Injected -->
+              <th>Feature</th>
+              <th class="col-launch">Launch Partner</th>
+              <th>SaaS User</th>
+              <th class="col-standard">Standard</th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -96,7 +99,7 @@
 
         document.getElementById('table-body').innerHTML = comp.rows.map(row => `
           <tr>
-            <td style="font-weight: 600;">${row.feature}</td>
+            <th scope="row" style="text-align: left;">${row.feature}</th>
             ${dataKeys.map((key, i) => `
               <td style="${i === 0 ? 'color: var(--purple); font-weight: 700;' : ''}">${row[key]}</td>
             `).join('')}

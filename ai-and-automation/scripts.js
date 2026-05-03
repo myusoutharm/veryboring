@@ -307,7 +307,7 @@ function renderPricing(data) {
                   const dataKeys = Object.keys(row).filter(k => k !== 'feature');
                   return `
                   <tr>
-                    <td>${row.feature}</td>
+                    <th scope="row">${row.feature}</th>
                     ${dataKeys.map((k, i) => `
                       <td class="${i === 0 ? 'val-launch' : ''}">${row[k] === true ? checkIcon : row[k]}</td>
                     `).join('')}

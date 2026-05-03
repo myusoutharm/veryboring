@@ -240,16 +240,20 @@ function renderPricing(data) {
         <p>${data.section_description}</p>
       </div>
       <table class="pricing-table">
-        <tr>
-          <td><strong>${data.column_labels.type}</strong></td>
-          <td><strong>${data.column_labels.rate}</strong></td>
-        </tr>
-        ${data.tiers.map(tier => `
+        <thead>
           <tr>
-            <td>${tier.name}</td>
-            <td>${tier.price}</td>
+            <th>${data.column_labels.type}</th>
+            <th>${data.column_labels.rate}</th>
           </tr>
-        `).join('')}
+        </thead>
+        <tbody>
+          ${data.tiers.map(tier => `
+            <tr>
+              <th scope="row" style="text-align: left;">${tier.name}</th>
+              <td>${tier.price}</td>
+            </tr>
+          `).join('')}
+        </tbody>
       </table>
       <p class="pricing-reminder">${data.footnote}</p>
       <div class="pricing-cta">

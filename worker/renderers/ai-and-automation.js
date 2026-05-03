@@ -115,8 +115,8 @@ function renderAiPricing(data) {
   return `
     <div class="container">
       <div class="section-header"><span class="eyebrow">${escHtml(data.eyebrow || "")}</span><h2>${escHtml(data.section_title || "")}</h2><p>${escHtml(data.section_description || "")}</p></div>
-      <table class="pricing-table"><thead><tr><th>${escHtml(cols[0] || "")}</th><th>${escHtml(cols[1] || "")}</th><th>${escHtml(cols[2] || "")}</th></tr></thead><tbody>
-      ${rows.map((row) => `<tr><td>${escHtml(row.feature || "")}</td><td>${escHtml(formatPricingValue(row.launch))}</td><td>${escHtml(formatPricingValue(row.standard))}</td></tr>`).join("")}
+      <table class="pricing-table"><thead><tr>${cols.map((c) => `<th>${escHtml(c)}</th>`).join("")}</tr></thead><tbody>
+      ${rows.map((row) => `<tr><th scope="row">${escHtml(row.feature || "")}</th><td>${escHtml(formatPricingValue(row.launch))}</td><td>${escHtml(formatPricingValue(row.saas))}</td><td>${escHtml(formatPricingValue(row.standard))}</td></tr>`).join("")}
       </tbody></table>
       <div class="it-services-callout">${escHtml(data?.it_services?.description || "")} <a href="${escAttr(data?.it_services?.link_href || "/it-services/pricing.html")}">${escHtml(data?.it_services?.link_text || "Full IT pricing details")}</a></div>
     </div>`;
@@ -180,7 +180,7 @@ function renderAiDetailedPricing(data) {
         <tbody>
           ${rows.map((r) => `
             <tr>
-              <td style="font-weight:600">${escHtml(r.feature)}</td>
+              <th scope="row" style="text-align:left; font-weight:600">${escHtml(r.feature)}</th>
               ${dataKeys.map((k, i) => `
                 <td style="${i === 0 ? "color:var(--purple);font-weight:700" : ""}">${escHtml(r[k])}</td>
               `).join("")}

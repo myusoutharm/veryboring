@@ -126,8 +126,15 @@ function renderItPricing(data) {
     <div class="container">
       <div class="section-header"><h2>${escHtml(data.section_title || "")}</h2><p>${escHtml(data.section_description || "")}</p></div>
       <table class="pricing-table">
-        <tr><td><strong>${escHtml(data?.column_labels?.type || "")}</strong></td><td><strong>${escHtml(data?.column_labels?.rate || "")}</strong></td></tr>
-        ${(data.tiers || []).map((tier) => `<tr><td>${escHtml(tier.name || "")}</td><td>${escHtml(tier.price || "")}</td></tr>`).join("")}
+        <thead>
+          <tr>
+            <th>${escHtml(data?.column_labels?.type || "")}</th>
+            <th>${escHtml(data?.column_labels?.rate || "")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${(data.tiers || []).map((tier) => `<tr><th scope="row" style="text-align: left;">${escHtml(tier.name || "")}</th><td>${escHtml(tier.price || "")}</td></tr>`).join("")}
+        </tbody>
       </table>
       <p class="pricing-reminder">${escHtml(data.footnote || "")}</p>
       <div class="pricing-cta"><a href="pricing.html" class="read-more">See Full Pricing Details</a></div>

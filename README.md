@@ -152,4 +152,6 @@ The site is deployed to **Cloudflare Pages** via GitHub integration. Every push 
 | Add a new sub-page | Create the `.html` file, add content keys in `worker/content-map.js`, and add renderer output in `worker/renderers/*.js` |
 | Change form fields | Update the `fields` array in the relevant `contact.json` |
 
+## Code Quality Check
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring)

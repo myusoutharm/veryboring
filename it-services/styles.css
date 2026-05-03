@@ -789,7 +789,7 @@ footer {
 }
 .footer-bottom a { color: rgba(255,255,255,.65); text-decoration: none; }
 .footer-bottom a:hover { color: var(--accent); }
-.footer-badges { display: flex; gap: 12px; align-items: center; }
+.footer-badges { display: flex; gap: 12px; align-items: center; justify-content: center; }
 
 /* ==================== SCROLL ANIMATIONS ==================== */
 

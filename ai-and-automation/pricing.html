@@ -85,12 +85,11 @@
         document.getElementById('page-title').textContent = data.page_title;
         document.getElementById('page-intro').textContent = data.intro;
 
-        // Table
+        // Table — map column keys by order since JSON property names may vary
         const comp = data.comparison;
         document.getElementById('comparison-title').textContent = comp.title;
         document.getElementById('table-headers').innerHTML = comp.columns.map(c => `<th>${c}</th>`).join('');
-        
-        // We'll map them based on order since JSON keys might vary
+
         const dataKeys = comp.columns.slice(1).map((c, i) => {
            return Object.keys(comp.rows[0]).filter(k => k !== 'feature')[i];
         });

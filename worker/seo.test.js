@@ -130,9 +130,11 @@ describe("createSitemapResponse", () => {
   });
 
   it("XML-encodes special characters in URLs", async () => {
-    // Craft an origin with an ampersand to confirm escaping
-    const res = createSitemapResponse("veryboring.ai", "https://veryboring.ai");
+    // Use an origin that contains an ampersand to verify escaping
+    const res = createSitemapResponse("southarm.ca", "https://southarm.ca/?a=1&b=2");
     const body = await res.text();
-    expect(body).not.toContain("&");
+    // Raw & should not appear inside <loc> — it must be encoded as &amp;
+    expect(body).not.toContain("a=1&b=2");
+    expect(body).toContain("a=1&amp;b=2");
   });
 });

@@ -11,128 +11,30 @@ const contentFiles = {
   footer: 'content/footer.json'
 };
 
-const DEFAULT_RECAPTCHA_SITE_KEY = '6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI';
-
-const recaptchaState = {
-  siteKey: DEFAULT_RECAPTCHA_SITE_KEY,
-  mode: 'v3',
-  initError: ''
-};
-
-function normalizeRecaptchaConfig(cfg = {}) {
-  return {
-    siteKey: String(cfg.site_key || DEFAULT_RECAPTCHA_SITE_KEY).trim(),
-    mode: String(cfg.mode || 'v3').toLowerCase()
-  };
-}
-
-function isRecaptchaReady() {
-  return Boolean(window.grecaptcha && typeof window.grecaptcha.execute === 'function');
-}
-
-function loadRecaptchaApi(siteKey) {
-  if (!siteKey) {
-    return Promise.reject(new Error('reCAPTCHA site key missing.'));
-  }
-
-  if (isRecaptchaReady()) {
-    return Promise.resolve();
-  }
-
-  const scriptId = 'recaptcha-api-script';
-  const targetSrc = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`;
-  let script = document.getElementById(scriptId);
-
-  if (!script) {
-    script = document.createElement('script');
-    script.id = scriptId;
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-  }
-
-  if (script.src !== targetSrc) {
-    script.src = targetSrc;
-  }
-
-  return new Promise((resolve, reject) => {
-    const start = Date.now();
-    const timeoutMs = 10000;
-    const interval = setInterval(() => {
-      if (isRecaptchaReady()) {
-        clearInterval(interval);
-        resolve();
-        return;
-      }
-
-      if (Date.now() - start > timeoutMs) {
-        clearInterval(interval);
-        reject(new Error('Timed out loading reCAPTCHA API.'));
-      }
-    }, 100);
-  });
-}
-
-async function initRecaptcha(config) {
-  recaptchaState.siteKey = config.siteKey;
-  recaptchaState.mode = config.mode;
-  recaptchaState.initError = '';
-
-  try {
-    await loadRecaptchaApi(config.siteKey);
-  } catch (err) {
-    recaptchaState.initError = err && err.message ? err.message : 'reCAPTCHA initialization failed.';
-    console.warn('reCAPTCHA init error:', err);
-  }
-}
-
-async function getRecaptchaToken() {
-  if (recaptchaState.mode !== 'v3') {
-    throw new Error(`Unsupported reCAPTCHA mode: ${recaptchaState.mode}`);
-  }
-
-  if (recaptchaState.initError) {
-    throw new Error(recaptchaState.initError);
-  }
-
-  if (!isRecaptchaReady()) {
-    await loadRecaptchaApi(recaptchaState.siteKey);
-  }
-
-  return window.grecaptcha.execute(recaptchaState.siteKey, { action: 'contact_submit' });
-}
+const { createRecaptchaManager, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } = window.VBTUtils;
+const recaptchaManager = createRecaptchaManager();
 
 async function loadContent() {
   try {
-    let content;
-
-    // Fast path: edge worker pre-injected all content into the page
-    if (window.__CONTENT__ && Object.keys(window.__CONTENT__).length > 0) {
-      content = window.__CONTENT__;
-    } else {
-      // Fallback: fetch JSON files individually (local dev / direct file access)
-      const entries = Object.entries(contentFiles);
-      const responses = await Promise.all(entries.map(([, file]) => fetch(file)));
-      const jsons = await Promise.all(responses.map(r => {
-        if (!r.ok) throw new Error(`Failed to load ${r.url}: ${r.status}`);
-        return r.json();
-      }));
-      content = Object.fromEntries(entries.map(([key], i) => [key, jsons[i]]));
-    }
-
-    renderNavigation(content.navigation);
-    renderHero(content.hero);
-    renderServices(content.services);
-    renderProcess(content.process);
-    renderLaunchPartner(content['launch-partner']);
-    renderPricing(content.pricing);
-    renderMetrics(content.metrics);
-    renderTestimonials(content.testimonials);
-    renderContact(content.contact);
-    renderFooter(content.footer);
-
-    handleAnchorLinks();
-    initScrollAnimations();
+    await loadAndRenderPage({
+      contentFiles,
+      renderers: {
+        navigation: renderNavigation,
+        hero: renderHero,
+        services: renderServices,
+        process: renderProcess,
+        'launch-partner': renderLaunchPartner,
+        pricing: renderPricing,
+        metrics: renderMetrics,
+        testimonials: renderTestimonials,
+        contact: renderContact,
+        footer: renderFooter
+      },
+      onAfterRender: () => {
+        handleAnchorLinks();
+        initScrollAnimations();
+      }
+    });
   } catch (err) {
     console.error('Error loading content:', err);
   }
@@ -550,89 +452,17 @@ function renderContact(data) {
     </div>
   `;
 
-  initRecaptcha(recaptchaConfig);
+  recaptchaManager.init(recaptchaConfig);
 
   document.getElementById('contact-form').addEventListener('submit', handleContactSubmit);
 }
 
 async function handleContactSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const btn = document.getElementById('form-submit');
-  const msgBox = document.getElementById('form-message');
-
-  // 1. Honeypot check
-  const honeypot = form.querySelector('input[name="b_phone"]');
-  if (honeypot && honeypot.value) {
-    console.warn('Spam detected via honeypot.');
-    showFormMessage(msgBox, 'success', "Thanks — we'll be in touch shortly!");
-    form.reset();
-    return;
-  }
-
-  // 2. reCAPTCHA check (v3 score-based)
-  let token = '';
-  try {
-    token = await getRecaptchaToken();
-  } catch (err) {
-    const detail = err && err.message ? ` (${err.message})` : '';
-    showFormMessage(msgBox, 'error', `Security check unavailable${detail}. Please refresh and try again.`);
-    return;
-  }
-
-  if (!token) {
-    showFormMessage(msgBox, 'error', 'Security verification failed. Please try again.');
-    return;
-  }
-
-  const workerUrl = form.dataset.worker;
-  if (!workerUrl || workerUrl.includes('your-worker-name')) {
-    showFormMessage(msgBox, 'success', 'Message received — thank you! (Worker URL not yet configured.)');
-    form.reset();
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-  msgBox.style.display = 'none';
-
-  const fields = Array.from(form.querySelectorAll('[data-hs]'))
-    .filter(el => el.value.trim())
-    .map(el => ({ name: el.dataset.hs, value: el.value.trim() }));
-
-  const hutk = document.cookie.match(/(^|;)\s*hubspotutk=([^;]+)/)?.[2] || undefined;
-
-  try {
-    const res = await fetch(workerUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        token,
-        fields,
-        context: { hutk, pageUri: window.location.href, pageName: document.title }
-      })
-    });
-
-    if (res.ok) {
-      showFormMessage(msgBox, 'success', "Thanks — we'll be in touch shortly!");
-      form.reset();
-    } else {
-      const err = await res.json().catch(() => ({}));
-      showFormMessage(msgBox, 'error', err.message || 'Something went wrong. Please call us directly.');
-    }
-  } catch {
-    showFormMessage(msgBox, 'error', `Network error. Please try calling 604-800-5781 directly.`);
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Send Message';
-  }
-}
-
-function showFormMessage(el, type, text) {
-  el.className = `form-message form-message--${type}`;
-  el.textContent = text;
-  el.style.display = 'block';
-  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  await submitContactForm(event, {
+    getRecaptchaToken: () => recaptchaManager.getToken(),
+    missingWorkerMode: 'success',
+    missingWorkerMessage: 'Message received — thank you! (Worker URL not yet configured.)'
+  });
 }
 
 // ── Footer ────────────────────────────────────────────────────────────────────

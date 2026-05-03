@@ -1,14 +1,17 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const host = request.headers.get('host') || "";
+    const hostHeader = request.headers.get('host') || "";
+    const host = hostHeader.split(":")[0].toLowerCase();
     const path = url.pathname;
+    const southarmHosts = new Set(["southarm.ca", "www.southarm.ca"]);
+    const veryboringHosts = new Set(["veryboring.ai", "www.veryboring.ai"]);
 
     // Helper to check if the request is already pointing to a project folder
     const isProjectFolder = path.startsWith('/it-services/') || path.startsWith('/ai-and-automation/');
 
     // 1. Routing for southarm.ca
-    if (host.includes('southarm.ca')) {
+    if (southarmHosts.has(host)) {
       // If root, serve it-services index
       if (path === '/' || path === '') {
         url.pathname = '/it-services/index.html';
@@ -28,7 +31,7 @@ export default {
     }
 
     // 2. Routing for veryboring.ai
-    if (host.includes('veryboring.ai')) {
+    if (veryboringHosts.has(host)) {
       // If root, serve ai-and-automation index
       if (path === '/' || path === '') {
         url.pathname = '/ai-and-automation/index.html';

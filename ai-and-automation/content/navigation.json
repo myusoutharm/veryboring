@@ -16,24 +16,24 @@
   "links": [
     {
       "text": "Services",
-      "href": "#services"
+      "href": "services.html"
     },
     {
       "text": "Process",
-      "href": "#process"
+      "href": "/ai-and-automation/index.html#process"
     },
     {
       "text": "Launch Partner",
-      "href": "#launch-partner",
+      "href": "/ai-and-automation/index.html#launch-partner",
       "highlight": true
     },
     {
       "text": "Pricing",
-      "href": "#pricing"
+      "href": "pricing.html"
     },
     {
       "text": "Testimonials",
-      "href": "#testimonials"
+      "href": "/ai-and-automation/index.html#testimonials"
     }
   ],
   "cta": {

@@ -1,0 +1,54 @@
+{
+  "page_title": "Pricing",
+  "intro": "We offer two ways to work together: join our Launch Partner program for zero upfront costs, or choose our Standard model for full IP ownership.",
+  "comparison": {
+    "title": "Comparison of Options",
+    "columns": [
+      "Feature",
+      "Launch Partner",
+      "Standard"
+    ],
+    "rows": [
+      {
+        "feature": "Project Development Fee",
+        "launch": "FREE",
+        "standard": "$150 / hr"
+      },
+      {
+        "feature": "Intellectual Property (*)",
+        "launch": "VBT Owned",
+        "standard": "Client Owned"
+      },
+      {
+        "feature": "Maintenance & Support",
+        "launch": "FREE",
+        "standard": "Paid Monthly"
+      },
+      {
+        "feature": "Ongoing Resource Rate",
+        "launch": "50% Discount",
+        "standard": "Full Price"
+      },
+      {
+        "feature": "Updates & Enhancements",
+        "launch": "Continuous",
+        "standard": "On-Request"
+      }
+    ],
+    "footnote": "(*) Under the Launch Partner program, VBT retains the rights to the underlying automation logic and implementation but provides you with a permanent, non-exclusive, non-transferable license to use it. You pay for the support fee (and hosting fee, if available) only (50% off), and you can cancel the support service anytime, and cancellation doesn't affect your right to use the automation."
+  },
+  "faqs": [
+    {
+      "question": "What is the Launch Partner program?",
+      "answer": "The Launch Partner program is designed for businesses with common automation needs. In exchange for VBT owning the underlying IP (which we may reuse for other clients), we build and maintain your solution for free."
+    },
+    {
+      "question": "When should I choose the Standard model?",
+      "answer": "If your automation is core to your proprietary business value and you need to own the code and IP entirely, the Standard model is for you."
+    },
+    {
+      "question": "Are there any hidden costs?",
+      "answer": "No. We believe in transparent, boring pricing. Launch Partners only pay for third-party API costs (like OpenAI usage) at cost, with no markup."
+    }
+  ]
+}

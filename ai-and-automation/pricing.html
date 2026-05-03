@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans | Very Boring Technologies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="subpage">
+
+  <div id="top-bar" class="top-bar"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="nav-content" id="nav-content"></div>
+    </div>
+  </nav>
+
+  <header class="subpage-header section-accent">
+    <div class="container">
+      <h1 id="page-title">Pricing & Options</h1>
+      <p id="page-intro" class="hero-text">Loading...</p>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 60px 0;">
+    <section id="pricing-comparison" class="section-white" style="margin-bottom: 60px; padding: 40px; border-radius: 20px;">
+      <h2 id="comparison-title" style="text-align: center; margin-bottom: 40px;">Comparison of Options</h2>
+      <div style="overflow-x: auto;">
+        <table class="pricing-table" style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr id="table-headers">
+              <!-- Injected -->
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Injected -->
+          </tbody>
+        </table>
+      </div>
+      <p id="table-footnote" style="font-size: 0.85rem; color: var(--text-dim); margin-top: 20px; font-style: italic;"></p>
+    </section>
+
+    <section id="pricing-faq" class="section-subtle" style="padding: 60px 40px; border-radius: 20px;">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div id="faq-list" style="max-width: 800px; margin: 0 auto; display: grid; gap: 30px;">
+        <!-- Injected -->
+      </div>
+    </section>
+
+    <div class="it-services-callout" style="margin-top: 60px;">
+      Looking for our security-first IT services? We offer comprehensive management, security, and 24/7 support.
+      <a href="/it-services/pricing.html">See our IT Services Pricing →</a>
+    </div>
+  </main>
+
+  <section id="contact" class="section-accent"></section>
+
+  <footer id="footer"></footer>
+
+  <script src="../shared/site-utils.js?v=20260503a"></script>
+  <script src="scripts.js?v=20260503a"></script>
+  <script>
+    async function getContent(key, file) {
+      if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
+      const res = await fetch(file);
+      return res.json();
+    }
+
+    async function loadPricingPage() {
+      try {
+        const navData = await getContent('navigation', 'content/navigation.json');
+        renderNavigation(navData);
+
+        const data = await getContent('pricing_detailed', 'content/pricing_detailed.json');
+
+        document.getElementById('page-title').textContent = data.page_title;
+        document.getElementById('page-intro').textContent = data.intro;
+
+        // Table
+        const comp = data.comparison;
+        document.getElementById('comparison-title').textContent = comp.title;
+        document.getElementById('table-headers').innerHTML = comp.columns.map(c => `<th>${c}</th>`).join('');
+        document.getElementById('table-body').innerHTML = comp.rows.map(row => `
+          <tr>
+            <td style="font-weight: 600;">${row.feature}</td>
+            <td style="color: var(--purple); font-weight: 700;">${row.launch}</td>
+            <td>${row.standard}</td>
+          </tr>
+        `).join('');
+        document.getElementById('table-footnote').textContent = comp.footnote;
+
+        // FAQ
+        document.getElementById('faq-list').innerHTML = data.faqs.map(faq => `
+          <div class="card-glass" style="padding: 24px;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 12px; color: var(--purple);">${faq.question}</h3>
+            <p style="margin: 0; font-size: 1rem; line-height: 1.6;">${faq.answer}</p>
+          </div>
+        `).join('');
+
+        const footerData = await getContent('footer', 'content/footer.json');
+        renderFooter(footerData);
+
+        const contactData = await getContent('contact', 'content/contact.json');
+        renderContact(contactData);
+
+        handleAnchorLinks();
+        initScrollAnimations();
+
+      } catch (error) {
+        console.error('Error loading pricing page:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPricingPage);
+  </script>
+
+</body>
+
+</html>

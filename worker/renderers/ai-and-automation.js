@@ -1,7 +1,43 @@
 import { escAttr, escHtml } from "../escape.js";
 
-export function buildAiAndAutomationPage(content) {
+export function buildAiAndAutomationPage(file, content) {
   const nav = renderAiNavigation(content.navigation || {});
+  const footer = renderAiFooter(content.footer || {});
+  const contact = renderAiContact(content.contact || {});
+
+  if (file === "pricing.html") {
+    return {
+      htmlById: {
+        "top-bar": nav.topBar,
+        "nav-content": nav.nav,
+        "pricing-comparison": renderAiDetailedPricing(content.pricing_detailed || {}),
+        "pricing-faq": renderAiFaqs(content.pricing_detailed?.faqs || []),
+        contact: contact,
+        footer: footer,
+      },
+      textById: {
+        "page-title": content.pricing_detailed?.page_title || "Pricing & Options",
+        "page-intro": content.pricing_detailed?.intro || "",
+      },
+    };
+  }
+
+  if (file === "services.html") {
+    return {
+      htmlById: {
+        "top-bar": nav.topBar,
+        "nav-content": nav.nav,
+        "services-detailed": renderAiDetailedServices(content.services_detailed || {}),
+        contact: contact,
+        footer: footer,
+      },
+      textById: {
+        "page-title": content.services_detailed?.page_title || "AI Services",
+        "page-intro": content.services_detailed?.intro || "",
+      },
+    };
+  }
+
   return {
     htmlById: {
       "top-bar": nav.topBar,
@@ -13,8 +49,8 @@ export function buildAiAndAutomationPage(content) {
       pricing: renderAiPricing(content.pricing || {}),
       metrics: renderAiMetrics(content.metrics || {}),
       testimonials: renderAiTestimonials(content.testimonials || {}),
-      contact: renderAiContact(content.contact || {}),
-      footer: renderAiFooter(content.footer || {}),
+      contact: contact,
+      footer: footer,
     },
   };
 }
@@ -125,6 +161,44 @@ function renderAiFooter(data) {
       </div>
       <div class="footer-bottom"><p>${escHtml(data.copyright || "")}</p><a href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer"><img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="Quality Gate Status"></a></div>
     </div>`;
+}
+
+function renderAiDetailedPricing(data) {
+  const comp = data.comparison || {};
+  const rows = comp.rows || [];
+  const cols = comp.columns || [];
+  return `
+    <h2 id="comparison-title">${escHtml(comp.title || "Comparison")}</h2>
+    <div style="overflow-x: auto;">
+      <table class="pricing-table">
+        <thead><tr>${cols.map((c) => `<th>${escHtml(c)}</th>`).join("")}</tr></thead>
+        <tbody>
+          ${rows.map((r) => `<tr><td style="font-weight:600">${escHtml(r.feature)}</td><td style="color:var(--purple);font-weight:700">${escHtml(r.launch)}</td><td>${escHtml(r.standard)}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <p id="table-footnote">${escHtml(comp.footnote || "")}</p>`;
+}
+
+function renderAiFaqs(faqs) {
+  return `
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <div id="faq-list" style="max-width:800px;margin:0 auto;display:grid;gap:30px">
+      ${faqs.map((f) => `<div class="card-glass" style="padding:24px"><h3>${escHtml(f.question)}</h3><p>${escHtml(f.answer)}</p></div>`).join("")}
+    </div>`;
+}
+
+function renderAiDetailedServices(data) {
+  return (data.services || [])
+    .map(
+      (s) => `
+    <section id="${escAttr(s.id)}" class="detailed-item">
+      <h2>${escHtml(s.title)}</h2>
+      <p>${escHtml(s.full_description)}</p>
+      <ul>${(s.features || []).map((f) => `<li>${escHtml(f)}</li>`).join("")}</ul>
+    </section>`
+    )
+    .join("");
 }
 
 function formatPricingValue(value) {

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our AI Services | Very Boring Technologies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="subpage">
+
+  <div id="top-bar" class="top-bar"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="nav-content" id="nav-content"></div>
+    </div>
+  </nav>
+
+  <header class="subpage-header section-accent">
+    <div class="container">
+      <h1 id="page-title">AI & Automation Services</h1>
+      <p id="page-intro" class="hero-text">Loading...</p>
+    </div>
+  </header>
+
+  <main id="services-detailed" class="container" style="padding: 60px 0;">
+    <!-- Content will be injected here -->
+  </main>
+
+  <section id="contact" class="section-subtle"></section>
+
+  <footer id="footer"></footer>
+
+  <script src="../shared/site-utils.js?v=20260503a"></script>
+  <script src="scripts.js?v=20260503a"></script>
+  <script>
+    async function getContent(key, file) {
+      if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
+      const res = await fetch(file);
+      return res.json();
+    }
+
+    async function loadDetailedServices() {
+      try {
+        const navData = await getContent('navigation', 'content/navigation.json');
+        renderNavigation(navData);
+
+        const data = await getContent('services_detailed', 'content/services_detailed.json');
+
+        document.getElementById('page-title').textContent = data.page_title;
+        document.getElementById('page-intro').textContent = data.intro;
+
+        const container = document.getElementById('services-detailed');
+        container.innerHTML = data.services.map((service, index) => `
+        <section id="${service.id}" class="detailed-item ${index % 2 === 0 ? 'section-white' : 'section-subtle'}" style="margin-bottom: 40px; padding: 40px; border-radius: 20px;">
+          <div class="detailed-grid">
+            <div class="detailed-info">
+              <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                <div class="icon-box purple" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
+                  ${icon(service.icon)}
+                </div>
+                <h2 style="margin: 0;">${service.title}</h2>
+              </div>
+              <p style="font-size: 1.1rem; margin-bottom: 24px;">${service.full_description}</p>
+              <ul class="feature-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; list-style: none; padding: 0;">
+                ${service.features.map(f => `
+                  <li style="display: flex; align-items: center; gap: 10px;">
+                    <span style="color: var(--green);">✔</span>
+                    <span>${f}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        </section>
+      `).join('');
+
+        const footerData = await getContent('footer', 'content/footer.json');
+        renderFooter(footerData);
+
+        const contactData = await getContent('contact', 'content/contact.json');
+        renderContact(contactData);
+
+        handleAnchorLinks();
+        initScrollAnimations();
+
+      } catch (error) {
+        console.error('Error loading detailed services:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDetailedServices);
+  </script>
+
+</body>
+
+</html>

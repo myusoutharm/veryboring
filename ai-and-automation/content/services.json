@@ -4,36 +4,42 @@
   "section_description": "Intelligence that never sleeps. We transform repetitive tasks into automated workflows — so your team can focus on work that actually matters.",
   "items": [
     {
+      "id": "reports",
       "icon": "cpu",
       "title": "Report Automation",
       "description": "Eliminate hours of manual data gathering and formatting. We build pipelines that pull, process, and deliver reports automatically on your schedule.",
       "color": "purple"
     },
     {
+      "id": "software",
       "icon": "globe",
-      "title": "Browser Automation",
-      "description": "Automate any web-based workflow — data entry, scraping, form submissions, and multi-step processes that currently eat your team's time.",
+      "title": "Software Automation",
+      "description": "Automate any workflow across web browsers and on-premise software. We handle data entry, PMS integrations, and complex Excel processes.",
       "color": "pink"
     },
     {
+      "id": "voice",
       "icon": "mic",
       "title": "Voice Agents",
       "description": "AI-powered voice agents that handle inbound calls, answer FAQs, qualify leads, and escalate to humans only when needed.",
       "color": "blue"
     },
     {
+      "id": "chat",
       "icon": "message",
       "title": "Chatbots",
       "description": "Intelligent chat interfaces trained on your business knowledge — for customer support, internal helpdesk, or lead qualification.",
       "color": "green"
     },
     {
+      "id": "data",
       "icon": "bar-chart",
       "title": "Chat with Data",
       "description": "Ask your data questions in plain English. We build natural-language query interfaces that let anyone in your team pull insights without SQL.",
       "color": "purple"
     },
     {
+      "id": "analytics",
       "icon": "trending-up",
       "title": "Predictive Analytics",
       "description": "Go from reactive to proactive. We build models that forecast demand, flag anomalies, and surface opportunities before they become problems.",

@@ -1,0 +1,78 @@
+{
+  "page_title": "Our Services",
+  "intro": "We don't just build tools; we build intelligent partners that scale your business operations and eliminate manual friction.",
+  "services": [
+    {
+      "id": "reports",
+      "title": "Report Automation",
+      "icon": "cpu",
+      "full_description": "Stop wasting days on spreadsheets. We build autonomous data pipelines that aggregate information from multiple sources, process it using business logic, and deliver polished reports directly to your inbox or dashboard.",
+      "features": [
+        "Multi-source data aggregation",
+        "Automated data cleaning & validation",
+        "Custom PDF/Excel generation",
+        "Scheduled delivery via Email/Slack"
+      ]
+    },
+    {
+      "id": "software",
+      "title": "Software & Browser Automation",
+      "icon": "globe",
+      "full_description": "We eliminate the 'copy-paste' tax from your business. Our automation bots bridge the gap between web-based tools and on-premise desktop software. Whether it's syncing data between a web portal and your Dental PMS, or running complex multi-step Excel operations, we build reliable bridges that work 24/7.",
+      "features": [
+        "Web & Desktop workflow synchronization",
+        "On-premise software integration (PMS, ERP)",
+        "Advanced Excel & Spreadsheet automation",
+        "Automated cross-platform data entry"
+      ]
+    },
+    {
+      "id": "voice",
+      "title": "Voice Agents",
+      "icon": "mic",
+      "full_description": "Our AI Voice Agents sound human, understand context, and can hold complex conversations. They can book appointments, qualify leads, and handle tier-1 support calls, scaling your presence without increasing headcount.",
+      "features": [
+        "Natural language understanding",
+        "Low-latency response times",
+        "CRM & Calendar integration",
+        "Multi-language support"
+      ]
+    },
+    {
+      "id": "chat",
+      "title": "Intelligent Chatbots",
+      "icon": "message",
+      "full_description": "Move beyond simple keyword matching. We build RAG-powered chatbots trained on your internal documentation and knowledge base, providing instant, accurate answers to customers and staff alike.",
+      "features": [
+        "Document-grounded answers (RAG)",
+        "Omnichannel deployment",
+        "Sentiment analysis & escalation",
+        "Continuous learning from logs"
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Chat with Your Data",
+      "icon": "bar-chart",
+      "full_description": "Democratize data access within your organization. We build interfaces that allow anyone to ask complex questions of your databases using plain English, receiving instant visualizations and insights.",
+      "features": [
+        "Natural Language to SQL",
+        "Dynamic chart generation",
+        "Secure database bridging",
+        "Executive insight summaries"
+      ]
+    },
+    {
+      "id": "analytics",
+      "title": "Predictive Analytics",
+      "icon": "trending-up",
+      "full_description": "Use your historical data to see the future. We implement machine learning models that identify trends, predict customer churn, and optimize inventory levels before issues arise.",
+      "features": [
+        "Time-series forecasting",
+        "Anomaly detection pipelines",
+        "Customer behavior modeling",
+        "Operational bottleneck prediction"
+      ]
+    }
+  ]
+}

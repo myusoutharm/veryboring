@@ -34,6 +34,14 @@ const SEO_META = {
       title: "AI & Automation Services | Very Boring Technologies",
       description: "AI-powered automation for your business. Voice agents, workflow automation, and custom AI integrations. Join our Launch Partner program.",
     },
+    "services.html": {
+      title: "Our AI Services | Very Boring Technologies",
+      description: "Detailed look at our AI & Automation services: report automation, browser automation, voice agents, data chatbots, and predictive analytics.",
+    },
+    "pricing.html": {
+      title: "AI Automation Pricing | Very Boring Technologies",
+      description: "Transparent pricing for AI & Automation projects. Compare our Launch Partner program with our Standard development model.",
+    },
   },
 };
 
@@ -68,7 +76,7 @@ export function getSitemapUrls(host) {
     return ["/", "/services.html", "/pricing.html", "/why-us.html"];
   }
   if (host === "veryboring.ai" || host === "www.veryboring.ai") {
-    return ["/"];
+    return ["/", "/services.html", "/pricing.html"];
   }
   return ["/it-services/", "/it-services/services.html", "/it-services/pricing.html", "/it-services/why-us.html", "/ai-and-automation/"];
 }

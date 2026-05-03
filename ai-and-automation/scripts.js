@@ -167,6 +167,7 @@ function renderServices(data) {
             <div class="icon-box ${item.color}">${icon(item.icon)}</div>
             <h3>${item.title}</h3>
             <p>${item.description}</p>
+            <a href="services.html#${item.id}" class="read-more">Read More →</a>
           </div>
         `).join('')}
       </div>
@@ -320,6 +321,8 @@ function renderPricing(data) {
       <div class="it-services-callout">
         ${it.description}
         <a href="${it.link_href}">${it.link_text}</a>
+        <br><br>
+        <a href="pricing.html" class="read-more">See Full AI Pricing & FAQ →</a>
       </div>
 
       <div class="section-cta">

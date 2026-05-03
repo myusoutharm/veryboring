@@ -141,6 +141,18 @@ section {
   color: var(--text);
 }
 
+.subpage-header {
+  padding: 160px 0 80px;
+  text-align: center;
+}
+
+.subpage-header .hero-text {
+  max-width: 700px;
+  margin: 20px auto 0;
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
 .section-accent {
   background: var(--hero-bg);
   color: var(--text-on-dark);
@@ -631,6 +643,24 @@ nav.scrolled {
 .service-card p {
   flex: 1;
   font-size: 0.95rem;
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-top: 16px;
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  gap: 4px;
+}
+
+.read-more:hover {
+  gap: 8px;
+  color: var(--purple);
 }
 
 .it-services-callout {

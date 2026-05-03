@@ -22,7 +22,7 @@ function buildServerRenderedPage(folder, file, content) {
   }
 
   if (folder === "ai-and-automation") {
-    return buildAiAndAutomationPage(content);
+    return buildAiAndAutomationPage(file, content);
   }
 
   return null;

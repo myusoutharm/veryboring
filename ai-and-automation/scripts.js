@@ -104,13 +104,21 @@ async function getRecaptchaToken() {
 
 async function loadContent() {
   try {
-    const entries = Object.entries(contentFiles);
-    const responses = await Promise.all(entries.map(([, file]) => fetch(file)));
-    const jsons = await Promise.all(responses.map(r => {
-      if (!r.ok) throw new Error(`Failed to load ${r.url}: ${r.status}`);
-      return r.json();
-    }));
-    const content = Object.fromEntries(entries.map(([key], i) => [key, jsons[i]]));
+    let content;
+
+    // Fast path: edge worker pre-injected all content into the page
+    if (window.__CONTENT__ && Object.keys(window.__CONTENT__).length > 0) {
+      content = window.__CONTENT__;
+    } else {
+      // Fallback: fetch JSON files individually (local dev / direct file access)
+      const entries = Object.entries(contentFiles);
+      const responses = await Promise.all(entries.map(([, file]) => fetch(file)));
+      const jsons = await Promise.all(responses.map(r => {
+        if (!r.ok) throw new Error(`Failed to load ${r.url}: ${r.status}`);
+        return r.json();
+      }));
+      content = Object.fromEntries(entries.map(([key], i) => [key, jsons[i]]));
+    }
 
     renderNavigation(content.navigation);
     renderHero(content.hero);

@@ -381,6 +381,10 @@ export function renderFooter(data) {
       </div>
       <div class="footer-bottom">
         <p>${escapeHtml(data.copyright)} | ${data.legal_links.map(link => `<a href="${escapeAttr(link.href)}">${escapeHtml(link.text)}</a>`).join(' | ')}</p>
+        <div class="footer-badges">
+          <a href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer"><img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="Quality Gate Status"></a>
+          <a href="https://codecov.io/gh/myusoutharm/veryboring" target="_blank" rel="noopener noreferrer"><img src="https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY" alt="codecov"></a>
+        </div>
       </div>
     </div>
   `;

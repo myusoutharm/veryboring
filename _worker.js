@@ -109,6 +109,9 @@ export default {
       if (isProjectFolder) {
         return maybeRenderPage(env, request, url, path);
       }
+      if (path.startsWith("/shared/")) {
+        return env.ASSETS.fetch(request);
+      }
       if (path.endsWith(".html")) {
         return renderPage(env, url, "/it-services/", "it-services", path.replace(/^\//, ""));
       }
@@ -125,6 +128,9 @@ export default {
       }
       if (isProjectFolder) {
         return maybeRenderPage(env, request, url, path);
+      }
+      if (path.startsWith("/shared/")) {
+        return env.ASSETS.fetch(request);
       }
       if (path.endsWith(".html")) {
         return renderPage(env, url, "/ai-and-automation/", "ai-and-automation", path.replace(/^\//, ""));

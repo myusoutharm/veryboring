@@ -31,7 +31,7 @@ function buildServerRenderedPage(folder, file, content) {
 function replaceElementInnerById(html, id, innerHtml) {
   const idPattern = escapeRegex(id);
   const rx = new RegExp(`(<([a-zA-Z0-9:-]+)[^>]*\\bid=["']${idPattern}["'][^>]*>)([\\s\\S]*?)(</\\2>)`, "i");
-  return html.replace(rx, `$1${innerHtml}$4`);
+  return html.replace(rx, (match, p1, p2, p3, p4) => p1 + innerHtml + p4);
 }
 
 function replaceElementTextById(html, id, textValue) {

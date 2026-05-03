@@ -7,6 +7,7 @@ import {
   showFormMessage,
   getHubspotCookie,
   getHubspotFields,
+  submitContactForm,
 } from "./site-utils.js";
 
 const DEFAULT_KEY = "6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI";
@@ -146,6 +147,14 @@ describe("getHubspotCookie", () => {
     document.cookie = "hubspotutk=mytoken; path=/";
     expect(getHubspotCookie()).toBe("mytoken");
   });
+
+  it("trims the hubspotutk value", () => {
+    const cookieSpy = vi.spyOn(document, "cookie", "get")
+      .mockReturnValue("hubspotutk=token-with-space ; other=value");
+
+    expect(getHubspotCookie()).toBe("token-with-space");
+    cookieSpy.mockRestore();
+  });
 });
 
 // ── getHubspotFields ──────────────────────────────────────────────────────────
@@ -244,5 +253,106 @@ describe("loadAndRenderPage", () => {
         renderers: { hero: undefined },
       })
     ).resolves.not.toThrow();
+  });
+});
+
+// ── submitContactForm ────────────────────────────────────────────────────────
+
+describe("submitContactForm", () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <div id="form-message" style="display:none"></div>
+      <form id="contact-form" data-worker="https://worker.example/submit">
+        <input type="text" name="b_phone" value="">
+        <input data-hs="email" value="">
+        <button id="form-submit" type="submit">Send Message</button>
+      </form>
+    `;
+    document.querySelector("[data-hs]").value = " jane@example.com ";
+    Element.prototype.scrollIntoView = vi.fn();
+    globalThis.fetch = vi.fn();
+  });
+
+  it("shows an error when the reCAPTCHA provider is missing", async () => {
+    const event = { preventDefault: vi.fn(), target: document.getElementById("contact-form") };
+
+    await submitContactForm(event);
+
+    expect(event.preventDefault).toHaveBeenCalled();
+    expect(document.getElementById("form-message").textContent).toContain("reCAPTCHA token provider missing");
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("shows a security error when reCAPTCHA token retrieval fails", async () => {
+    const event = { preventDefault: vi.fn(), target: document.getElementById("contact-form") };
+
+    await submitContactForm(event, {
+      getRecaptchaToken: vi.fn().mockRejectedValue(new Error("offline")),
+    });
+
+    expect(document.getElementById("form-message").textContent).toContain("Security check unavailable (offline)");
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("handles a missing worker URL using the configured mode and message", async () => {
+    const form = document.getElementById("contact-form");
+    form.dataset.worker = "";
+    const event = { preventDefault: vi.fn(), target: form };
+
+    await submitContactForm(event, {
+      getRecaptchaToken: vi.fn().mockResolvedValue("token"),
+      missingWorkerMode: "success",
+      missingWorkerMessage: "Queued locally.",
+    });
+
+    const msg = document.getElementById("form-message");
+    expect(msg.className).toContain("form-message--success");
+    expect(msg.textContent).toBe("Queued locally.");
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("shows the server error message from a non-ok response", async () => {
+    fetch.mockResolvedValue({
+      ok: false,
+      json: vi.fn().mockResolvedValue({ message: "Rejected by server." }),
+    });
+    const event = { preventDefault: vi.fn(), target: document.getElementById("contact-form") };
+
+    await submitContactForm(event, {
+      getRecaptchaToken: vi.fn().mockResolvedValue("token"),
+    });
+
+    expect(fetch).toHaveBeenCalledWith("https://worker.example/submit", expect.objectContaining({ method: "POST" }));
+    expect(document.getElementById("form-message").textContent).toBe("Rejected by server.");
+  });
+
+  it("shows a network error when fetch rejects", async () => {
+    fetch.mockRejectedValue(new Error("network down"));
+    const event = { preventDefault: vi.fn(), target: document.getElementById("contact-form") };
+
+    await submitContactForm(event, {
+      getRecaptchaToken: vi.fn().mockResolvedValue("token"),
+    });
+
+    expect(document.getElementById("form-message").textContent).toContain("Network error");
+  });
+
+  it("posts HubSpot fields and resets the form on success", async () => {
+    fetch.mockResolvedValue({ ok: true });
+    const form = document.getElementById("contact-form");
+    const event = { preventDefault: vi.fn(), target: form };
+
+    await submitContactForm(event, {
+      getRecaptchaToken: vi.fn().mockResolvedValue("token"),
+    });
+
+    expect(fetch).toHaveBeenCalledWith(
+      "https://worker.example/submit",
+      expect.objectContaining({
+        body: expect.stringContaining('"token":"token"'),
+      })
+    );
+    expect(document.getElementById("form-message").className).toContain("form-message--success");
+    expect(form.querySelector("[data-hs]").value).toBe("");
   });
 });

@@ -10,7 +10,7 @@ export default defineConfig({
     ],
     coverage: {
       provider: "v8",
-      include: ["worker/**/*.js", "shared/site-utils.js"],
+      include: ["worker/**/*.js", "shared/site-utils.js", "it-services/scripts.js", "ai-and-automation/scripts.js"],
       exclude: ["**/*.test.js"],
     },
   },

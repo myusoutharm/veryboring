@@ -31,7 +31,7 @@
 <footer id="footer"></footer>
 
 <script type="module">
-  import { renderNavigation, renderFooter, handleAnchorLinks } from './scripts.js';
+  import { escapeAttr, escapeHtml, renderNavigation, renderFooter, handleAnchorLinks } from './scripts.js?v=20260503b';
 
   async function getContent(key, file) {
     if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
@@ -51,13 +51,13 @@
       
       const container = document.getElementById('why-us-detailed');
       container.innerHTML = data.differentiators.map(diff => `
-        <section id="${diff.id}" class="detailed-item section-white">
+        <section id="${escapeAttr(diff.id)}" class="detailed-item section-white">
           <div class="detailed-info">
-            <h2>${diff.title}</h2>
-            <p>${diff.full_description}</p>
+            <h2>${escapeHtml(diff.title)}</h2>
+            <p>${escapeHtml(diff.full_description)}</p>
             <div class="benefits-grid">
               ${diff.benefits.map(b => `
-                <div class="benefit-tag">${b}</div>
+                <div class="benefit-tag">${escapeHtml(b)}</div>
               `).join('')}
             </div>
           </div>

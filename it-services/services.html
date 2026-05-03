@@ -34,7 +34,7 @@
   <footer id="footer"></footer>
 
   <script type="module">
-    import { renderNavigation, renderContact, renderFooter, handleAnchorLinks, initScrollAnimations } from './scripts.js';
+    import { escapeAttr, escapeHtml, renderNavigation, renderContact, renderFooter, handleAnchorLinks, initScrollAnimations } from './scripts.js?v=20260503b';
 
     async function getContent(key, file) {
       if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
@@ -54,13 +54,13 @@
 
         const container = document.getElementById('services-detailed');
         container.innerHTML = data.services.map(service => `
-        <section id="${service.id}" class="detailed-item section-white">
+        <section id="${escapeAttr(service.id)}" class="detailed-item section-white">
           <div class="detailed-grid">
             <div class="detailed-info">
-              <h2>${service.title}</h2>
-              <p>${service.full_description}</p>
+              <h2>${escapeHtml(service.title)}</h2>
+              <p>${escapeHtml(service.full_description)}</p>
               <ul class="feature-list">
-                ${service.features.map(f => `<li>${f}</li>`).join('')}
+                ${service.features.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
               </ul>
             </div>
           </div>

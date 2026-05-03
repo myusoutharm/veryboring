@@ -66,9 +66,9 @@
 
   <footer id="footer"></footer>
 
-  <script src="../shared/site-utils.js?v=20260503a"></script>
-  <script src="scripts.js?v=20260503a"></script>
-  <script>
+  <script type="module">
+    import { renderNavigation, renderContact, renderFooter, handleAnchorLinks, initScrollAnimations } from './scripts.js';
+
     async function getContent(key, file) {
       if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
       const res = await fetch(file);
@@ -90,10 +90,8 @@
         document.getElementById('comparison-title').textContent = comp.title;
         document.getElementById('table-headers').innerHTML = comp.columns.map(c => `<th>${c}</th>`).join('');
         
-        const columnKeys = comp.columns.map(c => c.toLowerCase().replace(/\s+/g, '_'));
-        // Special case: "Feature" is always first, others are data
+        // We'll map them based on order since JSON keys might vary
         const dataKeys = comp.columns.slice(1).map((c, i) => {
-           // We'll map them based on order since JSON keys might vary
            return Object.keys(comp.rows[0]).filter(k => k !== 'feature')[i];
         });
 

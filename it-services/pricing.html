@@ -43,9 +43,9 @@
 
 <footer id="footer"></footer>
 
-<script src="../shared/site-utils.js?v=20260503a"></script>
-<script src="scripts.js"></script>
-<script>
+<script type="module">
+  import { renderNavigation, renderFooter, handleAnchorLinks } from './scripts.js';
+
   async function getContent(key, file) {
     if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
     const res = await fetch(file);

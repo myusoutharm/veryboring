@@ -16,6 +16,27 @@ const contentFiles = {
 };
 
 const recaptchaManager = createRecaptchaManager();
+const IT_SERVICES_GA_ID = 'G-R4QKFE6RH4';
+
+function initGoogleAnalytics(measurementId = IT_SERVICES_GA_ID) {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+  if (window.__itServicesGaInitialized) return;
+
+  window.__itServicesGaInitialized = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+
+  const gaSrc = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  if (!document.querySelector(`script[src="${gaSrc}"]`)) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = gaSrc;
+    document.head.appendChild(script);
+  }
+
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId);
+}
 
 async function loadContent() {
   // Only run on the index page (which has a hero section)
@@ -465,4 +486,5 @@ window.addEventListener('scroll', () => {
   }
 });
 
+initGoogleAnalytics();
 document.addEventListener('DOMContentLoaded', loadContent);

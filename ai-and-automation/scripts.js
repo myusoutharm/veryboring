@@ -299,19 +299,20 @@ function renderPricing(data) {
             <table class="pricing-table">
               <thead>
                 <tr>
-                  <th>${ai.columns[0]}</th>
-                  <th class="col-launch">${ai.columns[1]}</th>
-                  <th class="col-standard">${ai.columns[2]}</th>
+                  ${ai.columns.map((c, i) => `<th class="${i === 1 ? 'col-launch' : ''}">${c}</th>`).join('')}
                 </tr>
               </thead>
               <tbody>
-                ${ai.rows.map(row => `
+                ${ai.rows.map(row => {
+                  const dataKeys = Object.keys(row).filter(k => k !== 'feature');
+                  return `
                   <tr>
                     <td>${row.feature}</td>
-                    <td class="val-launch">${row.launch === true ? checkIcon : row.launch}</td>
-                    <td class="val-standard">${row.standard === true ? checkIcon : row.standard}</td>
-                  </tr>
-                `).join('')}
+                    ${dataKeys.map((k, i) => `
+                      <td class="${i === 0 ? 'val-launch' : ''}">${row[k] === true ? checkIcon : row[k]}</td>
+                    `).join('')}
+                  </tr>`;
+                }).join('')}
               </tbody>
             </table>
           </div>

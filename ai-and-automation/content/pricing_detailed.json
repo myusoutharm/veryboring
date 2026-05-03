@@ -1,41 +1,65 @@
 {
   "page_title": "Pricing",
-  "intro": "We offer two ways to work together: join our Launch Partner program for zero upfront costs, or choose our Standard model for full IP ownership.",
+  "intro": "We offer three ways to work together: join our Launch Partner program for zero upfront costs, choose our SaaS model for ready-made solutions, or select our Standard model for full IP ownership.",
   "comparison": {
     "title": "Comparison of Options",
     "columns": [
       "Feature",
       "Launch Partner",
+      "SaaS User",
       "Standard"
     ],
     "rows": [
       {
         "feature": "Project Development Fee",
         "launch": "FREE",
+        "saas": "FREE",
         "standard": "$150 / hr"
+      },
+      {
+        "feature": "Customization",
+        "launch": "Yes (Bespoke)",
+        "saas": "No (Templates Only)",
+        "standard": "Yes (Bespoke)"
       },
       {
         "feature": "Intellectual Property (*)",
         "launch": "VBT Owned",
+        "saas": "VBT Owned",
         "standard": "Client Owned"
       },
       {
-        "feature": "Maintenance & Support",
-        "launch": "FREE",
-        "standard": "Paid Monthly"
+        "feature": "Free Trial (**)",
+        "launch": "6 Months",
+        "saas": "1 Month",
+        "standard": "N/A"
       },
       {
-        "feature": "Ongoing Resource Rate",
-        "launch": "50% Discount",
-        "standard": "Full Price"
+        "feature": "Monthly Fee (per workflow)",
+        "launch": "Starts $50",
+        "saas": "Starts $100",
+        "standard": "N/A (Self-owned)"
+      },
+      {
+        "feature": "Maintenance & Support",
+        "launch": "Included",
+        "saas": "Included",
+        "standard": "$75hr"
+      },
+      {
+        "feature": "Ongoing Resource Fee (API, etc)",
+        "launch": "Bill at cost",
+        "saas": "Bill at cost",
+        "standard": "Bill at cost"
       },
       {
         "feature": "Updates & Enhancements",
-        "launch": "Continuous",
-        "standard": "On-Request"
+        "launch": "Ongoing (included in fee)",
+        "saas": "Ongoing (included in fee)",
+        "standard": "On-Request (Billed at $75/hr)"
       }
     ],
-    "footnote": "(*) Under the Launch Partner program, VBT retains the rights to the underlying automation logic and implementation but provides you with a permanent, non-exclusive, non-transferable license to use it. You pay for the support fee (and hosting fee, if available) only (50% off), and you can cancel the support service anytime, and cancellation doesn't affect your right to use the automation."
+    "footnote": "(*) Under the Launch Partner program, VBT retains the rights to the underlying automation logic and implementation but provides you with a permanent, non-exclusive, non-transferable license to use it. You pay 50% of the regular monthly fee. (**) For Launch Partners, the free trial starts when the development phase concludes."
   },
   "faqs": [
     {
@@ -43,12 +67,20 @@
       "answer": "The Launch Partner program is designed for businesses with common automation needs. In exchange for VBT owning the underlying IP (which we may reuse for other clients), we build and maintain your solution for free."
     },
     {
+      "question": "What is a SaaS User?",
+      "answer": "SaaS Users leverage our existing platform and pre-built workflows. This is ideal for standard business processes that don't require bespoke logic. All services are billed at regular rates starting from $100 per month per workflow."
+    },
+    {
+      "question": "How do you define a 'Workflow' and are there execution limits?",
+      "answer": "A workflow is defined as a single atomic operation described by one simple sentence (Subject + Verb + Object), without conjunctions or relative pronouns (like 'and', 'that', 'who', or 'where'). For example: 'Bot syncs dental records.' Complex business processes often consist of several such atomic workflows chained together. Because workflows are highly specific to your business and software stack, we offer workflow package discounts for multi-step automations. We recommend contacting us for a cost-free and obligation-free analysis to determine the most efficient structure for your needs. Best of all, every workflow includes unlimited runs for a flat monthly fee."
+    },
+    {
       "question": "When should I choose the Standard model?",
       "answer": "If your automation is core to your proprietary business value and you need to own the code and IP entirely, the Standard model is for you."
     },
     {
       "question": "Are there any hidden costs?",
-      "answer": "No. We believe in transparent, boring pricing. Launch Partners only pay for third-party API costs (like OpenAI usage) at cost, with no markup."
+      "answer": "No. We believe in transparent, boring pricing. Partners and Users only pay for third-party API costs (like OpenAI usage) at cost, with no markup."
     }
   ]
 }

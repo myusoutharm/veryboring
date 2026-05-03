@@ -86,11 +86,20 @@
         const comp = data.comparison;
         document.getElementById('comparison-title').textContent = comp.title;
         document.getElementById('table-headers').innerHTML = comp.columns.map(c => `<th>${c}</th>`).join('');
+        
+        const columnKeys = comp.columns.map(c => c.toLowerCase().replace(/\s+/g, '_'));
+        // Special case: "Feature" is always first, others are data
+        const dataKeys = comp.columns.slice(1).map((c, i) => {
+           // We'll map them based on order since JSON keys might vary
+           return Object.keys(comp.rows[0]).filter(k => k !== 'feature')[i];
+        });
+
         document.getElementById('table-body').innerHTML = comp.rows.map(row => `
           <tr>
             <td style="font-weight: 600;">${row.feature}</td>
-            <td style="color: var(--purple); font-weight: 700;">${row.launch}</td>
-            <td>${row.standard}</td>
+            ${dataKeys.map((key, i) => `
+              <td style="${i === 0 ? 'color: var(--purple); font-weight: 700;' : ''}">${row[key]}</td>
+            `).join('')}
           </tr>
         `).join('');
         document.getElementById('table-footnote').textContent = comp.footnote;

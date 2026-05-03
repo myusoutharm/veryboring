@@ -3,47 +3,60 @@
   "section_title": "PRICING",
   "section_description": "Transparent pricing. Choose what works for your business.",
   "it_services": {
-    "description": "Looking for our security-first IT services? We offer comprehensive management, security, and 24/7 support.",
-    "link_text": "Full IT pricing details →",
+    "description": "Looking for our security-first IT infrastructure? We offer comprehensive management, security, and 24/7 support.",
+    "link_text": "See our IT pricing →",
     "link_href": "/it-services/pricing.html"
   },
   "automation": {
     "title": "AI & Automation",
-    "subtitle": "Project-based pricing options",
+    "subtitle": "Project-based and SaaS options. For Launch Partners, free trial starts when development phase concludes.",
     "columns": [
       "Feature",
       "Launch Partner",
+      "SaaS User",
       "Standard"
     ],
     "rows": [
       {
         "feature": "Project Development",
         "launch": "FREE",
+        "saas": "FREE",
         "standard": "$150 / hr"
+      },
+      {
+        "feature": "Customization",
+        "launch": true,
+        "saas": "No (Template)",
+        "standard": true
       },
       {
         "feature": "IP Ownership (*)",
         "launch": "We Own",
+        "saas": "We Own",
         "standard": "You Own"
       },
       {
-        "feature": "Deployment",
-        "launch": "Managed",
-        "standard": "Self-Hosted"
+        "feature": "Free Trial",
+        "launch": "6 Months",
+        "saas": "1 Month",
+        "standard": "N/A"
       },
       {
-        "feature": "Ongoing Rate",
-        "launch": "50% Discount",
+        "feature": "Workflow Fee (Monthly)",
+        "launch": "Starts $50",
+        "saas": "Starts $100",
         "standard": "N/A"
       },
       {
         "feature": "Ongoing Support",
-        "launch": "Free",
+        "launch": "50% Off",
+        "saas": "Regular",
         "standard": "Paid"
       },
       {
         "feature": "Custom AI Solutions",
         "launch": true,
+        "saas": "Templates",
         "standard": true
       }
     ]
@@ -51,12 +64,12 @@
   "cta_headline": "Ready to eliminate your boring work?",
   "ctas": [
     {
-      "text": "Apply for Launch Partner Program",
+      "text": "Apply for Launch Partner",
       "href": "#contact",
       "variant": "primary"
     },
     {
-      "text": "Standard Consultation",
+      "text": "Start SaaS Plan",
       "href": "#contact",
       "variant": "outline"
     }

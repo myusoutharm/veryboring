@@ -167,13 +167,24 @@ function renderAiDetailedPricing(data) {
   const comp = data.comparison || {};
   const rows = comp.rows || [];
   const cols = comp.columns || [];
+
+  const dataKeys = rows.length > 0
+    ? Object.keys(rows[0]).filter(k => k !== "feature")
+    : [];
+
   return `
     <h2 id="comparison-title">${escHtml(comp.title || "Comparison")}</h2>
     <div style="overflow-x: auto;">
       <table class="pricing-table">
         <thead><tr>${cols.map((c) => `<th>${escHtml(c)}</th>`).join("")}</tr></thead>
         <tbody>
-          ${rows.map((r) => `<tr><td style="font-weight:600">${escHtml(r.feature)}</td><td style="color:var(--purple);font-weight:700">${escHtml(r.launch)}</td><td>${escHtml(r.standard)}</td></tr>`).join("")}
+          ${rows.map((r) => `
+            <tr>
+              <td style="font-weight:600">${escHtml(r.feature)}</td>
+              ${dataKeys.map((k, i) => `
+                <td style="${i === 0 ? "color:var(--purple);font-weight:700" : ""}">${escHtml(r[k])}</td>
+              `).join("")}
+            </tr>`).join("")}
         </tbody>
       </table>
     </div>

@@ -8,7 +8,7 @@
       "variant": "outline-white"
     }
   ],
-  "worker_url": "https://veryboring-contact-api.minghuiyu.workers.dev",
+  "worker_url": "/api/contact",
   "recaptcha": {
     "mode": "v3",
     "site_key": "6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI"

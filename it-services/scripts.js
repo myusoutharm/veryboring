@@ -1,3 +1,5 @@
+import { createRecaptchaManager, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } from '../shared/site-utils.js';
+
 let currentHeroSlide = 0;
 let heroTimer;
 
@@ -12,10 +14,12 @@ const contentFiles = {
   footer: 'content/footer.json'
 };
 
-const { createRecaptchaManager, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } = window.VBTUtils;
 const recaptchaManager = createRecaptchaManager();
 
 async function loadContent() {
+  // Only run on the index page (which has a hero section)
+  if (!document.getElementById('hero')) return;
+
   try {
     await loadAndRenderPage({
       contentFiles,
@@ -40,7 +44,7 @@ async function loadContent() {
   }
 }
 
-function renderNavigation(data) {
+export function renderNavigation(data) {
   const topBar = document.getElementById('top-bar');
   if (topBar) {
     topBar.innerHTML = `
@@ -145,10 +149,10 @@ function getHeroVisual(id) {
         </div>
         <div class="term-body">
           <div class="term-line dim">$ vbt status --all</div>
-          <div class="term-line ok"><span class="term-check">✓</span> Endpoints <span class="term-val">12 / 12 online</span></div>
-          <div class="term-line ok"><span class="term-check">✓</span> Backups <span class="term-val">ran 2 h ago</span></div>
-          <div class="term-line ok"><span class="term-check">✓</span> Patches <span class="term-val">up to date</span></div>
-          <div class="term-line ok"><span class="term-check">✓</span> Network <span class="term-val">latency 2 ms</span></div>
+          <div class="term-line ok"><span class="term-check">\u2713</span> Endpoints <span class="term-val">12 / 12 online</span></div>
+          <div class="term-line ok"><span class="term-check">\u2713</span> Backups <span class="term-val">ran 2 h ago</span></div>
+          <div class="term-line ok"><span class="term-check">\u2713</span> Patches <span class="term-val">up to date</span></div>
+          <div class="term-line ok"><span class="term-check">\u2713</span> Network <span class="term-val">latency 2 ms</span></div>
           <div class="term-line dim">$ <span class="cursor">_</span></div>
         </div>
       </div>`
@@ -180,12 +184,17 @@ function renderHero(data) {
   const navHTML = `
     <div class="hero-nav">
       ${data.slides.map((_, i) => `
-        <span class="hero-dot ${i === 0 ? 'active' : ''}" onclick="goToHeroSlide(${i})"></span>
+        <span class="hero-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>
       `).join('')}
     </div>
   `;
 
   hero.innerHTML = `<div class="hero-track">${slidesHTML}</div>${navHTML}`;
+
+  // Attach slide dot click handlers (no inline event attributes)
+  hero.querySelectorAll('.hero-dot').forEach((dot) => {
+    dot.addEventListener('click', () => goToHeroSlide(Number(dot.dataset.slide)));
+  });
 }
 
 function renderServices(data) {
@@ -202,7 +211,7 @@ function renderServices(data) {
             <div class="card-icon">${item.icon}</div>
             <h3>${item.title}</h3>
             <p>${item.description}</p>
-            <a href="${item.link}" class="read-more">Read More →</a>
+            <a href="${item.link}" class="read-more">Read More \u2192</a>
           </div>
         `).join('')}
       </div>
@@ -223,7 +232,7 @@ function renderWhyUs(data) {
           <div class="card">
             <h3>${item.title}</h3>
             <p>${item.description}</p>
-            <a href="${item.link}" class="read-more">Read More →</a>
+            <a href="${item.link}" class="read-more">Read More \u2192</a>
           </div>
         `).join('')}
       </div>
@@ -257,7 +266,7 @@ function renderPricing(data) {
       </table>
       <p class="pricing-reminder">${data.footnote}</p>
       <div class="pricing-cta">
-        <a href="pricing.html" class="read-more">See Full Pricing Details →</a>
+        <a href="pricing.html" class="read-more">See Full Pricing Details \u2192</a>
       </div>
     </div>
   `;
@@ -283,9 +292,8 @@ function renderTestimonials(data) {
   `;
 }
 
-function renderContact(data) {
+export function renderContact(data) {
   const contact = document.getElementById('contact');
-  const hs = data.hubspot || {};
   const recaptchaConfig = normalizeRecaptchaConfig(data.recaptcha);
 
   const fieldsHTML = data.form.fields.map(field => {
@@ -350,7 +358,7 @@ async function handleContactSubmit(event) {
   });
 }
 
-function renderFooter(data) {
+export function renderFooter(data) {
   const footer = document.getElementById('footer');
   footer.innerHTML = `
     <div class="container">
@@ -379,7 +387,7 @@ function renderFooter(data) {
 
 // ── Hero Carousel ─────────────────────────────────────────────────────────────
 
-function goToHeroSlide(index) {
+export function goToHeroSlide(index) {
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-dot');
   if (!slides.length) return;
@@ -392,7 +400,7 @@ function goToHeroSlide(index) {
   initHeroRotation();
 }
 
-function initHeroRotation() {
+export function initHeroRotation() {
   heroTimer = setInterval(() => {
     const slides = document.querySelectorAll('.hero-slide');
     if (slides.length > 0) {
@@ -404,7 +412,7 @@ function initHeroRotation() {
 
 // ── Scroll Animations ─────────────────────────────────────────────────────────
 
-function initScrollAnimations() {
+export function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -423,7 +431,7 @@ function initScrollAnimations() {
 
 // ── Misc ──────────────────────────────────────────────────────────────────────
 
-function handleAnchorLinks() {
+export function handleAnchorLinks() {
   if (window.location.hash) {
     const targetId = window.location.hash.slice(1);
     const targetElement = document.getElementById(targetId);

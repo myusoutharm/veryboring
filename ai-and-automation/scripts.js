@@ -1,3 +1,5 @@
+import { createRecaptchaManager, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } from '../shared/site-utils.js';
+
 const contentFiles = {
   navigation: 'content/navigation.json',
   hero: 'content/hero.json',
@@ -11,10 +13,12 @@ const contentFiles = {
   footer: 'content/footer.json'
 };
 
-const { createRecaptchaManager, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } = window.VBTUtils;
 const recaptchaManager = createRecaptchaManager();
 
 async function loadContent() {
+  // Only run on the index page (which has a hero section)
+  if (!document.getElementById('hero')) return;
+
   try {
     await loadAndRenderPage({
       contentFiles,
@@ -67,14 +71,14 @@ const ICONS = {
   shield: `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
 };
 
-function icon(name, extraClass = '') {
+export function icon(name, extraClass = '') {
   return `<svg class="${extraClass}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${(ICONS[name] || '').replace(/<svg[^>]*>/, '').replace('</svg>', '')
     }</svg>`;
 }
 
 // ── Navigation ────────────────────────────────────────────────────────────────
 
-function renderNavigation(data) {
+export function renderNavigation(data) {
   const topBar = document.getElementById('top-bar');
   if (topBar) {
     topBar.innerHTML = `
@@ -387,7 +391,7 @@ function renderTestimonials(data) {
 
 // ── Contact ───────────────────────────────────────────────────────────────────
 
-function renderContact(data) {
+export function renderContact(data) {
   const section = document.getElementById('contact');
   const hs = data.hubspot || {};
   const recaptchaConfig = normalizeRecaptchaConfig(data.recaptcha);
@@ -467,7 +471,7 @@ async function handleContactSubmit(event) {
 
 // ── Footer ────────────────────────────────────────────────────────────────────
 
-function renderFooter(data) {
+export function renderFooter(data) {
   const footer = document.getElementById('footer');
   footer.innerHTML = `
     <div class="container">
@@ -511,7 +515,7 @@ function renderFooter(data) {
 
 // ── Scroll animations ─────────────────────────────────────────────────────────
 
-function initScrollAnimations() {
+export function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -532,7 +536,7 @@ function initScrollAnimations() {
 
 // ── Nav scroll shadow ─────────────────────────────────────────────────────────
 
-function handleAnchorLinks() {
+export function handleAnchorLinks() {
   if (window.location.hash) {
     const el = document.getElementById(window.location.hash.slice(1));
     if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);

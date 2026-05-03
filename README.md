@@ -149,7 +149,7 @@ The site is deployed to **Cloudflare Pages** via GitHub integration. Every push 
 | Update marketing copy or pricing | `/it-services/content/*.json` or `/ai-and-automation/content/*.json` |
 | Update page SEO titles/descriptions | `SEO_META` object in `worker/seo.js` |
 | Add a new domain | `southarmHosts` / `veryboringHosts` sets in `_worker.js` |
-| Add a new sub-page | Create the `.html` file, add content keys in `worker/content-map.js`, and add renderer output in `worker/renderers/*.js`. For `it-services` pages, ensure the page imports `it-services/scripts.js` so Google Analytics (`G-R4QKFE6RH4`) is initialized automatically (no per-page GA snippet needed). |
+| Add a new sub-page | Create the `.html` file, add content keys in `worker/content-map.js`, and add renderer output in `worker/renderers/*.js`. For `it-services` pages, ensure the page imports `it-services/scripts.js` so Google Analytics (`G-R4QKFE6RH4`) is initialized automatically. For `ai-and-automation` pages, ensure the page imports `ai-and-automation/scripts.js` so Google Analytics (`G-5WSDDDDL5B`) is initialized automatically (no per-page GA snippet needed). |
 | Change form fields | Update the `fields` array in the relevant `contact.json` |
 
 ## Code Quality Check

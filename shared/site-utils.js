@@ -1,4 +1,17 @@
 const DEFAULT_RECAPTCHA_SITE_KEY = '6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI';
+let recaptchaLoadPromise;
+let recaptchaLoadSrc;
+
+export function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+export function escapeAttr(str) {
+  return escapeHtml(str).replace(/"/g, '&quot;');
+}
 
 export function normalizeRecaptchaConfig(cfg = {}) {
   return {
@@ -24,8 +37,16 @@ function loadRecaptchaApi(siteKey) {
     return Promise.resolve();
   }
 
+  if (typeof document === 'undefined') {
+    return Promise.reject(new Error('reCAPTCHA requires a browser DOM environment.'));
+  }
+
   const scriptId = 'recaptcha-api-script';
   const targetSrc = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`;
+  if (recaptchaLoadPromise && recaptchaLoadSrc === targetSrc) {
+    return recaptchaLoadPromise;
+  }
+
   let script = document.getElementById(scriptId);
 
   if (!script) {
@@ -36,26 +57,61 @@ function loadRecaptchaApi(siteKey) {
     document.head.appendChild(script);
   }
 
-  if (script.src !== targetSrc) {
-    script.src = targetSrc;
-  }
-
-  return new Promise((resolve, reject) => {
+  recaptchaLoadSrc = targetSrc;
+  recaptchaLoadPromise = new Promise((resolve, reject) => {
     const start = Date.now();
     const timeoutMs = 10000;
-    const interval = setInterval(() => {
+    let interval;
+
+    const cleanup = () => {
+      clearInterval(interval);
+      script.removeEventListener('load', handleLoad);
+      script.removeEventListener('error', handleError);
+    };
+
+    const finish = () => {
       if (isRecaptchaReady()) {
-        clearInterval(interval);
+        cleanup();
         resolve();
+      }
+    };
+
+    const handleLoad = () => {
+      finish();
+    };
+
+    const handleError = () => {
+      cleanup();
+      recaptchaLoadPromise = undefined;
+      recaptchaLoadSrc = undefined;
+      reject(new Error('Failed to load reCAPTCHA API.'));
+    };
+
+    script.addEventListener('load', handleLoad, { once: true });
+    script.addEventListener('error', handleError, { once: true });
+
+    interval = setInterval(() => {
+      if (isRecaptchaReady()) {
+        finish();
         return;
       }
 
       if (Date.now() - start > timeoutMs) {
-        clearInterval(interval);
+        cleanup();
+        recaptchaLoadPromise = undefined;
+        recaptchaLoadSrc = undefined;
         reject(new Error('Timed out loading reCAPTCHA API.'));
       }
     }, 100);
+
+    if (script.src !== targetSrc) {
+      script.src = targetSrc;
+    } else {
+      finish();
+    }
   });
+
+  return recaptchaLoadPromise;
 }
 
 export function createRecaptchaManager() {
@@ -146,7 +202,7 @@ export function showFormMessage(el, type, text) {
 
 export function getHubspotCookie() {
   if (typeof document === 'undefined') return undefined;
-  return document.cookie.match(/(^|;)\s*hubspotutk=([^;]+)/)?.[2] || undefined;
+  return document.cookie.match(/(^|;)\s*hubspotutk=([^;]+)/)?.[2]?.trim() || undefined;
 }
 
 export function getHubspotFields(form) {
@@ -258,6 +314,8 @@ if (typeof window !== 'undefined') {
     createRecaptchaManager,
     loadPageContent,
     loadAndRenderPage,
+    escapeHtml,
+    escapeAttr,
     showFormMessage,
     getHubspotCookie,
     getHubspotFields,

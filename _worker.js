@@ -198,7 +198,7 @@ async function renderPage(env, url, basePath, folder, file = "index.html") {
   const content = Object.fromEntries(contentEntries.filter(Boolean));
 
   const seoMeta = buildSeoMeta(folder, file, content, url);
-  const contentScript = `<script>window.__CONTENT__ = ${JSON.stringify(content)};</script>`;
+  const contentScript = `<script>window.__CONTENT__ = ${serializeContentForScript(content)};</script>`;
   const injection = `${seoMeta}\n${contentScript}`;
 
   let html = await htmlRes.text();
@@ -217,6 +217,15 @@ async function renderPage(env, url, basePath, folder, file = "index.html") {
       "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
     },
   });
+}
+
+export function serializeContentForScript(content) {
+  return JSON.stringify(content)
+    .replace(/&/g, "\\u0026")
+    .replace(/</g, "\\u003C")
+    .replace(/>/g, "\\u003E")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
 }
 
 function json(body, status = 200) {

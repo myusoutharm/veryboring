@@ -1,4 +1,5 @@
-import { createRecaptchaManager, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } from '../shared/site-utils.js';
+import { createRecaptchaManager, escapeAttr, escapeHtml, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } from '../shared/site-utils.js';
+export { escapeAttr, escapeHtml } from '../shared/site-utils.js';
 
 const contentFiles = {
   navigation: 'content/navigation.json',
@@ -72,7 +73,7 @@ const ICONS = {
 };
 
 export function icon(name, extraClass = '') {
-  return `<svg class="${extraClass}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${(ICONS[name] || '').replace(/<svg[^>]*>/, '').replace('</svg>', '')
+  return `<svg class="${escapeAttr(extraClass)}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${(ICONS[name] || '').replace(/<svg[^>]*>/, '').replace('</svg>', '')
     }</svg>`;
 }
 
@@ -85,7 +86,7 @@ export function renderNavigation(data) {
       <div class="container">
         <div class="top-bar-content">
           ${data.branches.map(b => `
-            <a href="${b.href}" class="${b.active ? 'active' : ''}">${b.name}</a>
+            <a href="${escapeAttr(b.href)}" class="${b.active ? 'active' : ''}">${escapeHtml(b.name)}</a>
           `).join('')}
         </div>
       </div>`;
@@ -93,21 +94,21 @@ export function renderNavigation(data) {
 
   const nav = document.getElementById('nav-content');
   nav.innerHTML = `
-    <a href="${data.home_href}" class="logo">
-      ${data.logo}
+    <a href="${escapeAttr(data.home_href)}" class="logo">
+      ${escapeHtml(data.logo)}
     </a>
     <ul class="nav-links" id="nav-links">
       ${data.links.map(link => `
         <li>
-          <a href="${link.href}" class="${link.highlight ? 'nav-highlight' : ''}">${link.text}</a>
+          <a href="${escapeAttr(link.href)}" class="${link.highlight ? 'nav-highlight' : ''}">${escapeHtml(link.text)}</a>
         </li>
       `).join('')}
       <li class="nav-mobile-cta">
-        <a href="${data.cta.href}" class="btn btn-primary">${data.cta.text}</a>
+        <a href="${escapeAttr(data.cta.href)}" class="btn btn-primary">${escapeHtml(data.cta.text)}</a>
       </li>
     </ul>
     <div class="nav-right">
-      <a href="${data.cta.href}" class="btn btn-primary nav-cta-desktop">${data.cta.text}</a>
+      <a href="${escapeAttr(data.cta.href)}" class="btn btn-primary nav-cta-desktop">${escapeHtml(data.cta.text)}</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -139,15 +140,15 @@ function renderHero(data) {
   section.innerHTML = `
     <div class="hero-orb"></div>
     <div class="hero-content container">
-      <p class="hero-eyebrow">${data.eyebrow}</p>
+      <p class="hero-eyebrow">${escapeHtml(data.eyebrow)}</p>
       <h1>
-        <span>${data.headline_plain}</span>
-        <span class="text-gradient">${data.headline_gradient}</span>
+        <span>${escapeHtml(data.headline_plain)}</span>
+        <span class="text-gradient">${escapeHtml(data.headline_gradient)}</span>
       </h1>
-      <p>${data.subheadline}</p>
+      <p>${escapeHtml(data.subheadline)}</p>
       <div class="hero-cta">
         ${data.ctas.map(cta => `
-          <a href="${cta.href}" class="btn btn-${cta.variant} btn-lg">${cta.text}</a>
+          <a href="${escapeAttr(cta.href)}" class="btn btn-${escapeAttr(cta.variant)} btn-lg">${escapeHtml(cta.text)}</a>
         `).join('')}
       </div>
     </div>
@@ -161,23 +162,23 @@ function renderServices(data) {
   section.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">${data.eyebrow}</span>
-        <h2>${data.section_title}</h2>
-        <p>${data.section_description}</p>
+        <span class="eyebrow">${escapeHtml(data.eyebrow)}</span>
+        <h2>${escapeHtml(data.section_title)}</h2>
+        <p>${escapeHtml(data.section_description)}</p>
       </div>
       <div class="services-grid">
         ${data.items.map(item => `
           <div class="card-glass service-card">
-            <div class="icon-box ${item.color}">${icon(item.icon)}</div>
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-            <a href="services.html#${item.id}" class="read-more">Read More →</a>
+            <div class="icon-box ${escapeAttr(item.color)}">${icon(item.icon)}</div>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.description)}</p>
+            <a href="services.html#${escapeAttr(item.id)}" class="read-more">Read More →</a>
           </div>
         `).join('')}
       </div>
       <div class="it-services-callout">
-        ${data.it_services_callout.text}
-        <a href="${data.it_services_callout.link_href}">${data.it_services_callout.link_text}</a>
+        ${escapeHtml(data.it_services_callout.text)}
+        <a href="${escapeAttr(data.it_services_callout.link_href)}">${escapeHtml(data.it_services_callout.link_text)}</a>
       </div>
     </div>
   `;
@@ -190,17 +191,17 @@ function renderProcess(data) {
   section.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">${data.eyebrow}</span>
-        <h2>${data.section_title}</h2>
-        <p>${data.section_description}</p>
+        <span class="eyebrow">${escapeHtml(data.eyebrow)}</span>
+        <h2>${escapeHtml(data.section_title)}</h2>
+        <p>${escapeHtml(data.section_description)}</p>
       </div>
       <div class="process-grid">
         ${data.steps.map(step => `
           <div class="card-glass process-card">
-            <div class="process-number">${step.number}</div>
-            <div class="icon-box ${step.color}">${icon(step.icon)}</div>
-            <h3>${step.title}</h3>
-            <p>${step.description}</p>
+            <div class="process-number">${escapeHtml(step.number)}</div>
+            <div class="icon-box ${escapeAttr(step.color)}">${icon(step.icon)}</div>
+            <h3>${escapeHtml(step.title)}</h3>
+            <p>${escapeHtml(step.description)}</p>
           </div>
         `).join('')}
       </div>
@@ -222,11 +223,11 @@ function renderLaunchPartner(data) {
     <div class="container">
       <div class="section-header">
         <div class="badge-pill">
-          ${icon('gift')} ${data.badge}
+          ${icon('gift')} ${escapeHtml(data.badge)}
         </div>
-        <h2>${data.section_title}</h2>
+        <h2>${escapeHtml(data.section_title)}</h2>
         <p style="font-size:1.2rem; color:var(--text); margin-top:12px;">
-          ${data.headline.replace('FREE', '<span style="color:var(--green);font-weight:800">FREE</span>')}
+          ${escapeHtml(data.headline).replace('FREE', '<span style="color:var(--green);font-weight:800">FREE</span>')}
         </p>
       </div>
 
@@ -234,42 +235,42 @@ function renderLaunchPartner(data) {
         <div class="card-glass lp-card">
           <div class="lp-card-header">
             <div class="icon-box green">${icon('star')}</div>
-            <h3>${data.what_you_get.title}</h3>
+            <h3>${escapeHtml(data.what_you_get.title)}</h3>
           </div>
           <ul class="lp-list">
             ${data.what_you_get.items.map(item => `
-              <li>${checkIcon}<span>${item}</span></li>
+              <li>${checkIcon}<span>${escapeHtml(item)}</span></li>
             `).join('')}
           </ul>
         </div>
         <div class="card-glass lp-card">
           <div class="lp-card-header">
             <div class="icon-box purple">${icon('briefcase')}</div>
-            <h3>${data.what_we_need.title}</h3>
+            <h3>${escapeHtml(data.what_we_need.title)}</h3>
           </div>
           <ul class="lp-list">
             ${data.what_we_need.items.map((item, i) => `
-              <li>${reqIcons[i] || checkIcon}<span>${item}</span></li>
+              <li>${reqIcons[i] || checkIcon}<span>${escapeHtml(item)}</span></li>
             `).join('')}
           </ul>
         </div>
       </div>
 
-      <h3 style="text-align:center;margin-bottom:24px;">${data.looking_for.title}</h3>
+      <h3 style="text-align:center;margin-bottom:24px;">${escapeHtml(data.looking_for.title)}</h3>
       <div class="lp-criteria-grid">
         ${data.looking_for.items.map(item => `
           <div class="card-glass lp-criterion">
             <div class="lp-criterion-icon">${icon('check')}</div>
-            <p>${item}</p>
+            <p>${escapeHtml(item)}</p>
           </div>
         `).join('')}
       </div>
 
       <div class="section-cta">
-        <p>${data.cta_headline}</p>
+        <p>${escapeHtml(data.cta_headline)}</p>
         <div class="hero-cta">
           ${data.ctas.map(cta => `
-            <a href="${cta.href}" class="btn btn-${cta.variant} btn-lg">${cta.text}</a>
+            <a href="${escapeAttr(cta.href)}" class="btn btn-${escapeAttr(cta.variant)} btn-lg">${escapeHtml(cta.text)}</a>
           `).join('')}
         </div>
       </div>
@@ -288,22 +289,22 @@ function renderPricing(data) {
   section.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">${data.eyebrow}</span>
-        <h2>${data.section_title}</h2>
-        <p>${data.section_description}</p>
+        <span class="eyebrow">${escapeHtml(data.eyebrow)}</span>
+        <h2>${escapeHtml(data.section_title)}</h2>
+        <p>${escapeHtml(data.section_description)}</p>
       </div>
 
       <div class="pricing-grid" style="grid-template-columns: 1fr;">
         <!-- AI & Automation -->
         <div class="card-glass pricing-card">
           <div class="icon-box pink" style="margin-bottom:20px">${icon('cpu')}</div>
-          <h3>${ai.title}</h3>
-          <p style="margin-bottom:24px;font-size:0.9rem;">${ai.subtitle}</p>
+          <h3>${escapeHtml(ai.title)}</h3>
+          <p style="margin-bottom:24px;font-size:0.9rem;">${escapeHtml(ai.subtitle)}</p>
           <div style="overflow-x:auto">
             <table class="pricing-table">
               <thead>
                 <tr>
-                  ${ai.columns.map((c, i) => `<th class="${i === 1 ? 'col-launch' : ''}">${c}</th>`).join('')}
+                  ${ai.columns.map((c, i) => `<th class="${i === 1 ? 'col-launch' : ''}">${escapeHtml(c)}</th>`).join('')}
                 </tr>
               </thead>
               <tbody>
@@ -311,9 +312,9 @@ function renderPricing(data) {
                   const dataKeys = Object.keys(row).filter(k => k !== 'feature');
                   return `
                   <tr>
-                    <th scope="row">${row.feature}</th>
+                    <th scope="row">${escapeHtml(row.feature)}</th>
                     ${dataKeys.map((k, i) => `
-                      <td class="${i === 0 ? 'val-launch' : ''}">${row[k] === true ? checkIcon : row[k]}</td>
+                      <td class="${i === 0 ? 'val-launch' : ''}">${row[k] === true ? checkIcon : escapeHtml(row[k])}</td>
                     `).join('')}
                   </tr>`;
                 }).join('')}
@@ -324,17 +325,17 @@ function renderPricing(data) {
       </div>
 
       <div class="it-services-callout">
-        ${it.description}
-        <a href="${it.link_href}">${it.link_text}</a>
+        ${escapeHtml(it.description)}
+        <a href="${escapeAttr(it.link_href)}">${escapeHtml(it.link_text)}</a>
         <br><br>
         <a href="pricing.html" class="read-more">See Full AI Pricing & FAQ →</a>
       </div>
 
       <div class="section-cta">
-        <p>${data.cta_headline}</p>
+        <p>${escapeHtml(data.cta_headline)}</p>
         <div class="hero-cta">
           ${data.ctas.map(cta => `
-            <a href="${cta.href}" class="btn btn-${cta.variant} btn-lg">${cta.text}</a>
+            <a href="${escapeAttr(cta.href)}" class="btn btn-${escapeAttr(cta.variant)} btn-lg">${escapeHtml(cta.text)}</a>
           `).join('')}
         </div>
       </div>
@@ -351,8 +352,8 @@ function renderMetrics(data) {
       <div class="metrics-grid">
         ${data.items.map(item => `
           <div class="metric-item">
-            <div class="metric-value text-gradient">${item.value}</div>
-            <p class="metric-label">${item.label}</p>
+            <div class="metric-value text-gradient">${escapeHtml(item.value)}</div>
+            <p class="metric-label">${escapeHtml(item.label)}</p>
           </div>
         `).join('')}
       </div>
@@ -367,19 +368,19 @@ function renderTestimonials(data) {
   section.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">${data.eyebrow}</span>
-        <h2>${data.section_title}</h2>
+        <span class="eyebrow">${escapeHtml(data.eyebrow)}</span>
+        <h2>${escapeHtml(data.section_title)}</h2>
       </div>
       <div class="testimonials-grid">
         ${data.items.map(item => `
           <div class="card-glass testimonial-card">
             <div class="testimonial-quote-mark">&ldquo;</div>
-            <p class="testimonial-text">${item.quote}</p>
+            <p class="testimonial-text">${escapeHtml(item.quote)}</p>
             <div class="testimonial-author">
-              <div class="testimonial-avatar">${item.initials}</div>
+              <div class="testimonial-avatar">${escapeHtml(item.initials)}</div>
               <div>
-                <p class="testimonial-name">${item.author}</p>
-                <p class="testimonial-title">${item.title}</p>
+                <p class="testimonial-name">${escapeHtml(item.author)}</p>
+                <p class="testimonial-title">${escapeHtml(item.title)}</p>
               </div>
             </div>
           </div>
@@ -400,55 +401,55 @@ export function renderContact(data) {
     if (field.type === 'textarea') {
       return `
         <div class="form-group">
-          <label for="${field.name}">${field.label}</label>
-          <textarea id="${field.name}" name="${field.name}"
-            data-hs="${field.hubspot_name || field.name}"
-            placeholder="${field.placeholder}" rows="${field.rows}"></textarea>
+          <label for="${escapeAttr(field.name)}">${escapeHtml(field.label)}</label>
+          <textarea id="${escapeAttr(field.name)}" name="${escapeAttr(field.name)}"
+            data-hs="${escapeAttr(field.hubspot_name || field.name)}"
+            placeholder="${escapeAttr(field.placeholder)}" rows="${escapeAttr(field.rows)}"></textarea>
         </div>`;
     }
     return `
       <div class="form-group">
-        <label for="${field.name}">${field.label}</label>
-        <input type="${field.type}" id="${field.name}" name="${field.name}"
-          data-hs="${field.hubspot_name || field.name}"
-          placeholder="${field.placeholder}" ${field.required ? 'required' : ''}>
+        <label for="${escapeAttr(field.name)}">${escapeHtml(field.label)}</label>
+        <input type="${escapeAttr(field.type)}" id="${escapeAttr(field.name)}" name="${escapeAttr(field.name)}"
+          data-hs="${escapeAttr(field.hubspot_name || field.name)}"
+          placeholder="${escapeAttr(field.placeholder)}" ${field.required ? 'required' : ''}>
       </div>`;
   }).join('');
 
   section.innerHTML = `
     <div class="container">
       <div class="contact-inner">
-        <span class="eyebrow">${data.eyebrow}</span>
-        <h2>${data.section_title.replace('BORING?', '<span class="text-gradient">BORING?</span>')}</h2>
-        <p>${data.section_description}</p>
+        <span class="eyebrow">${escapeHtml(data.eyebrow)}</span>
+        <h2>${escapeHtml(data.section_title).replace('BORING?', '<span class="text-gradient">BORING?</span>')}</h2>
+        <p>${escapeHtml(data.section_description)}</p>
 
         <div class="contact-quick-links">
-          <a href="tel:${data.phone.replace(/\D/g, '').replace(/^/, '+')}" class="btn btn-primary">
-            ${icon('phone')} ${data.phone}
+          <a href="tel:${escapeAttr(String(data.phone || '').replace(/\D/g, '').replace(/^/, '+'))}" class="btn btn-primary">
+            ${icon('phone')} ${escapeHtml(data.phone)}
           </a>
-          <a href="mailto:${data.email}" class="btn btn-primary">
-            ${icon('mail')} ${data.email}
+          <a href="mailto:${escapeAttr(data.email)}" class="btn btn-primary">
+            ${icon('mail')} ${escapeHtml(data.email)}
           </a>
         </div>
 
         <div class="contact-form-card">
-          <h3>${data.form.title}</h3>
+          <h3>${escapeHtml(data.form.title)}</h3>
           <div id="form-message" class="form-message" style="display:none"></div>
-          <form id="contact-form" data-worker="${data.worker_url || ''}">
+          <form id="contact-form" data-worker="${escapeAttr(data.worker_url || '')}">
             <!-- Honeypot for spam prevention -->
             <div style="display:none !important" aria-hidden="true">
               <input type="text" name="b_phone" tabindex="-1" value="" autocomplete="off">
             </div>
             ${fieldsHTML}
             <button type="submit" id="form-submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:8px">
-              ${data.form.submit_button}
+              ${escapeHtml(data.form.submit_button)}
             </button>
           </form>
         </div>
 
         <div class="trust-badges">
           ${data.trust_badges.map((b, i) => `
-            <span>${b}</span>
+            <span>${escapeHtml(b)}</span>
             ${i < data.trust_badges.length - 1 ? '<div class="trust-dot"></div>' : ''}
           `).join('')}
         </div>
@@ -479,23 +480,23 @@ export function renderFooter(data) {
         <div class="footer-brand">
           <a href="index.html" class="logo">
             <img src="public/logo.png" alt="Logo" style="width:32px;height:32px;border-radius:7px" onerror="this.style.display='none'">
-            ${data.brand.name}
+            ${escapeHtml(data.brand.name)}
           </a>
-          <p>${data.brand.tagline}</p>
+          <p>${escapeHtml(data.brand.tagline)}</p>
           <div class="footer-social">
-            <a href="${data.brand.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <a href="${escapeAttr(data.brand.linkedin)}" target="_blank" rel="noopener" aria-label="LinkedIn">
               ${icon('linkedin')}
             </a>
           </div>
         </div>
         ${data.sections.map(sec => `
           <div class="footer-section">
-            <h4>${sec.title}</h4>
+            <h4>${escapeHtml(sec.title)}</h4>
             <ul>
               ${sec.links.map(link => `
                 <li>${link.href
-      ? `<a href="${link.href}">${link.text}</a>`
-      : link.text}
+      ? `<a href="${escapeAttr(link.href)}">${escapeHtml(link.text)}</a>`
+      : escapeHtml(link.text)}
                 </li>
               `).join('')}
             </ul>
@@ -503,9 +504,9 @@ export function renderFooter(data) {
         `).join('')}
       </div>
       <div class="footer-bottom">
-        <p>${data.copyright}</p>
+        <p>${escapeHtml(data.copyright)}</p>
         <div class="footer-legal">
-          ${data.legal_links.map(l => `<a href="${l.href}">${l.text}</a>`).join('')}
+          ${data.legal_links.map(l => `<a href="${escapeAttr(l.href)}">${escapeHtml(l.text)}</a>`).join('')}
         </div>
       </div>
     </div>

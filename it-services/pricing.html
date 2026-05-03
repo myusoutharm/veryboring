@@ -44,7 +44,7 @@
 <footer id="footer"></footer>
 
 <script type="module">
-  import { renderNavigation, renderFooter, handleAnchorLinks } from './scripts.js';
+  import { escapeHtml, renderNavigation, renderFooter, handleAnchorLinks } from './scripts.js?v=20260503b';
 
   async function getContent(key, file) {
     if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
@@ -66,25 +66,25 @@
       const planContainer = document.getElementById('pricing-plans');
       planContainer.innerHTML = data.plans.map(plan => `
         <div class="pricing-card-detailed card">
-          <h3>${plan.name}</h3>
+          <h3>${escapeHtml(plan.name)}</h3>
           <div class="price-box">
             <span class="currency">$</span>
-            <span class="amount">${plan.price.replace('$', '')}</span>
-            <span class="term">${plan.term}</span>
+            <span class="amount">${escapeHtml(String(plan.price || '').replace('$', ''))}</span>
+            <span class="term">${escapeHtml(plan.term)}</span>
           </div>
-          <p class="plan-desc">${plan.description}</p>
+          <p class="plan-desc">${escapeHtml(plan.description)}</p>
           <ul class="feature-list" style="grid-template-columns: 1fr; margin-bottom: 24px;">
-            ${plan.features.map(f => `<li>${f}</li>`).join('')}
+            ${plan.features.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
           </ul>
-          <div class="plan-best-for"><strong>Best for:</strong> ${plan.best_for}</div>
+          <div class="plan-best-for"><strong>Best for:</strong> ${escapeHtml(plan.best_for)}</div>
         </div>
       `).join('');
 
       const commonContainer = document.getElementById('common-features');
       commonContainer.innerHTML = data.common_features.map(f => `
         <div class="card" style="text-align: center;">
-          <h4>${f.title}</h4>
-          <p>${f.desc}</p>
+          <h4>${escapeHtml(f.title)}</h4>
+          <p>${escapeHtml(f.desc)}</p>
         </div>
       `).join('');
       

@@ -1,4 +1,5 @@
-import { createRecaptchaManager, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } from '../shared/site-utils.js';
+import { createRecaptchaManager, escapeAttr, escapeHtml, loadAndRenderPage, normalizeRecaptchaConfig, submitContactForm } from '../shared/site-utils.js';
+export { escapeAttr, escapeHtml } from '../shared/site-utils.js';
 
 let currentHeroSlide = 0;
 let heroTimer;
@@ -51,7 +52,7 @@ export function renderNavigation(data) {
       <div class="container">
         <div class="top-bar-content">
           ${data.branches.map(b => `
-            <a href="${b.href}" class="${b.active ? 'active' : ''}">${b.name}</a>
+            <a href="${escapeAttr(b.href)}" class="${b.active ? 'active' : ''}">${escapeHtml(b.name)}</a>
           `).join('')}
         </div>
       </div>
@@ -60,13 +61,13 @@ export function renderNavigation(data) {
 
   const nav = document.getElementById('nav-content');
   nav.innerHTML = `
-    <a href="${data.home_href}" class="logo">${data.logo}</a>
+    <a href="${escapeAttr(data.home_href)}" class="logo">${escapeHtml(data.logo)}</a>
     <ul class="nav-links" id="nav-links">
-      ${data.links.map(link => `<li><a href="${link.href}">${link.text}</a></li>`).join('')}
-      <li class="nav-mobile-cta"><a href="${data.cta.href}" class="btn btn-primary">${data.cta.text}</a></li>
+      ${data.links.map(link => `<li><a href="${escapeAttr(link.href)}">${escapeHtml(link.text)}</a></li>`).join('')}
+      <li class="nav-mobile-cta"><a href="${escapeAttr(data.cta.href)}" class="btn btn-primary">${escapeHtml(data.cta.text)}</a></li>
     </ul>
     <div class="nav-right">
-      <a href="${data.cta.href}" class="btn btn-primary nav-cta-desktop">${data.cta.text}</a>
+      <a href="${escapeAttr(data.cta.href)}" class="btn btn-primary nav-cta-desktop">${escapeHtml(data.cta.text)}</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -167,15 +168,15 @@ function renderHero(data) {
       <div class="container">
         <div class="hero-slide-content">
           <div class="hero-text">
-            <h1>${slide.headline}</h1>
-            <p>${slide.subheadline}</p>
+            <h1>${escapeHtml(slide.headline)}</h1>
+            <p>${escapeHtml(slide.subheadline)}</p>
             <div class="hero-cta">
               ${slide.ctas.map(cta => `
-                <a href="${cta.href}" class="btn btn-${cta.variant} btn-lg">${cta.text}</a>
+                <a href="${escapeAttr(cta.href)}" class="btn btn-${escapeAttr(cta.variant)} btn-lg">${escapeHtml(cta.text)}</a>
               `).join('')}
             </div>
           </div>
-          <div class="hero-visual">${getHeroVisual(slide.visual_id)}</div>
+          <div class="hero-visual">${getHeroVisual(String(slide.visual_id || ''))}</div>
         </div>
       </div>
     </div>
@@ -184,7 +185,7 @@ function renderHero(data) {
   const navHTML = `
     <div class="hero-nav">
       ${data.slides.map((_, i) => `
-        <span class="hero-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>
+        <button type="button" class="hero-dot ${i === 0 ? 'active' : ''}" data-slide="${i}" aria-label="Show slide ${i + 1}" aria-current="${i === 0 ? 'true' : 'false'}"></button>
       `).join('')}
     </div>
   `;
@@ -202,16 +203,16 @@ function renderServices(data) {
   services.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <h2>${data.section_title}</h2>
-        <p>${data.section_description}</p>
+        <h2>${escapeHtml(data.section_title)}</h2>
+        <p>${escapeHtml(data.section_description)}</p>
       </div>
       <div class="grid">
         ${data.items.map(item => `
           <div class="card">
-            <div class="card-icon">${item.icon}</div>
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-            <a href="${item.link}" class="read-more">Read More \u2192</a>
+            <div class="card-icon">${escapeHtml(item.icon)}</div>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.description)}</p>
+            <a href="${escapeAttr(item.link)}" class="read-more">Read More \u2192</a>
           </div>
         `).join('')}
       </div>
@@ -224,15 +225,15 @@ function renderWhyUs(data) {
   whyUs.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <h2>${data.section_title}</h2>
-        <p>${data.section_description}</p>
+        <h2>${escapeHtml(data.section_title)}</h2>
+        <p>${escapeHtml(data.section_description)}</p>
       </div>
       <div class="grid grid-2">
         ${data.items.map(item => `
           <div class="card">
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-            <a href="${item.link}" class="read-more">Read More \u2192</a>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.description)}</p>
+            <a href="${escapeAttr(item.link)}" class="read-more">Read More \u2192</a>
           </div>
         `).join('')}
       </div>
@@ -245,26 +246,26 @@ function renderPricing(data) {
   pricing.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <h2>${data.section_title}</h2>
-        <p>${data.section_description}</p>
+        <h2>${escapeHtml(data.section_title)}</h2>
+        <p>${escapeHtml(data.section_description)}</p>
       </div>
       <table class="pricing-table">
         <thead>
           <tr>
-            <th>${data.column_labels.type}</th>
-            <th>${data.column_labels.rate}</th>
+            <th>${escapeHtml(data.column_labels.type)}</th>
+            <th>${escapeHtml(data.column_labels.rate)}</th>
           </tr>
         </thead>
         <tbody>
           ${data.tiers.map(tier => `
             <tr>
-              <th scope="row" style="text-align: left;">${tier.name}</th>
-              <td>${tier.price}</td>
+              <th scope="row" style="text-align: left;">${escapeHtml(tier.name)}</th>
+              <td>${escapeHtml(tier.price)}</td>
             </tr>
           `).join('')}
         </tbody>
       </table>
-      <p class="pricing-reminder">${data.footnote}</p>
+      <p class="pricing-reminder">${escapeHtml(data.footnote)}</p>
       <div class="pricing-cta">
         <a href="pricing.html" class="read-more">See Full Pricing Details \u2192</a>
       </div>
@@ -277,14 +278,14 @@ function renderTestimonials(data) {
   testimonials.innerHTML = `
     <div class="container">
       <div class="section-header">
-        <h2>${data.section_title}</h2>
+        <h2>${escapeHtml(data.section_title)}</h2>
       </div>
       <div class="grid grid-2">
         ${data.items.map(item => `
           <div class="testimonial">
-            <p class="testimonial-text">"${item.quote}"</p>
-            <div class="testimonial-author">${item.author}</div>
-            <div class="testimonial-title">${item.title}</div>
+            <p class="testimonial-text">"${escapeHtml(item.quote)}"</p>
+            <div class="testimonial-author">${escapeHtml(item.author)}</div>
+            <div class="testimonial-title">${escapeHtml(item.title)}</div>
           </div>
         `).join('')}
       </div>
@@ -300,18 +301,18 @@ export function renderContact(data) {
     if (field.type === 'textarea') {
       return `
         <div class="form-group">
-          <label for="${field.name}">${field.label}</label>
-          <textarea id="${field.name}" name="${field.name}"
-            data-hs="${field.hubspot_name || field.name}"
-            placeholder="${field.placeholder}" rows="${field.rows}"></textarea>
+          <label for="${escapeAttr(field.name)}">${escapeHtml(field.label)}</label>
+          <textarea id="${escapeAttr(field.name)}" name="${escapeAttr(field.name)}"
+            data-hs="${escapeAttr(field.hubspot_name || field.name)}"
+            placeholder="${escapeAttr(field.placeholder)}" rows="${escapeAttr(field.rows)}"></textarea>
         </div>`;
     }
     return `
       <div class="form-group">
-        <label for="${field.name}">${field.label}</label>
-        <input type="${field.type}" id="${field.name}" name="${field.name}"
-          data-hs="${field.hubspot_name || field.name}"
-          placeholder="${field.placeholder}" ${field.required ? 'required' : ''}>
+        <label for="${escapeAttr(field.name)}">${escapeHtml(field.label)}</label>
+        <input type="${escapeAttr(field.type)}" id="${escapeAttr(field.name)}" name="${escapeAttr(field.name)}"
+          data-hs="${escapeAttr(field.hubspot_name || field.name)}"
+          placeholder="${escapeAttr(field.placeholder)}" ${field.required ? 'required' : ''}>
       </div>`;
   }).join('');
 
@@ -319,25 +320,25 @@ export function renderContact(data) {
     <div class="container">
       <div class="contact-wrap">
         <div class="cta-section">
-          <h2>${data.section_title}</h2>
-          <p>${data.section_description}</p>
+          <h2>${escapeHtml(data.section_title)}</h2>
+          <p>${escapeHtml(data.section_description)}</p>
           <div class="hero-cta">
             ${data.ctas.map(cta => `
-              <a href="${cta.href}" class="btn btn-${cta.variant} btn-lg">${cta.text}</a>
+              <a href="${escapeAttr(cta.href)}" class="btn btn-${escapeAttr(cta.variant)} btn-lg">${escapeHtml(cta.text)}</a>
             `).join('')}
           </div>
         </div>
         <div class="contact-form-card">
-          <h3>${data.form.title}</h3>
+          <h3>${escapeHtml(data.form.title)}</h3>
           <div id="form-message" class="form-message" style="display:none"></div>
-          <form id="contact-form" data-worker="${data.worker_url || ''}">
+          <form id="contact-form" data-worker="${escapeAttr(data.worker_url || '')}">
             <!-- Honeypot for spam prevention -->
             <div style="display:none !important" aria-hidden="true">
               <input type="text" name="b_phone" tabindex="-1" value="" autocomplete="off">
             </div>
             ${fieldsHTML}
             <button type="submit" id="form-submit" class="btn btn-primary btn-lg" style="width:100%">
-              ${data.form.submit_button}
+              ${escapeHtml(data.form.submit_button)}
             </button>
           </form>
         </div>
@@ -364,22 +365,22 @@ export function renderFooter(data) {
     <div class="container">
       <div class="footer-links">
         <div class="footer-brand">
-          <a href="index.html" class="logo">${data.brand.name}</a>
-          <p>${data.brand.description}</p>
+          <a href="index.html" class="logo">${escapeHtml(data.brand.name)}</a>
+          <p>${escapeHtml(data.brand.description)}</p>
         </div>
         ${data.sections.map(section => `
           <div class="footer-section">
-            <h4>${section.title}</h4>
+            <h4>${escapeHtml(section.title)}</h4>
             <ul>
               ${section.links.map(link => `
-                <li>${link.href ? `<a href="${link.href}">${link.text}</a>` : link.text}</li>
+                <li>${link.href ? `<a href="${escapeAttr(link.href)}">${escapeHtml(link.text)}</a>` : escapeHtml(link.text)}</li>
               `).join('')}
             </ul>
           </div>
         `).join('')}
       </div>
       <div class="footer-bottom">
-        <p>${data.copyright} | ${data.legal_links.map(link => `<a href="${link.href}">${link.text}</a>`).join(' | ')}</p>
+        <p>${escapeHtml(data.copyright)} | ${data.legal_links.map(link => `<a href="${escapeAttr(link.href)}">${escapeHtml(link.text)}</a>`).join(' | ')}</p>
       </div>
     </div>
   `;
@@ -390,17 +391,27 @@ export function renderFooter(data) {
 export function goToHeroSlide(index) {
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-dot');
-  if (!slides.length) return;
+  if (!slides.length || index < 0 || index >= slides.length) return;
   slides.forEach(s => s.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
+  dots.forEach(d => {
+    d.classList.remove('active');
+    d.setAttribute('aria-current', 'false');
+  });
   slides[index].classList.add('active');
-  dots[index].classList.add('active');
+  if (dots[index]) {
+    dots[index].classList.add('active');
+    dots[index].setAttribute('aria-current', 'true');
+  }
   currentHeroSlide = index;
   clearInterval(heroTimer);
   initHeroRotation();
 }
 
 export function initHeroRotation() {
+  if (heroTimer) {
+    clearInterval(heroTimer);
+  }
+
   heroTimer = setInterval(() => {
     const slides = document.querySelectorAll('.hero-slide');
     if (slides.length > 0) {

@@ -11,6 +11,97 @@ const contentFiles = {
   footer: 'content/footer.json'
 };
 
+const DEFAULT_RECAPTCHA_SITE_KEY = '6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI';
+
+const recaptchaState = {
+  siteKey: DEFAULT_RECAPTCHA_SITE_KEY,
+  mode: 'v3',
+  initError: ''
+};
+
+function normalizeRecaptchaConfig(cfg = {}) {
+  return {
+    siteKey: String(cfg.site_key || DEFAULT_RECAPTCHA_SITE_KEY).trim(),
+    mode: String(cfg.mode || 'v3').toLowerCase()
+  };
+}
+
+function isRecaptchaReady() {
+  return Boolean(window.grecaptcha && typeof window.grecaptcha.execute === 'function');
+}
+
+function loadRecaptchaApi(siteKey) {
+  if (!siteKey) {
+    return Promise.reject(new Error('reCAPTCHA site key missing.'));
+  }
+
+  if (isRecaptchaReady()) {
+    return Promise.resolve();
+  }
+
+  const scriptId = 'recaptcha-api-script';
+  const targetSrc = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`;
+  let script = document.getElementById(scriptId);
+
+  if (!script) {
+    script = document.createElement('script');
+    script.id = scriptId;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  if (script.src !== targetSrc) {
+    script.src = targetSrc;
+  }
+
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+    const timeoutMs = 10000;
+    const interval = setInterval(() => {
+      if (isRecaptchaReady()) {
+        clearInterval(interval);
+        resolve();
+        return;
+      }
+
+      if (Date.now() - start > timeoutMs) {
+        clearInterval(interval);
+        reject(new Error('Timed out loading reCAPTCHA API.'));
+      }
+    }, 100);
+  });
+}
+
+async function initRecaptcha(config) {
+  recaptchaState.siteKey = config.siteKey;
+  recaptchaState.mode = config.mode;
+  recaptchaState.initError = '';
+
+  try {
+    await loadRecaptchaApi(config.siteKey);
+  } catch (err) {
+    recaptchaState.initError = err && err.message ? err.message : 'reCAPTCHA initialization failed.';
+    console.warn('reCAPTCHA init error:', err);
+  }
+}
+
+async function getRecaptchaToken() {
+  if (recaptchaState.mode !== 'v3') {
+    throw new Error(`Unsupported reCAPTCHA mode: ${recaptchaState.mode}`);
+  }
+
+  if (recaptchaState.initError) {
+    throw new Error(recaptchaState.initError);
+  }
+
+  if (!isRecaptchaReady()) {
+    await loadRecaptchaApi(recaptchaState.siteKey);
+  }
+
+  return window.grecaptcha.execute(recaptchaState.siteKey, { action: 'contact_submit' });
+}
+
 async function loadContent() {
   try {
     const entries = Object.entries(contentFiles);
@@ -386,6 +477,7 @@ function renderTestimonials(data) {
 function renderContact(data) {
   const section = document.getElementById('contact');
   const hs = data.hubspot || {};
+  const recaptchaConfig = normalizeRecaptchaConfig(data.recaptcha);
 
   const fieldsHTML = data.form.fields.map(field => {
     if (field.type === 'textarea') {
@@ -431,8 +523,6 @@ function renderContact(data) {
               <input type="text" name="b_phone" tabindex="-1" value="" autocomplete="off">
             </div>
             ${fieldsHTML}
-            <!-- reCAPTCHA widget -->
-            <div class="g-recaptcha" style="margin-bottom: 20px;"></div>
             <button type="submit" id="form-submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:8px">
               ${data.form.submit_button}
             </button>
@@ -449,33 +539,7 @@ function renderContact(data) {
     </div>
   `;
 
-  // Manually render reCAPTCHA since the container is added dynamically
-  const recaptchaContainer = section.querySelector('.g-recaptcha');
-  if (recaptchaContainer) {
-    const initRecaptcha = () => {
-      if (window.grecaptcha && window.grecaptcha.render) {
-        try {
-          grecaptcha.render(recaptchaContainer, {
-            'sitekey': '6LcOWfEqAAAAAMBlevn_BldjtPx9QGPg6pXWKIQI'
-          });
-        } catch (e) {
-          console.warn('reCAPTCHA render error:', e);
-        }
-      }
-    };
-
-    if (window.grecaptcha && window.grecaptcha.render) {
-      initRecaptcha();
-    } else {
-      const interval = setInterval(() => {
-        if (window.grecaptcha && window.grecaptcha.render) {
-          initRecaptcha();
-          clearInterval(interval);
-        }
-      }, 200);
-      setTimeout(() => clearInterval(interval), 10000);
-    }
-  }
+  initRecaptcha(recaptchaConfig);
 
   document.getElementById('contact-form').addEventListener('submit', handleContactSubmit);
 }
@@ -495,10 +559,18 @@ async function handleContactSubmit(event) {
     return;
   }
 
-  // 2. reCAPTCHA check
-  const token = grecaptcha.getResponse();
+  // 2. reCAPTCHA check (v3 score-based)
+  let token = '';
+  try {
+    token = await getRecaptchaToken();
+  } catch (err) {
+    const detail = err && err.message ? ` (${err.message})` : '';
+    showFormMessage(msgBox, 'error', `Security check unavailable${detail}. Please refresh and try again.`);
+    return;
+  }
+
   if (!token) {
-    showFormMessage(msgBox, 'error', 'Please complete the reCAPTCHA.');
+    showFormMessage(msgBox, 'error', 'Security verification failed. Please try again.');
     return;
   }
 
@@ -506,7 +578,6 @@ async function handleContactSubmit(event) {
   if (!workerUrl || workerUrl.includes('your-worker-name')) {
     showFormMessage(msgBox, 'success', 'Message received — thank you! (Worker URL not yet configured.)');
     form.reset();
-    grecaptcha.reset();
     return;
   }
 
@@ -534,15 +605,12 @@ async function handleContactSubmit(event) {
     if (res.ok) {
       showFormMessage(msgBox, 'success', "Thanks — we'll be in touch shortly!");
       form.reset();
-      grecaptcha.reset();
     } else {
       const err = await res.json().catch(() => ({}));
       showFormMessage(msgBox, 'error', err.message || 'Something went wrong. Please call us directly.');
-      grecaptcha.reset();
     }
   } catch {
     showFormMessage(msgBox, 'error', `Network error. Please try calling 604-800-5781 directly.`);
-    grecaptcha.reset();
   } finally {
     btn.disabled = false;
     btn.textContent = 'Send Message';

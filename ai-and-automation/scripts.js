@@ -133,9 +133,6 @@ function renderNavigation(data) {
 function renderHero(data) {
   const section = document.getElementById('hero');
   section.innerHTML = `
-    <div class="hero-bg">
-      <img src="public/hero-bg.jpg" alt="">
-    </div>
     <div class="hero-orb"></div>
     <div class="hero-content container">
       <p class="hero-eyebrow">${data.eyebrow}</p>
@@ -150,7 +147,6 @@ function renderHero(data) {
         `).join('')}
       </div>
     </div>
-    <div class="scroll-indicator"><span></span></div>
   `;
 }
 

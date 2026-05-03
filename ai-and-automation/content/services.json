@@ -29,7 +29,7 @@
     },
     {
       "icon": "bar-chart",
-      "title": "NL Query Dashboard",
+      "title": "Chat with Data",
       "description": "Ask your data questions in plain English. We build natural-language query interfaces that let anyone in your team pull insights without SQL.",
       "color": "purple"
     },
@@ -38,12 +38,6 @@
       "title": "Predictive Analytics",
       "description": "Go from reactive to proactive. We build models that forecast demand, flag anomalies, and surface opportunities before they become problems.",
       "color": "blue"
-    },
-    {
-      "icon": "code",
-      "title": "Custom Development",
-      "description": "Need something bespoke? We design and build custom AI-assisted tools tailored to your specific workflow and technology stack.",
-      "color": "pink"
     }
   ],
   "it_services_callout": {

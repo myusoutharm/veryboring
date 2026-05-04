@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCR — Daily Cash Reconciliation Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="20" fill="#2d5a27"/>
+                    <path d="M12 22L20 12L28 18" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <circle cx="20" cy="12" r="3" fill="white"/>
+                </svg>
+                DCR
+            </a>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#integrations">Integrations</a>
+            </nav>
+            <button class="cta-button">Start Free Trial</button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Save 30–45 Minutes Per Location</h1>
+            <p>Stop manually reconciling cash. DCR automates the heavy lifting—pulling data automatically, flagging discrepancies instantly, and closing your books accurately. Per location, that's 30–45 minutes reclaimed daily.</p>
+            <div class="hero-ctas">
+                <button class="cta-button">Start Free Trial</button>
+                <button class="cta-button cta-secondary">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>How DCR Saves 30–45 Minutes Per Location</h2>
+                <p>Automation handles the tedious work. Your team focuses on what matters.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🤖 Automatic Data Sync</h3>
+                    <p><strong>Stop manually pulling numbers.</strong> DCR syncs sales, payments, and taxes directly from your POS and payment processors. The foundation is ready before your team arrives.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✏️ Minimal Manual Entry</h3>
+                    <p><strong>Eliminate data transcription.</strong> Your team only enters what a computer can't know: physical cash counts and petty cash. Everything else is pre-filled.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚠️ Instant Discrepancy Detection</h3>
+                    <p><strong>Catch errors immediately.</strong> Variances flag in red the moment they're spotted. No more hunting for small discrepancies at the end of the month.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⏰ Automated Deadlines</h3>
+                    <p><strong>Enforce consistency.</strong> Records auto-post at scheduled times. Your team stays on track, and consistency is enforced across all locations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔐 Locked Records & Audit Trail</h3>
+                    <p><strong>Prevent tampering.</strong> Posted records lock automatically. Any unlock requires authorization and is fully documented.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛡️ Enterprise Security (SSO)</h3>
+                    <p><strong>Corporate-grade access control.</strong> Your team logs in with their existing credentials. Security is managed through your central policies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>A simple, four-step workflow to streamline your daily reconciliation.</p>
+            </div>
+            <div class="steps-grid">
+                <!-- STEP 1 -->
+                <div class="step-card">
+                    <div class="step-image" onclick="openModal(this)">
+                        <div class="step-number">1</div>
+                        <div class="step-image-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏪</div>
+                                <div style="font-size: 0.8rem; color: var(--muted-text);">Choose Location & Sync</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Choose Location & Sync</h3>
+                        <p>Select your location and initiate the automated sync. DCR pulls sales data, transaction details, and payment information directly from your POS and processors in seconds.</p>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="step-card">
+                    <div class="step-image" onclick="openModal(this)">
+                        <div class="step-number">2</div>
+                        <div class="step-image-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
+                                <div style="font-size: 0.8rem; color: var(--muted-text);">Review Synced Data</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Review Synced Data</h3>
+                        <p>A dashboard overview shows all synchronized data: sales totals, card transactions, cash expected, and system totals. Verify everything is correct before proceeding.</p>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="step-card">
+                    <div class="step-image" onclick="openModal(this)">
+                        <div class="step-number">3</div>
+                        <div class="step-image-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 0.5rem;">💵</div>
+                                <div style="font-size: 0.8rem; color: var(--muted-text);">Manual Entry</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Enter Physical Counts</h3>
+                        <p>Your team enters only what matters: physical cash count, petty cash, and deposit details. DCR automatically compares these against expected values and flags any discrepancies instantly.</p>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="step-card">
+                    <div class="step-image" onclick="openModal(this)">
+                        <div class="step-number">4</div>
+                        <div class="step-image-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 0.5rem;">📥</div>
+                                <div style="font-size: 0.8rem; color: var(--muted-text);">Export (Optional)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3>Export as Excel (Optional)</h3>
+                        <p>Once reconciliation is complete, export the full record as an Excel file for archival, accounting integration, or further analysis.</p>
+                        <div class="step-badge">Optional</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONFIGURATION SECTION -->
+    <section class="configuration" style="padding: 5rem 2rem; background: var(--white);">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header">
+                <h2>Fully Configurable to Your Business</h2>
+                <p>Customize DCR to match your exact operational requirements.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>💰 Tender Categories</h3>
+                    <p>Define custom tender types for your business—cash, card, mobile payments, gift cards, and more. Set reconciliation rules for each.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📋 Deposit Requirements</h3>
+                    <p>Configure deposit schedules, minimum deposit amounts, and bank account mappings. Automate deposit tracking and reconciliation.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⏰ Posting Schedules</h3>
+                    <p>Set automated posting times for each location. Ensure consistency across your entire organization with scheduled daily closes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✅ Approval Workflows</h3>
+                    <p>Define who can unlock records, approve variances, and adjust posted data. Enforce accountability with multi-level approval chains.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Variance Thresholds</h3>
+                    <p>Set acceptable variance limits by tender type or location. Flag variances that exceed your defined thresholds for immediate attention.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>👥 Role-Based Access</h3>
+                    <p>Create custom roles and permissions. Control who sees what data and which functions they can access at each location.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Finance Teams Choose DCR</h2>
+            </div>
+            <div class="benefits-content">
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⏱</div>
+                        <div class="benefit-text">
+                            <h4>Reclaim Your Time</h4>
+                            <p>Drastically reduce daily reconciliation time by automating data collection and manual entry.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h4>Reinforce SOPs</h4>
+                            <p>Automated deadlines keep every location current. Enforce consistency and financial discipline.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">👁</div>
+                        <div class="benefit-text">
+                            <h4>Total Transparency</h4>
+                            <p>Centralized dashboard. Real-time visibility across all locations. Every action is logged.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔒</div>
+                        <div class="benefit-text">
+                            <h4>Enterprise-Grade Security</h4>
+                            <p>SSO, full audit trails, and documented approval workflows. Your data is protected.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: var(--light-bg); padding: 2rem; border-radius: 1.25rem; text-align: center;">
+                    <p style="font-size: 3rem; margin-bottom: 1rem;">📊</p>
+                    <p style="font-size: 1.1rem; color: var(--dark-text); font-weight: 600;">Close your books on time, every time.</p>
+                    <p style="color: var(--muted-text); margin-top: 1rem;">No more delays. No more discrepancies. Just accuracy and peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section class="integrations" id="integrations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ready for Your Systems</h2>
+                <p>Built to integrate with the tools your business already uses.</p>
+            </div>
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <h3>🔌 Squirrel POS</h3>
+                    <p>Full, automated support for sales, transaction, and tax data directly from your point of sale.</p>
+                </div>
+                <div class="integration-card">
+                    <h3>💳 Square Payments</h3>
+                    <p>Flexible payment matching and reconciliation with optional Square integration.</p>
+                </div>
+                <div class="integration-card">
+                    <h3>🚀 Extensible Architecture</h3>
+                    <p>Use a different POS? Our Launch Partner program offers free custom integration work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Simplify Cash Reconciliation?</h2>
+            <p style="margin-bottom: 2rem;">Join finance leaders who've automated their daily close. Let's talk about how DCR can work for your business.</p>
+            
+            <div class="contact-form-card" style="background: var(--white); padding: 2.5rem; border-radius: 1.25rem; max-width: 600px; margin: 0 auto; text-align: left; box-shadow: var(--shadow);">
+                <div id="form-message" class="form-message" style="display:none"></div>
+                <form id="contact-form" data-worker="/api/contact">
+                    <!-- Honeypot for spam prevention -->
+                    <div style="display:none !important" aria-hidden="true">
+                        <input type="text" name="b_phone" tabindex="-1" value="" autocomplete="off">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label for="firstname" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">First Name</label>
+                            <input type="text" id="firstname" name="firstname" data-hs="firstname" placeholder="John" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label for="lastname" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Last Name</label>
+                            <input type="text" id="lastname" name="lastname" data-hs="lastname" placeholder="Doe" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Work Email</label>
+                        <input type="email" id="email" name="email" data-hs="email" placeholder="john@company.com" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label for="phone" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" data-hs="phone" placeholder="(555) 000-0000" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Message</label>
+                        <textarea id="message" name="message" data-hs="message" placeholder="How can we help you?" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem; font-family: inherit; resize: vertical; min-height: 100px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" id="form-submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>Daily Cash Reconciliation, a product of Very Boring Technologies | Boring Work, Brilliantly Done</p>
+        </div>
+    </footer>
+
+    <!-- IMAGE MODAL -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modalImage" src="" alt="Enlarged step image">
+        </div>
+    </div>
+
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

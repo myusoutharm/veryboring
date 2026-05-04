@@ -1,0 +1,60 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="500" rx="20" fill="#0F172A"/>
+    <rect width="800" height="500" rx="20" fill="url(#paint0_linear)" fill-opacity="0.2"/>
+    
+    <!-- Header/Sidebar -->
+    <rect x="0" y="0" width="200" height="500" rx="20" fill="#1E293B" fill-opacity="0.5"/>
+    <rect x="20" y="30" width="160" height="20" rx="4" fill="#334155"/>
+    <rect x="20" y="70" width="160" height="40" rx="8" fill="#6366F1" fill-opacity="0.2"/>
+    <rect x="35" y="82" width="100" height="16" rx="4" fill="#6366F1"/>
+    
+    <rect x="20" y="130" width="160" height="40" rx="8" fill="#334155" fill-opacity="0.3"/>
+    <rect x="35" y="142" width="80" height="16" rx="4" fill="#475569"/>
+    
+    <rect x="20" y="180" width="160" height="40" rx="8" fill="#334155" fill-opacity="0.3"/>
+    <rect x="35" y="192" width="90" height="16" rx="4" fill="#475569"/>
+    
+    <!-- Main Content Header -->
+    <rect x="230" y="30" width="150" height="24" rx="4" fill="#F8FAF8" fill-opacity="0.9"/>
+    <rect x="630" y="30" width="140" height="40" rx="20" fill="#6366F1"/>
+    
+    <!-- Stats Cards -->
+    <rect x="230" y="90" width="170" height="100" rx="16" fill="#1E293B"/>
+    <rect x="250" y="110" width="60" height="12" rx="4" fill="#94A3B8"/>
+    <rect x="250" y="135" width="100" height="32" rx="4" fill="#F1F5F9"/>
+    
+    <rect x="415" y="90" width="170" height="100" rx="16" fill="#1E293B"/>
+    <rect x="435" y="110" width="60" height="12" rx="4" fill="#94A3B8"/>
+    <rect x="435" y="135" width="100" height="32" rx="4" fill="#06B6D4"/>
+    
+    <rect x="600" y="90" width="170" height="100" rx="16" fill="#1E293B"/>
+    <rect x="620" y="110" width="60" height="12" rx="4" fill="#94A3B8"/>
+    <rect x="620" y="135" width="100" height="32" rx="4" fill="#10B981"/>
+    
+    <!-- Waveform / Main Chart Area -->
+    <rect x="230" y="210" width="540" height="260" rx="16" fill="#1E293B" fill-opacity="0.8"/>
+    <path d="M250 430C300 400 320 450 380 410C440 370 460 420 520 390C580 360 620 410 680 380C740 350 760 400 760 400" stroke="#6366F1" stroke-width="4" stroke-linecap="round"/>
+    <path d="M250 430C300 400 320 450 380 410C440 370 460 420 520 390C580 360 620 410 680 380C740 350 760 400 760 400V450H250V430Z" fill="url(#paint1_linear)" fill-opacity="0.3"/>
+    
+    <!-- Call List -->
+    <rect x="250" y="235" width="120" height="16" rx="4" fill="#F1F5F9" fill-opacity="0.8"/>
+    <rect x="250" y="270" width="500" height="40" rx="8" fill="#334155" fill-opacity="0.4"/>
+    <rect x="265" y="282" width="200" height="16" rx="4" fill="#475569"/>
+    <rect x="680" y="282" width="60" height="16" rx="8" fill="#10B981" fill-opacity="0.2"/>
+    
+    <rect x="250" y="320" width="500" height="40" rx="8" fill="#334155" fill-opacity="0.4"/>
+    <rect x="265" y="332" width="180" height="16" rx="4" fill="#475569"/>
+    <rect x="680" y="332" width="60" height="16" rx="8" fill="#F59E0B" fill-opacity="0.2"/>
+
+    <defs>
+        <linearGradient id="paint0_linear" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1"/>
+            <stop offset="1" stop-color="#06B6D4"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear" x1="505" y1="350" x2="505" y2="450" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1"/>
+            <stop offset="1" stop-color="#6366F1" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+</svg>

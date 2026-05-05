@@ -10,6 +10,7 @@ const recaptchaManager = createRecaptchaManager();
 
 export function createSwiftOpsController({
     doc = document,
+    createObserver = (cb, opts) => new IntersectionObserver(cb, opts)
 } = {}) {
     async function handleFormSubmit(event) {
         await submitContactForm(event, {
@@ -31,9 +32,9 @@ export function createSwiftOpsController({
     }
 
     function initScrollEffects() {
-        if (typeof IntersectionObserver === 'undefined') return;
+        if (typeof IntersectionObserver === 'undefined' && createObserver === undefined) return;
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = createObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -52,6 +53,7 @@ export function createSwiftOpsController({
             el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
             observer.observe(el);
         });
+        return observer;
     }
 
     function init() {
@@ -60,7 +62,9 @@ export function createSwiftOpsController({
     }
 
     return {
-        init
+        init,
+        initFormHandler,
+        initScrollEffects
     };
 }
 

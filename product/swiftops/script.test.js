@@ -1,8 +1,21 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { createResitController } from './script.js';
+import { createSwiftOpsController } from './script.js';
+import * as siteUtils from '../../shared/site-utils.js';
 
-describe('resit script controller', () => {
+vi.mock('../../shared/site-utils.js', async () => {
+  const actual = await vi.importActual('../../shared/site-utils.js');
+  return {
+    ...actual,
+    submitContactForm: vi.fn(),
+    createRecaptchaManager: vi.fn(() => ({
+      init: vi.fn(),
+      getToken: vi.fn().mockResolvedValue('fake-token'),
+    })),
+  };
+});
+
+describe('SwiftOps script controller', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <form id="contact-form">
@@ -18,17 +31,29 @@ describe('resit script controller', () => {
 
   it('handles successful form submission state', async () => {
     const logger = { log: vi.fn(), error: vi.fn() };
-    const controller = createResitController({
+    const controller = createSwiftOpsController({
       doc: document,
-      wait: vi.fn().mockResolvedValue(undefined),
-      logger,
     });
 
     controller.initFormHandler();
-    document.getElementById('contact-form').dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-    await Promise.resolve();
+    
+    // Mock submitContactForm to simulate success
+    siteUtils.submitContactForm.mockImplementation(async (event, options) => {
+      const msgBox = document.getElementById('form-message');
+      msgBox.textContent = options.successMessage;
+      msgBox.style.display = 'block';
+      return Promise.resolve();
+    });
 
-    expect(logger.log).toHaveBeenCalledTimes(1);
+    document.getElementById('contact-form').dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    
+    // Wait for async handler
+    await vi.waitFor(() => {
+      if (document.getElementById('form-message').textContent === "") {
+        throw new Error("Message not yet set");
+      }
+    });
+
     expect(document.getElementById('form-message').textContent).toContain("Thank you!");
     expect(document.getElementById('form-submit').textContent).toBe('Request Your Demo');
     expect(document.getElementById('form-submit').disabled).toBe(false);
@@ -43,7 +68,7 @@ describe('resit script controller', () => {
       trigger: (entries) => callback(entries),
     });
 
-    const controller = createResitController({ doc: document, createObserver });
+    const controller = createSwiftOpsController({ doc: document, createObserver });
     const observer = controller.initScrollEffects();
 
     expect(observed).toHaveLength(3);

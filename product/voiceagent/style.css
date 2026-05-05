@@ -134,11 +134,12 @@ h1, h2, h3, .logo-text {
 
 .btn-primary {
     background: var(--primary);
-    color: white;
+    color: white !important;
 }
 
 .btn-primary:hover {
     background: var(--primary-hover);
+    color: white !important;
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
 }
@@ -161,7 +162,7 @@ h1, h2, h3, .logo-text {
 
 .btn-outline:hover {
     background: var(--primary);
-    color: white;
+    color: white !important;
 }
 
 .btn-block {

@@ -466,6 +466,75 @@ section {
     display: block;
 }
 
+/* Trial Section */
+.trial {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(6, 182, 212, 0.05));
+}
+
+.trial-inner {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 60px;
+    align-items: center;
+}
+
+.trial-content .section-title {
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.trial-text {
+    color: var(--text-muted);
+    font-size: 18px;
+    margin-bottom: 32px;
+}
+
+.trial-features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.trial-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.trial-icon {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.trial-cta {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+}
+
+.trial-price-tag {
+    font-size: 64px;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.trial-price-label {
+    color: var(--text-muted);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+}
+
 /* Pricing Section */
 .pricing-grid {
     display: grid;
@@ -515,9 +584,85 @@ section {
 }
 
 .pricing-price {
-    font-size: 40px;
+    font-size: 64px;
     font-weight: 800;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+}
+
+.pricing-price .currency {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.pricing-price .period {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.pricing-detail {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.pricing-includes {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.pricing-fees {
+    font-size: 13px;
+    color: var(--text-muted);
     margin-bottom: 32px;
+}
+
+.pricing-usage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.usage-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.usage-rate {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.usage-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pricing-notice {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 24px;
+}
+
+.pricing-single {
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .pricing-features {
@@ -687,6 +832,10 @@ section {
     .pricing-card.featured { transform: scale(1); }
     .steps-grid { grid-template-columns: repeat(2, 1fr); }
     .trust-grid { grid-template-columns: 1fr; gap: 32px; }
+    .trial-inner { grid-template-columns: 1fr; text-align: center; padding: 40px 24px; }
+    .trial-content .section-title { text-align: center; }
+    .trial-features { align-items: center; }
+    .trial-cta { margin-top: 40px; }
 }
 
 @media (max-width: 768px) {

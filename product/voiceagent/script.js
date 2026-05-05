@@ -8,7 +8,7 @@ import { submitContactForm, createRecaptchaManager } from '../../shared/site-uti
 // Initialize reCAPTCHA
 const recaptchaManager = createRecaptchaManager();
 // Site key would typically come from an environment variable or config
-recaptchaManager.init({ mode: 'v3', site_key: '6Ld_placeholder_site_key' });
+recaptchaManager.init(normalizeRecaptchaConfig());
 
 /**
  * Mobile Menu Toggle

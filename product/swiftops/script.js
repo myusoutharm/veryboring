@@ -1,60 +1,39 @@
 /**
  * SwiftOps Hub - Landing Page Script
- * Following the SaaS Landing Page Design Guidelines
+ * Integrated with shared site-utils for HubSpot submission
  */
 
+import { createRecaptchaManager, normalizeRecaptchaConfig, submitContactForm } from '../../shared/site-utils.js';
 import { bootstrapOnDomReady } from '../../shared/page-controller.js';
 
-export function createResitController({
+const recaptchaManager = createRecaptchaManager();
+
+export function createSwiftOpsController({
     doc = document,
-    formDataCtor = FormData,
-    wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
-    logger = console,
-    createObserver = (callback, options) => new IntersectionObserver(callback, options),
 } = {}) {
-    function bindFormSubmission(form, messageDiv, submitBtn) {
-        if (!form || !messageDiv || !submitBtn) {
-            return;
-        }
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-
-            try {
-                const formData = new formDataCtor(form);
-                const data = Object.fromEntries(formData.entries());
-                logger.log('Form submission:', data);
-
-                await wait(1500);
-
-                form.reset();
-                messageDiv.textContent = 'Thank you! We\'ll be in touch within 24 hours.';
-                messageDiv.style.display = 'block';
-                messageDiv.style.color = '#10b981';
-            } catch (error) {
-                logger.error('Form error:', error);
-                messageDiv.textContent = 'Something went wrong. Please try again.';
-                messageDiv.style.display = 'block';
-                messageDiv.style.color = '#ef4444';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Request Your Demo';
-            }
+    async function handleFormSubmit(event) {
+        await submitContactForm(event, {
+            getRecaptchaToken: () => recaptchaManager.getToken(),
+            submitButtonText: 'Request Your Demo',
+            sendingText: 'Sending...',
+            successMessage: "Thank you! We'll be in touch within 24 hours.",
+            missingWorkerMode: 'error'
         });
     }
 
     function initFormHandler() {
         const form = doc.getElementById('contact-form');
-        const messageDiv = doc.getElementById('form-message');
-        const submitBtn = doc.getElementById('form-submit');
-        bindFormSubmission(form, messageDiv, submitBtn);
+        if (form) {
+            // Initialize reCAPTCHA (using default site key from site-utils)
+            recaptchaManager.init(normalizeRecaptchaConfig());
+            form.addEventListener('submit', handleFormSubmit);
+        }
     }
 
     function initScrollEffects() {
-        const observer = createObserver((entries) => {
+        if (typeof IntersectionObserver === 'undefined') return;
+
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -73,8 +52,6 @@ export function createResitController({
             el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
             observer.observe(el);
         });
-
-        return observer;
     }
 
     function init() {
@@ -83,19 +60,16 @@ export function createResitController({
     }
 
     return {
-        init,
-        initFormHandler,
-        initScrollEffects,
-        bindFormSubmission,
+        init
     };
 }
 
-export function bootstrapResitPage() {
-    const controller = createResitController();
+export function bootstrapPage() {
+    const controller = createSwiftOpsController();
     bootstrapOnDomReady(controller.init, document);
     return controller;
 }
 
 if (typeof document !== 'undefined') {
-    bootstrapResitPage();
+    bootstrapPage();
 }

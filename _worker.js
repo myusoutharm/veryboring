@@ -98,13 +98,19 @@ export default {
     }
 
     const projectFolders = [
-      "/it-services/",
-      "/ai-and-automation/",
-      "/product/",
-      "/desktop_theme/",
-      "/it-services-desktop/",
+      "/it-services",
+      "/ai-and-automation",
+      "/product",
+      "/desktop_theme",
+      "/it-services-desktop",
     ];
-    const isProjectFolder = projectFolders.some((f) => path.startsWith(f));
+    const isProjectFolder = projectFolders.some((f) => path === f || path.startsWith(f + "/"));
+
+    // Redirect to add trailing slash for project folders if missing and no dot in path
+    if (isProjectFolder && !path.includes(".") && !path.endsWith("/")) {
+      url.pathname = path + "/";
+      return Response.redirect(url.toString(), 301);
+    }
 
     let siteFolder = null;
 

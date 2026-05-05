@@ -117,6 +117,13 @@ Routing is handled automatically by `_worker.js` based on the incoming `Host` he
 | `veryboring.ai` | `/ai-and-automation/` |
 | `*.pages.dev` (preview) | Path-based (e.g. `/it-services/index.html`) |
 
+## Project Folder Routing
+
+The worker recognizes certain top-level directories as **Project Folders** (e.g., `/product/`, `/desktop_theme/`, `/it-services-desktop/`). These folders have specific routing behaviors to ensure assets resolve correctly:
+
+-   **Trailing Slash Redirect**: To ensure relative links (like `style.css` or `script.js`) resolve correctly to the project subdirectory, any request to a project folder without a trailing slash (e.g., `/product/swiftops`) will automatically 301 redirect to include the slash (`/product/swiftops/`).
+-   **Asset Protection**: Requests for files with extensions (e.g., `.png`, `.js`, `.css`) within project folders are served directly from their original paths, bypassing domain-specific prefixing logic (like the default `/ai-and-automation/` prepending for `veryboring.ai`).
+
 ## Deployment
 
 The site is deployed to **Cloudflare Pages** via GitHub integration. Every push to the configured branch triggers an automatic deployment — no build step is required.

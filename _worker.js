@@ -97,8 +97,14 @@ export default {
       }
     }
 
-    const isProjectFolder =
-      path.startsWith("/it-services/") || path.startsWith("/ai-and-automation/");
+    const projectFolders = [
+      "/it-services/",
+      "/ai-and-automation/",
+      "/product/",
+      "/desktop_theme/",
+      "/it-services-desktop/",
+    ];
+    const isProjectFolder = projectFolders.some((f) => path.startsWith(f));
 
     let siteFolder = null;
 

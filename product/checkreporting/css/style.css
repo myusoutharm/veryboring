@@ -112,7 +112,7 @@ body {
 .hero {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px 100px;
+    padding: 56px 20px 44px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
@@ -195,6 +195,26 @@ body {
     gap: 8px;
 }
 
+.hero-compatibility {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.hero-compatibility a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.hero-compatibility a:hover {
+    color: var(--primary-hover);
+    border-bottom-color: var(--primary-hover);
+}
+
 .hero-image {
     background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
     border-radius: var(--radius);
@@ -216,7 +236,7 @@ body {
 /* Benefits Section */
 .benefits {
     max-width: 1200px;
-    margin: 80px auto 0;
+    margin: 36px auto 0;
     padding: 0 20px;
 }
 
@@ -233,8 +253,8 @@ body {
     font-size: 18px;
     color: var(--text-muted);
     text-align: center;
-    margin-bottom: 60px;
-    max-width: 600px;
+    margin-bottom: 40px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -243,7 +263,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
-    margin-bottom: 80px;
+    margin-bottom: 36px;
 }
 
 .benefit-card {
@@ -284,8 +304,8 @@ body {
 /* Features Section */
 .features {
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    padding: 80px 20px;
-    margin-top: 80px;
+    padding: 48px 20px;
+    margin-top: 36px;
 }
 
 .features-inner {
@@ -297,7 +317,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .feature-item {
@@ -336,15 +356,15 @@ body {
 /* Testimonials Section */
 .testimonials {
     max-width: 1200px;
-    margin: 80px auto 0;
-    padding: 0 20px 80px;
+    margin: 36px auto 0;
+    padding: 0 20px 40px;
 }
 
 .testimonials-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 28px;
-    margin-top: 50px;
+    margin-top: 32px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -420,15 +440,15 @@ body {
 /* How It Works Section */
 .how-it-works {
     max-width: 1200px;
-    margin: 100px auto 0;
-    padding: 0 20px 80px;
+    margin: 40px auto 0;
+    padding: 0 20px 40px;
 }
 
 .steps-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 48px;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .step {
@@ -586,8 +606,8 @@ body {
 /* CTA Section */
 .cta-section {
     max-width: 1200px;
-    margin: 100px auto 0;
-    padding: 0 20px 80px;
+    margin: 40px auto 0;
+    padding: 0 20px 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
@@ -723,7 +743,7 @@ body {
     background: var(--text-main);
     color: var(--text-white);
     padding: 40px 20px;
-    margin-top: 100px;
+    margin-top: 40px;
     text-align: center;
 }
 
@@ -740,8 +760,8 @@ body {
 @media (max-width: 768px) {
     .hero {
         grid-template-columns: 1fr;
-        padding: 60px 20px 80px;
-        gap: 40px;
+        padding: 36px 20px 32px;
+        gap: 28px;
     }
 
     .hero-content h1 {

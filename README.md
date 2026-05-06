@@ -164,3 +164,5 @@ The site is deployed to **Cloudflare Pages** via GitHub integration. Every push 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring)
 
 [![codecov](https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY)](https://codecov.io/gh/myusoutharm/veryboring)
+
+![Protected by Cloudflare](shared/BDES-5287_ProtectedByCloudflareBadge_web_badges_5.png)

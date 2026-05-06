@@ -198,7 +198,7 @@ body {
 .hero-image {
     background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
     border-radius: var(--radius);
-    padding: 40px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,9 +206,11 @@ body {
     box-shadow: var(--shadow);
 }
 
-.hero-image img {
+.hero-image img,
+.hero-image svg {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 /* Benefits Section */
@@ -583,18 +585,26 @@ body {
 
 /* CTA Section */
 .cta-section {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 100px auto 0;
     padding: 0 20px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
 }
 
 .cta-box {
     background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
-    padding: 60px;
+    padding: 60px 40px;
     border-radius: var(--radius);
     text-align: center;
     color: var(--text-white);
     box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cta-box h2 {
@@ -629,8 +639,8 @@ body {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 40px;
-    max-width: 500px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
     box-shadow: var(--shadow);
 }
 
@@ -658,7 +668,8 @@ body {
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -670,7 +681,8 @@ body {
 }
 
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
@@ -743,7 +755,8 @@ body {
     .benefits-grid,
     .feature-list,
     .testimonials-grid,
-    .steps-container {
+    .steps-container,
+    .cta-section {
         grid-template-columns: 1fr;
         gap: 24px;
     }
@@ -784,4 +797,24 @@ body {
     background-color: #fee2e2;
     color: #991b1b;
     border: 1px solid #fecaca;
+}
+
+/* Custom helper classes to avoid inline styles (CSS/JS Separation rules) */
+.step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+#modalImage {
+    padding: 20px;
+}
+
+.modal-enlarged-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    display: block;
+    margin: 0 auto;
 }

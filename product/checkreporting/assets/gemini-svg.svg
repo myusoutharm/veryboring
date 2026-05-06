@@ -1,0 +1,171 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#fff"/>
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+    </pattern>
+    <!-- Shadow for cards -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#ddd" />
+    </filter>
+    <!-- Hub Glow Filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Gear Symbol -->
+    <symbol id="gear" viewBox="0 0 24 24">
+      <path d="M19.4 13l2.2 1.1-1 3.5-2.2-1.1-.9.9.8 2.2-3.5 1-.8-2.2-.9-.9-1.1 2.2-3.5-1 1.1-2.2.9-.9-2.2-.8L4.6 13l2.2-1.1-.9-.9L3 8.7l3.5-1 .8 2.2.9.9 1.1-2.2L12.8 5.6 11.7 7.8 10.8 8.7l2.2.8 1 3.5-2.2 1.1.9.9.8 2.2 3.5 1 .8-2.2.9-.9 1.1 2.2 3.5-1-1.1-2.2-.9-.9 2.2-.8.8-2.2 3.5-1-.8 2.2.9.9 1.1-2.2 3.5 1-1.1 2.2-.9.9 2.2.8M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+    </symbol>
+    <!-- Code Bracket Symbol -->
+    <symbol id="code" viewBox="0 0 24 24">
+      <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+    </symbol>
+  </defs>
+
+  <style>
+    text { font-family: 'Open Sans', sans-serif; font-size: 10px; fill: #555; }
+    .title { font-size: 14px; font-weight: bold; fill: #333; }
+    .card-title { font-weight: bold; font-size: 12px; fill: #333; }
+    .card-meta { font-size: 8px; fill: #777; }
+    .high-val { fill: #00796b; font-weight: bold; }
+    .discard { fill: #c62828; font-weight: bold; }
+    
+    @keyframes spin-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    @keyframes flow { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+    @keyframes pulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+
+    .gear-cw { transform-origin: 12px 12px; animation: spin-cw 10s linear infinite; }
+    .gear-ccw { transform-origin: 12px 12px; animation: spin-ccw 8s linear infinite; }
+    .flow-path { stroke-dasharray: 8, 4; animation: flow 2s linear infinite; stroke-linecap: round; stroke-linejoin: round; }
+    .hub-pulse { animation: pulse 3s ease-in-out infinite; }
+    .coach-float { animation: pulse 5s ease-in-out infinite; }
+  </style>
+
+  <!-- Background Grid -->
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Main Title -->
+  <text x="400" y="30" class="title" text-anchor="middle">Scardy Squirrel</text>
+  
+  <!-- Discarded text (above inputs) -->
+  <text x="120" y="50" class="discard" text-anchor="middle">Manual &amp; Messy Input</text>
+
+  <!-- Processed text (above outputs) -->
+  <text x="680" y="50" class="high-val" text-anchor="middle">High-Value Output</text>
+  
+  <!-- LEFT: Raw Inputs Group -->
+  <g transform="translate(40, 60)" filter="url(#shadow)">
+    <!-- Unorganized Card -->
+    <rect x="0" y="0" width="160" height="90" rx="5" fill="white"/>
+    <text x="10" y="20" class="card-title">Unorganized Card</text>
+    <g transform="translate(15, 30)">
+        <rect x="0" y="0" width="130" height="50" rx="3" fill="#f5f5f5" stroke="#ddd"/>
+        <text x="10" y="15" class="card-meta">Messy, handwritten data</text>
+        <path d="M 10 20 H 120 M 10 30 H 120 M 10 40 H 120" stroke="#ccc" stroke-width="0.5"/>
+    </g>
+    <!-- Data Ledger -->
+    <rect x="0" y="100" width="160" height="90" rx="5" fill="white"/>
+    <text x="10" y="120" class="card-title">Data Ledger</text>
+    <g transform="translate(15, 130)">
+        <rect x="0" y="0" width="130" height="50" rx="3" fill="#f5f5f5" stroke="#ddd"/>
+        <text x="10" y="15" class="card-meta">ID102_E|CoEvent|$5400</text>
+        <text x="10" y="25" class="card-meta">I D 10 3-T|Din/|1250</text>
+    </g>
+    <!-- Raw Receipt -->
+    <rect x="0" y="200" width="160" height="90" rx="5" fill="white"/>
+    <text x="10" y="220" class="card-title">Raw Receipt</text>
+    <g transform="translate(15, 230)">
+        <rect x="0" y="0" width="130" height="50" rx="3" fill="#f5f5f5" stroke="#ddd"/>
+        <path d="M 10 15 H 120 M 10 25 H 120 M 10 35 H 120" stroke="#ccc" stroke-width="0.5"/>
+    </g>
+  </g>
+
+  <!-- RIGHT: Polished Outputs Group -->
+  <g transform="translate(600, 60)" filter="url(#shadow)">
+    <!-- Check Card -->
+    <rect x="0" y="0" width="160" height="90" rx="5" fill="white"/>
+    <text x="10" y="20" class="card-title">Check Card</text>
+    <g transform="translate(15, 30)">
+        <rect x="0" y="0" width="130" height="50" rx="3" fill="#e0f2f1" stroke="#ddd"/>
+        <text x="10" y="15" class="high-val" style="font-size: 8px;">VERIFIED RECEIPT</text>
+        <text x="10" y="30" style="font-size: 8px;">Item 1...$25.00</text>
+        <text x="10" y="40" style="font-size: 8px;">Item 2...$12.50</text>
+    </g>
+    <!-- Tripleseat Card -->
+    <rect x="0" y="100" width="160" height="90" rx="5" fill="white"/>
+    <text x="10" y="120" class="card-title">Tripleseat Sync</text>
+    <g transform="translate(15, 130)">
+        <rect x="0" y="0" width="130" height="50" rx="3" fill="#e8f5e9" stroke="#ddd"/>
+        <rect x="10" y="5" width="25" height="12" rx="2" fill="#00796b"/>
+        <text x="22.5" y="13" text-anchor="middle" style="fill:white;font-size:7px;">LOCKED</text>
+        <text x="10" y="30" class="card-meta">Company Event Synced</text>
+    </g>
+    <!-- Report Card -->
+    <rect x="0" y="200" width="160" height="90" rx="5" fill="white"/>
+    <text x="10" y="220" class="card-title">Final Report</text>
+    <g transform="translate(15, 230)">
+        <rect x="0" y="0" width="130" height="50" rx="3" fill="#f5f5f5" stroke="#ddd"/>
+        <text x="10" y="15" class="card-meta">Clean Summary Table</text>
+        <text x="10" y="30" class="card-meta">Total Value: $6,650</text>
+    </g>
+  </g>
+
+  <!-- Flow Arrows (Left to Right) -->
+  <g transform="translate(0, 0)">
+    <!-- Input to Hub -->
+    <path d="M 200 105 h 80 c 15 0, 40 40, 110 95" fill="none" stroke="#6366f1" stroke-width="2" class="flow-path" opacity="0.4"/>
+    <path d="M 200 215 h 110" fill="none" stroke="#6366f1" stroke-width="2" class="flow-path" opacity="0.4"/>
+    <path d="M 200 325 h 80 c 15 0, 40 -40, 110 -95" fill="none" stroke="#6366f1" stroke-width="2" class="flow-path" opacity="0.4"/>
+    
+    <!-- Hub to Output -->
+    <path d="M 490 210 c 70 -55, 95 -95, 110 -95" fill="none" stroke="#00796b" stroke-width="3" class="flow-path"/>
+    <path d="M 490 215 h 110" fill="none" stroke="#00796b" stroke-width="3" class="flow-path"/>
+    <path d="M 490 220 c 70 55, 95 95, 110 95" fill="none" stroke="#00796b" stroke-width="3" class="flow-path"/>
+  </g>
+
+  <!-- Central Strategic Hub with Coach Potato -->
+  <g transform="translate(400, 210)" filter="url(#glow)">
+    <circle r="70" fill="white" stroke="#6366f1" stroke-width="2"/>
+
+    <!-- Friendly Smile Face -->
+    <g class="coach-float" transform="translate(0, 5)">
+        <!-- Eyes -->
+        <circle cx="-16" cy="-10" r="5" fill="#6366f1" />
+        <circle cx="16" cy="-10" r="5" fill="#6366f1" />
+        <!-- Happy Smile Arc -->
+        <path d="M -22,8 Q 0,28 22,8" fill="none" stroke="#6366f1" stroke-width="4.5" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <!-- Discarded Workflows (Central Bottom) -->
+  <g id="discarded-workflows">
+    <!-- SMS Prohibition -->
+    <g transform="translate(280, 355)">
+        <circle r="25" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" />
+        <line x1="-18" y1="-18" x2="18" y2="18" stroke="#ef4444" stroke-width="2.5" />
+        <text x="0" y="3.5" text-anchor="middle" font-weight="bold" fill="#1e293b" style="font-size: 9px; font-family: sans-serif;">SMS</text>
+    </g>
+
+    <!-- Email Prohibition -->
+    <g transform="translate(400, 355)">
+        <circle r="25" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" />
+        <line x1="-18" y1="-18" x2="18" y2="18" stroke="#ef4444" stroke-width="2.5" />
+        <text x="0" y="3.5" text-anchor="middle" font-weight="bold" fill="#1e293b" style="font-size: 9px; font-family: sans-serif;">Email</text>
+    </g>
+
+    <!-- Remote Login Prohibition -->
+    <g transform="translate(520, 355)">
+        <circle r="25" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" />
+        <line x1="-18" y1="-18" x2="18" y2="18" stroke="#ef4444" stroke-width="2.5" />
+        <text x="0" y="-1.5" text-anchor="middle" font-weight="bold" fill="#1e293b" style="font-size: 8px; font-family: sans-serif;">Remote</text>
+        <text x="0" y="7.5" text-anchor="middle" font-weight="bold" fill="#1e293b" style="font-size: 8px; font-family: sans-serif;">Login</text>
+    </g>
+  </g>
+
+</svg>

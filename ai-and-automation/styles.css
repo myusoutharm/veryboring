@@ -1396,6 +1396,23 @@ footer {
   display: flex;
   gap: 12px;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-badge-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-badge-link img {
+  display: block;
+  max-height: 22px;
+  width: auto;
+}
+
+.footer-badge-cloudflare img {
+  max-height: 28px;
 }
 
 .footer-legal {
@@ -1530,6 +1547,14 @@ footer {
 
   .contact-form-card {
     padding: 28px 20px;
+  }
+
+  .footer-badges {
+    gap: 10px;
+  }
+
+  .footer-badge-cloudflare img {
+    max-height: 24px;
   }
 }
 

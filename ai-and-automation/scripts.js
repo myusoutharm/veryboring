@@ -527,8 +527,15 @@ export function renderFooter(data) {
       <div class="footer-bottom">
         <p>${escapeHtml(data.copyright)}</p>
         <div class="footer-badges">
-          <a href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer"><img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="Quality Gate Status"></a>
-          <a href="https://codecov.io/gh/myusoutharm/veryboring" target="_blank" rel="noopener noreferrer"><img src="https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY" alt="codecov"></a>
+          <a class="footer-badge-link" href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer">
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="SonarCloud Quality Gate">
+          </a>
+          <a class="footer-badge-link" href="https://codecov.io/gh/myusoutharm/veryboring" target="_blank" rel="noopener noreferrer">
+            <img src="https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY" alt="Codecov">
+          </a>
+          <a class="footer-badge-link footer-badge-cloudflare" href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">
+            <img src="../shared/BDES-5287_ProtectedByCloudflareBadge_web_badges_5.png" alt="Protected by Cloudflare">
+          </a>
         </div>
         <div class="footer-legal">
           ${data.legal_links.map(l => `<a href="${escapeAttr(l.href)}">${escapeHtml(l.text)}</a>`).join('')}

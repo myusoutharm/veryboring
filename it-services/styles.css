@@ -789,7 +789,28 @@ footer {
 }
 .footer-bottom a { color: rgba(255,255,255,.65); text-decoration: none; }
 .footer-bottom a:hover { color: var(--accent); }
-.footer-badges { display: flex; gap: 12px; align-items: center; justify-content: center; }
+.footer-badges {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-badge-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-badge-link img {
+  display: block;
+  max-height: 22px;
+  width: auto;
+}
+
+.footer-badge-cloudflare img {
+  max-height: 28px;
+}
 
 /* ==================== SCROLL ANIMATIONS ==================== */
 
@@ -927,6 +948,9 @@ footer {
   .grid-2 { grid-template-columns: 1fr; }
   .cta-section { padding: 40px; }
   .contact-form-card { padding: 36px 24px; }
+
+  .footer-badges { gap: 10px; }
+  .footer-badge-cloudflare img { max-height: 24px; }
 }
 
 @media (max-width: 480px) {

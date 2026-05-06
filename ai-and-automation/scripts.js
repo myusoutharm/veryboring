@@ -575,4 +575,8 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 initGoogleAnalytics();
-document.addEventListener('DOMContentLoaded', loadContent);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadContent);
+} else {
+  loadContent();
+}

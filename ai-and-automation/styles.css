@@ -1412,7 +1412,7 @@ footer {
 }
 
 .footer-badge-cloudflare img {
-  max-height: 28px;
+  max-height: 20px;
 }
 
 .footer-legal {
@@ -1554,7 +1554,7 @@ footer {
   }
 
   .footer-badge-cloudflare img {
-    max-height: 24px;
+    max-height: 20px;
   }
 }
 

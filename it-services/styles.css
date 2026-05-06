@@ -809,7 +809,7 @@ footer {
 }
 
 .footer-badge-cloudflare img {
-  max-height: 28px;
+  max-height: 20px;
 }
 
 /* ==================== SCROLL ANIMATIONS ==================== */
@@ -950,7 +950,7 @@ footer {
   .contact-form-card { padding: 36px 24px; }
 
   .footer-badges { gap: 10px; }
-  .footer-badge-cloudflare img { max-height: 24px; }
+  .footer-badge-cloudflare img { max-height: 20px; }
 }
 
 @media (max-width: 480px) {

@@ -165,4 +165,8 @@ The site is deployed to **Cloudflare Pages** via GitHub integration. Every push 
 
 [![codecov](https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY)](https://codecov.io/gh/myusoutharm/veryboring)
 
+[![CodeQL](https://github.com/myusoutharm/veryboring/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/myusoutharm/veryboring/actions/workflows/github-code-scanning/codeql)
+
+[![Run tests and upload coverage](https://github.com/myusoutharm/veryboring/actions/workflows/test-and-codecov.yml/badge.svg)](https://github.com/myusoutharm/veryboring/actions/workflows/test-and-codecov.yml)
+
 ![Protected by Cloudflare](shared/BDES-5287_ProtectedByCloudflareBadge_web_badges_5.png)

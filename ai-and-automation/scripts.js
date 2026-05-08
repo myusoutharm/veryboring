@@ -162,7 +162,7 @@ function renderHero(data) {
   section.innerHTML = `
     <div class="hero-orb"></div>
     <div class="hero-content container">
-      <p class="hero-eyebrow">${escapeHtml(data.eyebrow)}</p>
+      <p class="hero-eyebrow">${escapeHtml(data.eyebrow).replace(/boring/gi, '<span class="boring-vanish">$&</span>')}</p>
       <h1>
         <span>${escapeHtml(data.headline_plain)}</span>
         <span class="text-gradient">${escapeHtml(data.headline_gradient)}</span>

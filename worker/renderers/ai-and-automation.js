@@ -73,7 +73,7 @@ function renderAiNavigation(data) {
 function renderAiHero(data) {
   return `
     <div class="hero-content container">
-      <p class="hero-eyebrow">${escHtml(data.eyebrow || "")}</p>
+      <p class="hero-eyebrow">${escHtml(data.eyebrow || "").replace(/boring/gi, '<span class="boring-vanish">$&</span>')}</p>
       <h1><span>${escHtml(data.headline_plain || "")}</span> <span class="text-gradient">${escHtml(data.headline_gradient || "")}</span></h1>
       <p>${escHtml(data.subheadline || "")}</p>
       <div class="hero-cta">${(data.ctas || []).map((cta) => `<a href="${escAttr(cta.href || "#")}" class="btn btn-${escAttr(cta.variant || "primary")} btn-lg">${escHtml(cta.text || "")}</a>`).join("")}</div>

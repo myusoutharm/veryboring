@@ -389,6 +389,19 @@ body::before {
   }
 }
 
+/* ---------- hover to pause belt ---------- */
+
+.track:hover {
+  cursor: pause;
+}
+
+.track:hover .chomper,
+.track:hover .jaw-top,
+.track:hover .jaw-bot,
+.track:hover .item {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .chomper,

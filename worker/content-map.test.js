@@ -59,8 +59,13 @@ describe("getContentKeys – it-services", () => {
 });
 
 describe("getContentKeys – ai-and-automation", () => {
-  it("returns full key set for index page", () => {
+  it("returns empty key set for index page (static landing page)", () => {
     const keys = getContentKeys("ai-and-automation", "index.html");
+    expect(keys).toEqual([]);
+  });
+
+  it("returns full key set for home page", () => {
+    const keys = getContentKeys("ai-and-automation", "home.html");
     expect(keys).toEqual([
       "navigation",
       "hero",

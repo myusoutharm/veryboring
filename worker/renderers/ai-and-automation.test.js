@@ -29,7 +29,7 @@ const mockContact = {
   worker_url: "",
 };
 
-describe("buildAiAndAutomationPage – index page", () => {
+describe("buildAiAndAutomationPage – home page", () => {
   const content = {
     navigation: mockNav,
     footer: mockFooter,
@@ -93,8 +93,8 @@ describe("buildAiAndAutomationPage – index page", () => {
     },
   };
 
-  it("returns htmlById with all expected section IDs for index page", () => {
-    const page = buildAiAndAutomationPage("index.html", content);
+  it("returns htmlById with all expected section IDs for home page", () => {
+    const page = buildAiAndAutomationPage("home.html", content);
     expect(page).not.toBeNull();
     expect(page.htmlById).toHaveProperty("hero");
     expect(page.htmlById).toHaveProperty("services");
@@ -109,18 +109,18 @@ describe("buildAiAndAutomationPage – index page", () => {
   });
 
   it("hero HTML contains the headline", () => {
-    const page = buildAiAndAutomationPage("index.html", content);
+    const page = buildAiAndAutomationPage("home.html", content);
     expect(page.htmlById.hero).toContain("Make Work");
     expect(page.htmlById.hero).toContain("Boring Again");
   });
 
   it("services HTML contains service items", () => {
-    const page = buildAiAndAutomationPage("index.html", content);
+    const page = buildAiAndAutomationPage("home.html", content);
     expect(page.htmlById.services).toContain("Voice Agents");
   });
 
   it("metrics HTML contains metric values", () => {
-    const page = buildAiAndAutomationPage("index.html", content);
+    const page = buildAiAndAutomationPage("home.html", content);
     expect(page.htmlById.metrics).toContain("10+");
     expect(page.htmlById.metrics).toContain("Projects Delivered");
   });

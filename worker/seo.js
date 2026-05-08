@@ -30,7 +30,7 @@ const SEO_META = {
       description: "AI-powered automation solutions for your business workflows. Build voice agents, automate repetitive processes, and integrate with your existing tools.",
       ogType: "website",
     },
-    "index.html": {
+    "home.html": {
       title: "AI & Automation Services | Very Boring Technologies",
       description: "AI-powered automation for your business. Voice agents, workflow automation, and custom AI integrations. Join our Launch Partner program.",
     },

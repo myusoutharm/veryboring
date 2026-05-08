@@ -58,7 +58,7 @@ export function buildAiAndAutomationPage(file, content) {
 function renderAiNavigation(data) {
   const topBar = `<div class="container"><div class="top-bar-content">${(data.branches || []).map((b) => `<a href="${escAttr(b.href || "#")}" class="${b.active ? "active" : ""}">${escHtml(b.name || "")}</a>`).join("")}</div></div>`;
   const nav = `
-    <a href="${escAttr(data.home_href || "index.html")}" class="logo">${escHtml(data.logo || "")}</a>
+    <a href="${escAttr(data.home_href || "index.html")}" class="logo">${escHtml(data.logo || "")}<svg class="logo-pacman" viewBox="0 0 100 100" width="30" height="30" aria-hidden="true" focusable="false"><defs><radialGradient id="navChompGrad" cx="35%" cy="35%" r="75%"><stop offset="0%" stop-color="#fff1b8"/><stop offset="55%" stop-color="#ffd166"/><stop offset="100%" stop-color="#e8a93a"/></radialGradient></defs><path class="jaw-top" d="M50,50 L50,4 A46,46 0 0,1 96,50 Z" fill="url(#navChompGrad)"/><path class="jaw-bot" d="M50,50 L96,50 A46,46 0 0,1 50,96 Z" fill="url(#navChompGrad)"/><path d="M50,4 A46,46 0 0,0 50,96 L50,50 Z" fill="url(#navChompGrad)"/></svg></a>
     <ul class="nav-links" id="nav-links">
       ${(data.links || []).map((l) => `<li><a href="${escAttr(l.href || "#")}" class="${l.highlight ? "nav-highlight" : ""}">${escHtml(l.text || "")}</a></li>`).join("")}
       <li class="nav-mobile-cta"><a href="${escAttr(data?.cta?.href || "#")}" class="btn btn-primary">${escHtml(data?.cta?.text || "Get Started")}</a></li>
@@ -156,7 +156,7 @@ function renderAiFooter(data) {
   return `
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand"><a href="index.html" class="logo">${escHtml(data?.brand?.name || "")}</a><p>${escHtml(data?.brand?.tagline || "")}</p></div>
+        <div class="footer-brand"><a href="home.html" class="logo">${escHtml(data?.brand?.name || "")}</a><p>${escHtml(data?.brand?.tagline || "")}</p></div>
         ${(data.sections || []).map((section) => `<div class="footer-section"><h4>${escHtml(section.title || "")}</h4><ul>${(section.links || []).map((link) => `<li>${link.href ? `<a href="${escAttr(link.href)}">${escHtml(link.text || "")}</a>` : escHtml(link.text || "")}</li>`).join("")}</ul></div>`).join("")}
       </div>
       <div class="footer-bottom"><p>${escHtml(data.copyright || "")}</p><div class="footer-badges"><a href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer"><img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="Quality Gate Status"></a><a href="https://codecov.io/gh/myusoutharm/veryboring" target="_blank" rel="noopener noreferrer"><img src="https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY" alt="codecov"></a></div></div>

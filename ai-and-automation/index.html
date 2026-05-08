@@ -1,49 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI & Automation | Very Boring Technologies</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accuracy + Efficiency + Consistency | AI-assisted Automation | Very Boring Technologies </title>
+
+  <!-- Font Awesome 6 (free) (local offline copy) -->
+  <link rel="stylesheet" href="lib/font-awesome/css/all.min.css" />
+
+  <link rel="stylesheet" href="index.css" />
 </head>
+
 <body>
+  <div class="stage" data-screen-label="01 Trade Show Hero">
 
-<div id="top-bar" class="top-bar"></div>
+    <div class="eyebrow">Automation, with purpose.</div>
 
-<!-- Navigation -->
-<nav>
-  <div class="container">
-    <div class="nav-content" id="nav-content"></div>
+    <div class="track">
+      <div class="chomper" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <defs>
+            <radialGradient id="chompGrad" cx="35%" cy="35%" r="75%">
+              <stop offset="0%" stop-color="#fff1b8" />
+              <stop offset="55%" stop-color="#ffd166" />
+              <stop offset="100%" stop-color="#e8a93a" />
+            </radialGradient>
+          </defs>
+          <path class="jaw-top" d="M50,50 L50,4 A46,46 0 0,1 96,50 Z" fill="url(#chompGrad)" />
+          <path class="jaw-bot" d="M50,50 L96,50 A46,46 0 0,1 50,96 Z" fill="url(#chompGrad)" />
+          <path d="M50,4 A46,46 0 0,0 50,96 L50,50 Z" fill="url(#chompGrad)" />
+        </svg>
+      </div>
+
+      <div class="items" id="items" aria-hidden="true"></div>
+    </div>
+
+    <div class="copy">
+      <div class="tagline">
+        <span>We automate the </span><span class="boring strike">boring.</span>
+        <br />
+        <span>You drive the <span class="vision">vision</span></span><span class="dot">.</span>
+      </div>
+      <div class="sub-tagline">
+        <a href="./home.html" class="learn-more">Learn More <i class="fa-solid fa-angles-right"></i></a>
+      </div>
+    </div>
+
+    <div class="footer">VeryBoring.ai</div>
   </div>
-</nav>
 
-<!-- Hero -->
-<section class="hero" id="hero"></section>
+  <!-- React + Babel for the Tweaks panel (local offline copies) -->
+  <script src="lib/react.development.js"></script>
+  <script src="lib/react-dom.development.js"></script>
+  <script src="lib/babel.min.js"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
 
-<!-- Services -->
-<section id="services" class="section-primary"></section>
-
-<!-- Process -->
-<section id="process" class="section-subtle"></section>
-
-<!-- Launch Partner -->
-<section id="launch-partner" class="section-primary"></section>
-
-<!-- Pricing -->
-<section id="pricing" class="section-subtle"></section>
-
-<!-- Metrics -->
-<section id="metrics" class="section-primary section-metrics"></section>
-
-<!-- Testimonials -->
-<section id="testimonials" class="section-subtle"></section>
-
-<!-- Contact -->
-<section id="contact" class="section-primary section-contact"></section>
-
-<!-- Footer -->
-<footer id="footer"></footer>
-
-<script data-cfasync="false" type="module" src="scripts.js?v=20260503b"></script>
+  <script type="text/babel" src="index.js"></script>
 </body>
+
 </html>

@@ -16,6 +16,12 @@ export function getContentKeys(folder, file) {
   }
 
   if (folder === "ai-and-automation") {
+    if (file === "index.html" || file === "") {
+      return [];
+    }
+    if (file === "home.html") {
+      return ["navigation", "hero", "services", "process", "launch-partner", "pricing", "metrics", "testimonials", "contact", "footer"];
+    }
     if (file === "services.html") {
       return ["navigation", "services_detailed", "contact", "footer"];
     }

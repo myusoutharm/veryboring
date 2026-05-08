@@ -265,6 +265,38 @@ nav.scrolled {
   border-radius: 8px;
 }
 
+.logo-pacman {
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo-pacman .jaw-top {
+  transform-origin: 50% 50%;
+  animation: logoJawTop 0.36s ease-in-out infinite;
+}
+
+.logo-pacman .jaw-bot {
+  transform-origin: 50% 50%;
+  animation: logoJawBot 0.36s ease-in-out infinite;
+}
+
+@keyframes logoJawTop {
+  0%, 100% { transform: rotate(-38deg); }
+  50% { transform: rotate(0deg); }
+}
+
+@keyframes logoJawBot {
+  0%, 100% { transform: rotate(38deg); }
+  50% { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-pacman .jaw-top,
+  .logo-pacman .jaw-bot {
+    animation: none;
+  }
+}
+
 .nav-links {
   display: flex;
   gap: 28px;

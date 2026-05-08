@@ -117,6 +117,7 @@ export function renderNavigation(data) {
   nav.innerHTML = `
     <a href="${escapeAttr(data.home_href)}" class="logo">
       ${escapeHtml(data.logo)}
+      <svg class="logo-pacman" viewBox="0 0 100 100" width="30" height="30" aria-hidden="true" focusable="false"><defs><radialGradient id="navChompGrad" cx="35%" cy="35%" r="75%"><stop offset="0%" stop-color="#fff1b8"/><stop offset="55%" stop-color="#ffd166"/><stop offset="100%" stop-color="#e8a93a"/></radialGradient></defs><path class="jaw-top" d="M50,50 L50,4 A46,46 0 0,1 96,50 Z" fill="url(#navChompGrad)"/><path class="jaw-bot" d="M50,50 L96,50 A46,46 0 0,1 50,96 Z" fill="url(#navChompGrad)"/><path d="M50,4 A46,46 0 0,0 50,96 L50,50 Z" fill="url(#navChompGrad)"/></svg>
     </a>
     <ul class="nav-links" id="nav-links">
       ${data.links.map(link => `
@@ -499,7 +500,7 @@ export function renderFooter(data) {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="logo">
+          <a href="home.html" class="logo">
             <img src="public/logo.png" alt="Logo" style="width:32px;height:32px;border-radius:7px" onerror="this.style.display='none'">
             ${escapeHtml(data.brand.name)}
           </a>

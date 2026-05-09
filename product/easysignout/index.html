@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasySignOut — Simple iPad Sign-Out Tracking</title>
+  <meta name="description" content="EasySignOut replaces the clipboard. A simple, digital sign-out sheet for teams that share 10 to 500 iPads. Not MDM. Not complex. Up this week." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="top">
+    <div class="header-inner">
+      <a href="#top" class="logo" aria-label="EasySignOut home">
+        <span class="logo-mark"><i class="fa-solid fa-tablet-screen-button" aria-hidden="true"></i></span>
+        <span class="logo-text">EasySignOut</span>
+      </a>
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#fit" class="nav-link">Is It Right for You?</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="tel:6048005781" class="nav-phone" aria-label="Call 604-800-5781">
+          <i class="fa-solid fa-phone-flip" aria-hidden="true"></i>
+          <span>604-800-5781</span>
+        </a>
+        <a href="#contact" class="btn btn-primary nav-cta">Get a Demo</a>
+      </nav>
+      <div class="header-right-mobile">
+        <a href="tel:6048005781" class="mobile-header-phone" aria-label="Call us">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-label="Introduction">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-grid">
+
+        <div class="hero-text">
+          <div class="hero-tag">
+            <i class="fa-solid fa-tablet-screen-button" aria-hidden="true"></i>
+            iPad Sign-Out Tracking
+          </div>
+          <h1>Your team shares iPads.<br>Now you'll always know<br>who has which one.</h1>
+          <p class="hero-sub">
+            EasySignOut replaces the clipboard. It's not MDM — it's a simple, digital sign-out sheet built for teams that share 10 to 500 iPads. Staff sign out in seconds. You see everything in real time.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-white btn-lg">
+              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+              Get a Demo
+            </a>
+            <a href="tel:6048005781" class="btn btn-ghost btn-lg">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              604-800-5781
+            </a>
+          </div>
+          <div class="hero-trust">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Up and running this week</span>
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i> No IT project required</span>
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i> 4 teams using it today</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-mockup">
+            <div class="mockup-bar">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="mockup-url">tab.easysignout.com / MAIN</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-row mockup-header-row">
+                <span>Device</span>
+                <span>Status</span>
+                <span>Holder</span>
+                <span>Time</span>
+              </div>
+              <div class="mockup-row">
+                <span class="device-name"><i class="fa-solid fa-tablet-screen-button"></i> iPad Pro #12</span>
+                <span class="badge badge-out">Out</span>
+                <span>J. Martinez</span>
+                <span class="muted">9:14 AM</span>
+              </div>
+              <div class="mockup-row">
+                <span class="device-name"><i class="fa-solid fa-tablet-screen-button"></i> iPad Air #03</span>
+                <span class="badge badge-in">Available</span>
+                <span class="muted">—</span>
+                <span class="muted">—</span>
+              </div>
+              <div class="mockup-row">
+                <span class="device-name"><i class="fa-solid fa-tablet-screen-button"></i> iPad Mini #07</span>
+                <span class="badge badge-out">Out</span>
+                <span>T. Nguyen</span>
+                <span class="muted">8:52 AM</span>
+              </div>
+              <div class="mockup-row">
+                <span class="device-name"><i class="fa-solid fa-tablet-screen-button"></i> iPad Pro #09</span>
+                <span class="badge badge-in">Available</span>
+                <span class="muted">—</span>
+                <span class="muted">—</span>
+              </div>
+              <div class="mockup-row mockup-row-last">
+                <span class="device-name"><i class="fa-solid fa-tablet-screen-button"></i> iPad Air #11</span>
+                <span class="badge badge-out">Out</span>
+                <span>A. Patel</span>
+                <span class="muted">9:01 AM</span>
+              </div>
+            </div>
+            <div class="mockup-footer">
+              <span class="stat"><strong>12</strong> Total</span>
+              <span class="stat stat-ok"><strong>8</strong> Available</span>
+              <span class="stat stat-alert"><strong>4</strong> Out</span>
+              <span class="mockup-live"><span class="live-dot"></span> Live</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar" aria-label="Key facts">
+      <div class="container trust-bar-inner">
+        <div class="trust-item">
+          <strong>10–500</strong>
+          <span>iPads, sweet spot</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-item">
+          <strong>Not MDM</strong>
+          <span>Focused on sign-out</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-item">
+          <strong>This week</strong>
+          <span>Typical go-live</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-item">
+          <strong>4 teams</strong>
+          <span>Using it today</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT IT DOES -->
+    <section class="benefits section" id="benefits">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">What it does</p>
+          <h2 class="section-title">One problem, solved well</h2>
+          <p class="section-sub">EasySignOut tracks who has each iPad — nothing more, nothing less. If that's your problem, it'll solve it completely.</p>
+        </div>
+        <div class="benefits-grid benefits-grid-4">
+
+          <div class="benefit-card">
+            <div class="benefit-icon" style="--icon-hue: 240deg">
+              <i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>
+            </div>
+            <h3>Replace the clipboard</h3>
+            <p>Every sign-out is logged automatically — who, which device, when. Searchable history, always accurate.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon" style="--icon-hue: 160deg">
+              <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            </div>
+            <h3>Staff sign out in seconds</h3>
+            <p>Name, passcode, done. The iOS app on each iPad is the only interface staff need — no logins, no training.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon" style="--icon-hue: 200deg">
+              <i class="fa-solid fa-building" aria-hidden="true"></i>
+            </div>
+            <h3>Works across sites</h3>
+            <p>Multiple locations or departments, each with their own isolated view, all managed from one place.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon" style="--icon-hue: 45deg">
+              <i class="fa-solid fa-calendar-week" aria-hidden="true"></i>
+            </div>
+            <h3>Up and running this week</h3>
+            <p>We set up your environment, you upload a CSV of devices and staff, and you're live. No consultants. No months of configuration.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT FIT SECTION -->
+    <section class="fit section section-alt" id="fit">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Honest about scope</p>
+          <h2 class="section-title">Is EasySignOut right for you?</h2>
+          <p class="section-sub">We're focused by design. Here's exactly when that's a good thing — and when it isn't.</p>
+        </div>
+        <div class="fit-grid">
+
+          <div class="fit-card fit-yes">
+            <div class="fit-card-header">
+              <div class="fit-icon fit-icon-yes">
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+              </div>
+              <h3>Great fit</h3>
+            </div>
+            <ul class="fit-list">
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> 10 to 500 shared iPads, passed between staff or shifts</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Currently tracking with paper, a spreadsheet, or nothing at all</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> You need it running this week, not next quarter</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Staff range from very to not at all tech-savvy</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Schools, clinics, warehouses, field teams, hospitality</li>
+            </ul>
+          </div>
+
+          <div class="fit-card fit-no">
+            <div class="fit-card-header">
+              <div class="fit-icon fit-icon-no">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+              <h3>Probably not the right fit</h3>
+            </div>
+            <ul class="fit-list">
+              <li><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> You need full MDM — app deployment, remote wipe, policy enforcement</li>
+              <li><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Thousands of devices across dozens of locations</li>
+              <li><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Complex compliance frameworks (SOC 2, HIPAA audit trails, etc.)</li>
+              <li><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> You need device enrollment and provisioning</li>
+            </ul>
+            <p class="fit-redirect">
+              <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+              For those needs, <a href="https://www.jamf.com" target="_blank" rel="noopener noreferrer">Jamf</a>, <a href="https://kandji.io" target="_blank" rel="noopener noreferrer">Kandji</a>, or Microsoft Intune are better options. We'll tell you that honestly.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">How it works</p>
+          <h2 class="section-title">Set up in days, not months</h2>
+          <p class="section-sub">Four steps. We handle the hard parts. You're signing out iPads by the end of the week.</p>
+        </div>
+        <div class="steps-grid">
+
+          <div class="step">
+            <div class="step-head">
+              <div class="step-number" aria-hidden="true">1</div>
+              <div class="step-content">
+                <h3>We set up your account</h3>
+                <p>Your isolated tenant, subdomain, and SSO login — ready within 24 hours, no work on your end.</p>
+              </div>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="step-svg">
+                <rect width="360" height="220" fill="#eef2ff" rx="10"/>
+                <rect x="130" y="22" width="100" height="60" rx="10" fill="white" stroke="#4f46e5" stroke-width="2"/>
+                <rect x="144" y="35" width="72" height="8" rx="3" fill="#e0e7ff"/>
+                <rect x="144" y="50" width="72" height="8" rx="3" fill="#e0e7ff"/>
+                <circle cx="220" cy="39" r="3" fill="#10b981"/>
+                <circle cx="220" cy="54" r="3" fill="#10b981"/>
+                <text x="180" y="95" text-anchor="middle" font-size="10" fill="#4f46e5" font-family="Inter,sans-serif" font-weight="600">easysignout.com</text>
+                <line x1="90" y1="82" x2="148" y2="82" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>
+                <line x1="212" y1="82" x2="270" y2="82" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>
+                <line x1="90" y1="82" x2="90" y2="132" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>
+                <line x1="180" y1="82" x2="180" y2="132" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>
+                <line x1="270" y1="82" x2="270" y2="132" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>
+                <rect x="38" y="132" width="104" height="36" rx="7" fill="white" stroke="#c7d2fe" stroke-width="1.5"/>
+                <text x="90" y="146" text-anchor="middle" font-size="8" fill="#64748b" font-family="monospace">tab.easysignout.com</text>
+                <circle cx="54" cy="157" r="3.5" fill="#10b981"/><text x="62" y="160" font-size="8" fill="#64748b" font-family="Inter,sans-serif">SSO ✓</text>
+                <rect x="128" y="132" width="104" height="36" rx="7" fill="#4f46e5"/>
+                <text x="180" y="146" text-anchor="middle" font-size="8" fill="white" font-family="monospace">yourorg.easysignout</text>
+                <circle cx="144" cy="157" r="3.5" fill="#a5f3c9"/><text x="152" y="160" font-size="8" fill="#c7d2fe" font-family="Inter,sans-serif">Active</text>
+                <rect x="218" y="132" width="104" height="36" rx="7" fill="white" stroke="#c7d2fe" stroke-width="1.5"/>
+                <text x="270" y="146" text-anchor="middle" font-size="8" fill="#64748b" font-family="monospace">demo.easysignout.com</text>
+                <circle cx="234" cy="157" r="3.5" fill="#10b981"/><text x="242" y="160" font-size="8" fill="#64748b" font-family="Inter,sans-serif">SSO ✓</text>
+                <text x="180" y="202" text-anchor="middle" font-size="10" fill="#64748b" font-family="Inter,sans-serif">Your subdomain · Isolated · SSO ready</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-head">
+              <div class="step-number" aria-hidden="true">2</div>
+              <div class="step-content">
+                <h3>Upload your devices and staff</h3>
+                <p>One CSV for iPads, one for employees. Everything is in the system immediately — no manual entry.</p>
+              </div>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="step-svg">
+                <rect width="360" height="220" fill="#f0f9ff" rx="10"/>
+                <rect x="30" y="30" width="110" height="140" rx="8" fill="white" stroke="#bae6fd" stroke-width="2"/>
+                <polyline points="110,30 140,60 110,60" fill="#e0f2fe" stroke="#bae6fd" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="44" y="44" width="50" height="14" rx="3" fill="#0ea5e9"/>
+                <text x="69" y="54" text-anchor="middle" font-size="8" fill="white" font-family="Inter,sans-serif" font-weight="700">CSV</text>
+                <rect x="40" y="70" width="90" height="7" rx="2" fill="#e0f2fe"/>
+                <rect x="40" y="82" width="90" height="7" rx="2" fill="#f1f5f9"/>
+                <rect x="40" y="94" width="90" height="7" rx="2" fill="#e0f2fe"/>
+                <rect x="40" y="106" width="90" height="7" rx="2" fill="#f1f5f9"/>
+                <rect x="40" y="118" width="90" height="7" rx="2" fill="#e0f2fe"/>
+                <rect x="40" y="130" width="90" height="7" rx="2" fill="#f1f5f9"/>
+                <text x="85" y="160" text-anchor="middle" font-size="8.5" fill="#64748b" font-family="Inter,sans-serif">devices.csv</text>
+                <path d="M148 110 L200 110" stroke="#0ea5e9" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <polygon points="200,104 212,110 200,116" fill="#0ea5e9"/>
+                <circle cx="178" cy="90" r="12" fill="#e0f2fe"/>
+                <path d="M174 93 L178 87 L182 93 M178 87 L178 100" stroke="#0ea5e9" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <ellipse cx="270" cy="55" rx="48" ry="14" fill="white" stroke="#4f46e5" stroke-width="2"/>
+                <rect x="222" y="55" width="96" height="80" fill="white" stroke="#4f46e5" stroke-width="2"/>
+                <ellipse cx="270" cy="135" rx="48" ry="14" fill="white" stroke="#4f46e5" stroke-width="2"/>
+                <ellipse cx="270" cy="95" rx="48" ry="14" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.5"/>
+                <text x="270" y="59" text-anchor="middle" font-size="9" fill="#4f46e5" font-family="Inter,sans-serif" font-weight="700">asset_tracker</text>
+                <text x="270" y="92" text-anchor="middle" font-size="8" fill="#4f46e5" font-family="monospace">47 devices</text>
+                <text x="270" y="104" text-anchor="middle" font-size="8" fill="#64748b" font-family="monospace">132 employees</text>
+                <rect x="220" y="160" width="100" height="22" rx="6" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1.5"/>
+                <text x="270" y="175" text-anchor="middle" font-size="10" fill="#065f46" font-family="Inter,sans-serif" font-weight="600">✓ Import complete</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-head">
+              <div class="step-number" aria-hidden="true">3</div>
+              <div class="step-content">
+                <h3>Staff sign out in seconds</h3>
+                <p>Each iPad runs the app. Staff tap their name, enter a passcode, and confirm. That's it — no account needed.</p>
+              </div>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="step-svg">
+                <rect width="360" height="220" fill="#f0fdf4" rx="10"/>
+                <rect x="55" y="15" width="250" height="190" rx="12" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+                <rect x="55" y="15" width="250" height="36" rx="12" fill="#4f46e5"/>
+                <rect x="55" y="35" width="250" height="16" fill="#4f46e5"/>
+                <text x="180" y="38" text-anchor="middle" font-size="11" fill="white" font-family="Outfit,sans-serif" font-weight="700">iPad Pro #07 · MAIN</text>
+                <text x="75" y="68" font-size="9" fill="#64748b" font-family="Inter,sans-serif" font-weight="600" letter-spacing=".04em">SELECT YOUR NAME</text>
+                <rect x="65" y="74" width="230" height="30" rx="7" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.5"/>
+                <circle cx="84" cy="89" r="9" fill="#4f46e5"/>
+                <text x="84" y="93" text-anchor="middle" font-size="8" fill="white" font-family="Outfit,sans-serif" font-weight="700">JM</text>
+                <text x="100" y="92" font-size="10.5" fill="#1e1b4b" font-family="Inter,sans-serif" font-weight="600">J. Martinez</text>
+                <path d="M278 86 L283 91 L293 81" stroke="#4f46e5" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="65" y="110" width="230" height="28" rx="7" fill="#f8fafc"/>
+                <circle cx="84" cy="124" r="9" fill="#e2e8f0"/><text x="84" y="128" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="Outfit,sans-serif">TN</text>
+                <text x="100" y="128" font-size="10.5" fill="#64748b" font-family="Inter,sans-serif">T. Nguyen</text>
+                <rect x="65" y="143" width="230" height="28" rx="7" fill="#f8fafc"/>
+                <circle cx="84" cy="157" r="9" fill="#e2e8f0"/><text x="84" y="161" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="Outfit,sans-serif">AP</text>
+                <text x="100" y="161" font-size="10.5" fill="#64748b" font-family="Inter,sans-serif">A. Patel</text>
+                <rect x="65" y="178" width="230" height="20" rx="6" fill="#10b981"/>
+                <text x="180" y="192" text-anchor="middle" font-size="10" fill="white" font-family="Outfit,sans-serif" font-weight="700">Sign Out  ›</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-head">
+              <div class="step-number" aria-hidden="true">4</div>
+              <div class="step-content">
+                <h3>You see everything in real time</h3>
+                <p>Live device status from any browser. Filter by site, search history, export for audits — no special software needed.</p>
+              </div>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="step-svg">
+                <rect width="360" height="220" fill="#f8fafc" rx="10"/>
+                <rect x="20" y="15" width="320" height="190" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                <rect x="20" y="15" width="320" height="30" rx="10" fill="#f1f5f9"/>
+                <rect x="20" y="33" width="320" height="12" fill="#f1f5f9"/>
+                <circle cx="38" cy="30" r="4" fill="#ef4444" opacity=".7"/>
+                <circle cx="52" cy="30" r="4" fill="#f59e0b" opacity=".7"/>
+                <circle cx="66" cy="30" r="4" fill="#10b981" opacity=".7"/>
+                <rect x="80" y="22" width="200" height="16" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+                <text x="180" y="33" text-anchor="middle" font-size="8" fill="#64748b" font-family="monospace">tab.easysignout.com/site/MAIN</text>
+                <rect x="28" y="50" width="304" height="20" fill="#f8fafc"/>
+                <text x="50" y="64" font-size="8" fill="#94a3b8" font-family="Inter,sans-serif" font-weight="700" letter-spacing=".05em">DEVICE</text>
+                <text x="155" y="64" font-size="8" fill="#94a3b8" font-family="Inter,sans-serif" font-weight="700" letter-spacing=".05em">STATUS</text>
+                <text x="225" y="64" font-size="8" fill="#94a3b8" font-family="Inter,sans-serif" font-weight="700" letter-spacing=".05em">HOLDER</text>
+                <text x="300" y="64" font-size="8" fill="#94a3b8" font-family="Inter,sans-serif" font-weight="700" letter-spacing=".05em">TIME</text>
+                <rect x="28" y="70" width="304" height="24" fill="white"/>
+                <text x="50" y="85" font-size="9.5" fill="#1e1b4b" font-family="Inter,sans-serif">iPad Pro #12</text>
+                <rect x="148" y="75" width="62" height="14" rx="4" fill="#fef3c7"/>
+                <text x="179" y="85" text-anchor="middle" font-size="8" fill="#92400e" font-family="Inter,sans-serif" font-weight="600">Checked Out</text>
+                <text x="225" y="85" font-size="9" fill="#475569" font-family="Inter,sans-serif">J. Martinez</text>
+                <text x="300" y="85" font-size="9" fill="#94a3b8" font-family="monospace">9:14 AM</text>
+                <line x1="28" y1="94" x2="332" y2="94" stroke="#f1f5f9" stroke-width="1"/>
+                <rect x="28" y="94" width="304" height="24" fill="#f9fafb"/>
+                <text x="50" y="109" font-size="9.5" fill="#1e1b4b" font-family="Inter,sans-serif">iPad Air #03</text>
+                <rect x="148" y="99" width="54" height="14" rx="4" fill="#d1fae5"/>
+                <text x="175" y="109" text-anchor="middle" font-size="8" fill="#065f46" font-family="Inter,sans-serif" font-weight="600">Available</text>
+                <text x="225" y="109" font-size="9" fill="#94a3b8" font-family="Inter,sans-serif">—</text>
+                <line x1="28" y1="118" x2="332" y2="118" stroke="#f1f5f9" stroke-width="1"/>
+                <rect x="28" y="118" width="304" height="24" fill="white"/>
+                <text x="50" y="133" font-size="9.5" fill="#1e1b4b" font-family="Inter,sans-serif">iPad Mini #07</text>
+                <rect x="148" y="123" width="62" height="14" rx="4" fill="#fef3c7"/>
+                <text x="179" y="133" text-anchor="middle" font-size="8" fill="#92400e" font-family="Inter,sans-serif" font-weight="600">Checked Out</text>
+                <text x="225" y="133" font-size="9" fill="#475569" font-family="Inter,sans-serif">T. Nguyen</text>
+                <text x="300" y="133" font-size="9" fill="#94a3b8" font-family="monospace">8:52 AM</text>
+                <line x1="28" y1="142" x2="332" y2="142" stroke="#f1f5f9" stroke-width="1"/>
+                <rect x="28" y="142" width="304" height="24" fill="#f9fafb"/>
+                <text x="50" y="157" font-size="9.5" fill="#1e1b4b" font-family="Inter,sans-serif">iPad Pro #09</text>
+                <rect x="148" y="147" width="54" height="14" rx="4" fill="#d1fae5"/>
+                <text x="175" y="157" text-anchor="middle" font-size="8" fill="#065f46" font-family="Inter,sans-serif" font-weight="600">Available</text>
+                <text x="225" y="157" font-size="9" fill="#94a3b8" font-family="Inter,sans-serif">—</text>
+                <rect x="28" y="176" width="304" height="22" fill="#f0f4ff"/>
+                <text x="70" y="191" text-anchor="middle" font-size="9" fill="#4f46e5" font-family="Inter,sans-serif" font-weight="600">12 Total</text>
+                <text x="180" y="191" text-anchor="middle" font-size="9" fill="#065f46" font-family="Inter,sans-serif" font-weight="600">8 Available</text>
+                <text x="290" y="191" text-anchor="middle" font-size="9" fill="#92400e" font-family="Inter,sans-serif" font-weight="600">4 Checked Out</text>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="social-proof section section-alt" aria-label="Customer testimonials">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">From the teams using it</p>
+          <h2 class="section-title">What changed for them</h2>
+        </div>
+        <div class="testimonials-grid">
+
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            <blockquote>"We used to lose iPads for days and have no idea who last had them. Now I open a browser and know immediately. The sign-out takes maybe five seconds."</blockquote>
+            <div class="testimonial-author">
+              <div class="avatar" aria-hidden="true">SM</div>
+              <div>
+                <strong>S. Mitchell</strong>
+                <span>IT Manager, Healthcare Group</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            <blockquote>"Rolled out across three sites in a week. Staff figured out the iPad app without any training at all. That was the part I was most worried about — it was a non-issue."</blockquote>
+            <div class="testimonial-author">
+              <div class="avatar" aria-hidden="true">RL</div>
+              <div>
+                <strong>R. Lalonde</strong>
+                <span>Operations Director, Education</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            <blockquote>"We looked at the big MDM platforms. Way more than we needed and way more to manage. This just tracks who has what. That's all we needed and it does it perfectly."</blockquote>
+            <div class="testimonial-author">
+              <div class="avatar" aria-hidden="true">TC</div>
+              <div>
+                <strong>T. Chen</strong>
+                <span>Head of Operations, Enterprise</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact section" id="contact">
+      <div class="container contact-grid">
+
+        <div class="contact-info">
+          <p class="section-eyebrow">Get in touch</p>
+          <h2>Talk to us first</h2>
+          <p class="contact-lead">Tell us how many iPads you have and how you're tracking them now. If we're not the right fit, we'll say so.</p>
+
+          <a href="tel:6048005781" class="phone-cta" aria-label="Call 604-800-5781">
+            <div class="phone-icon" aria-hidden="true">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="phone-details">
+              <span class="phone-number">604-800-5781</span>
+              <span class="phone-hours">Mon – Fri &nbsp;·&nbsp; 9am – 5pm PT</span>
+            </div>
+          </a>
+
+          <div class="or-divider" aria-hidden="true"><span>or fill in the form</span></div>
+
+          <ul class="contact-reasons" aria-label="What we can help with">
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> See if EasySignOut fits your situation</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Get a 20-minute live demo</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Ask about pricing for your fleet size</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Start a pilot this week</li>
+          </ul>
+        </div>
+
+        <div class="contact-form-col">
+          <div class="form-card" id="hubspot-form-container">
+            <!--
+              HUBSPOT EMBED — replace this block with your embed code:
+              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+              <script>
+                hbspt.forms.create({ region: "na1", portalId: "YOUR_ID", formId: "YOUR_FORM_ID" });
+              </script>
+            -->
+            <h3 class="form-title">Tell us about your fleet</h3>
+            <form class="contact-form" id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="company">Organisation <span class="required" aria-hidden="true">*</span></label>
+                  <input type="text" id="company" name="company" placeholder="Acme Corp" required autocomplete="organization" />
+                </div>
+                <div class="form-group">
+                  <label for="contact-name">Your name <span class="required" aria-hidden="true">*</span></label>
+                  <input type="text" id="contact-name" name="contact" placeholder="Jane Smith" required autocomplete="name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Work email <span class="required" aria-hidden="true">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="jane@acmecorp.com" required autocomplete="email" />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fleet-size">How many shared iPads? <span class="required" aria-hidden="true">*</span></label>
+                <select id="fleet-size" name="fleet_size" required>
+                  <option value="" disabled selected>Select a range</option>
+                  <option value="1-25">Under 25</option>
+                  <option value="26-100">25 – 100</option>
+                  <option value="101-500">100 – 500</option>
+                  <option value="500+">More than 500</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">How are you tracking devices now? <span class="optional-text">(optional)</span></label>
+                <textarea id="message" name="message" rows="3" placeholder="Paper log, spreadsheet, nothing at all…"></textarea>
+              </div>
+              <!-- honeypot -->
+              <div style="display:none !important" aria-hidden="true">
+                <input type="text" name="b_phone" tabindex="-1" value="" autocomplete="off" />
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg btn-full" id="form-submit">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                Send
+              </button>
+              <p class="form-privacy">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                No spam. If we're not the right fit we'll tell you.
+              </p>
+            </form>
+            <div id="form-message" class="form-message" style="display:none" role="alert"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+        <a href="#top" class="logo logo-light" aria-label="EasySignOut home">
+          <span class="logo-mark"><i class="fa-solid fa-tablet-screen-button" aria-hidden="true"></i></span>
+          <span class="logo-text">EasySignOut</span>
+        </a>
+        <p class="footer-tagline">A simple sign-out system for teams that share iPads. Not MDM. Not complex. Just right for the job.</p>
+        <a href="tel:6048005781" class="footer-phone">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          604-800-5781
+        </a>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Product</h4>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#fit">Is It Right for You?</a>
+        <a href="#contact">Get a Demo</a>
+        <a href="tel:6048005781">Call Us</a>
+      </div>
+
+      <div class="footer-legal-col">
+        <p>© 2026 South Arm Technology Services Ltd. All rights reserved.</p>
+        <p>EasySignOut — a product of <a href="https://veryboring.ai" target="_blank" rel="noopener">Very Boring Technologies</a></p>
+        <nav aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MOBILE FLOATING CTA -->
+  <div class="mobile-cta-bar" role="complementary" aria-label="Quick contact">
+    <a href="tel:6048005781" class="mobile-btn mobile-btn-call">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+      <span>604-800-5781</span>
+    </a>
+    <a href="#contact" class="mobile-btn mobile-btn-demo">
+      <span>Get a Demo</span>
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

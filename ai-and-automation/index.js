@@ -114,19 +114,10 @@ const SHADES = [
   "#e1e3ed", "#d5d8e4", "#c9cddc", "#bdc2d3"
 ];
 
-function shouldRenderItemsForHost() {
-  const host = (window.location.hostname || "").toLowerCase();
-  return !/(^|\.)southarm\.ca$/.test(host);
-}
-
 function renderItems(items, loopSeconds) {
   const root = document.getElementById('items');
   if (!root) return;
   root.style.display = '';
-  if (!shouldRenderItemsForHost()) {
-    root.innerHTML = '';
-    return;
-  }
   const stage = document.documentElement;
   stage.style.setProperty('--loop', loopSeconds + 's');
   root.innerHTML = '';

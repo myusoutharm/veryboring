@@ -50,13 +50,31 @@
     <div class="footer">VeryBoring.ai</div>
   </div>
 
-  <!-- React + Babel for the Tweaks panel (local offline copies) -->
-  <script data-cfasync="false" src="lib/react.development.js"></script>
-  <script data-cfasync="false" src="lib/react-dom.development.js"></script>
-  <script data-cfasync="false" src="lib/babel.min.js"></script>
-  <script data-cfasync="false" type="text/babel" src="tweaks-panel.jsx"></script>
+  <script src="index.js"></script>
+  <script>
+    (function loadLocalTweaksOnly() {
+      const host = (window.location.hostname || "").toLowerCase();
+      const isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+      if (!isLocal) return;
 
-  <script data-cfasync="false" type="text/babel" src="index.js"></script>
+      const loadScript = (src, type) => new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = src;
+        s.setAttribute("data-cfasync", "false");
+        if (type) s.type = type;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.body.appendChild(s);
+      });
+
+      loadScript("lib/react.development.js")
+        .then(() => loadScript("lib/react-dom.development.js"))
+        .then(() => loadScript("lib/babel.min.js"))
+        .then(() => loadScript("tweaks-panel.jsx", "text/babel"))
+        .then(() => loadScript("index-editor.jsx", "text/babel"))
+        .catch((err) => console.error("Failed to load local tweaks panel scripts.", err));
+    })();
+  </script>
 </body>
 
 </html>

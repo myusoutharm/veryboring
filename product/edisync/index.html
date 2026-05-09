@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDISync — EDI 810 Invoice Price Verification for Small Operators</title>
+  <meta name="description" content="EDISync checks your vendor EDI 810 invoices against your contract pricing overnight and emails you when prices don't match. Simple, focused, affordable.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────── -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="logo" aria-label="EDISync home">
+        <span class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <rect width="28" height="28" rx="6" fill="#1d4ed8"/>
+            <path d="M6 9h10M6 14h16M6 19h12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="21" cy="9" r="2.5" fill="#10b981"/>
+          </svg>
+        </span>
+        <span class="logo-text">EDISync</span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="#fit">Is It a Fit?</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="tel:6048005781" class="btn btn-ghost">604-800-5781</a>
+        <a href="#contact" class="btn btn-primary">Talk to Us</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ───────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="hero-tag">A focused tool for a specific problem</p>
+          <h1 class="hero-headline" id="hero-headline">Know when your vendor's invoice doesn't match your contract — automatically.</h1>
+          <p class="hero-sub">EDISync downloads your EDI 810 invoices overnight, compares every line item against your contract pricing, and emails you when something's off. It does one thing. It does it well.</p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary btn-lg">Talk to Us</a>
+            <a href="#fit" class="btn btn-outline btn-lg">Is It Right for You?</a>
+          </div>
+          <p class="hero-trust">Built for small distributors, independent grocers, and regional hospitality operators — not enterprise EDI platforms.</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="mock-dashboard">
+            <div class="mock-header">
+              <span class="mock-dot red"></span>
+              <span class="mock-dot amber"></span>
+              <span class="mock-dot green"></span>
+              <span class="mock-title">EDISync — Last Night's Run</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-stat-row">
+                <div class="mock-stat">
+                  <div class="mock-stat-label">Invoices Checked</div>
+                  <div class="mock-stat-value">12</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-label">Price Mismatches</div>
+                  <div class="mock-stat-value alert-red">3</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-label">Vendors</div>
+                  <div class="mock-stat-value">2</div>
+                </div>
+              </div>
+              <div class="mock-table-head">
+                <span>Item</span><span>Contract</span><span>Invoiced</span><span>Status</span>
+              </div>
+              <div class="mock-row">
+                <span>Chicken Breast 40lb</span>
+                <span>$3.15/lb</span>
+                <span>$3.15/lb</span>
+                <span class="badge badge-ok">✓ Match</span>
+              </div>
+              <div class="mock-row highlight-row">
+                <span>Salmon Fillet 10lb</span>
+                <span>$12.80/lb</span>
+                <span class="price-wrong">$14.20/lb</span>
+                <span class="badge badge-alert">⚠ Alert</span>
+              </div>
+              <div class="mock-row">
+                <span>Roma Tomatoes 25lb</span>
+                <span>$18.50/cs</span>
+                <span>$18.50/cs</span>
+                <span class="badge badge-ok">✓ Match</span>
+              </div>
+              <div class="mock-row highlight-row">
+                <span>Olive Oil 4×1gal</span>
+                <span>$62.00/cs</span>
+                <span class="price-wrong">$68.50/cs</span>
+                <span class="badge badge-alert">⚠ Alert</span>
+              </div>
+              <div class="mock-row">
+                <span>Beef Tenderloin 4/6lb</span>
+                <span>$28.40/lb</span>
+                <span>$28.40/lb</span>
+                <span class="badge badge-ok">✓ Match</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Social Proof ────────────────────────────── -->
+    <section class="social-proof" aria-label="Customer testimonials">
+      <div class="container">
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>"We were being charged the wrong price on a few items almost every week. Nothing dramatic — just a dollar here and there — but it adds up. EDISync flags it automatically so we can follow up before paying."</blockquote>
+            <div class="testimonial-author">
+              <div class="avatar">PK</div>
+              <div>
+                <strong>P. Kim</strong>
+                <span>Owner, Independent Grocery — Burnaby, BC</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>"We're a small operation with two vendors sending EDI invoices. We don't need a full EDI platform — we just needed something to check the prices. That's exactly what this is."</blockquote>
+            <div class="testimonial-author">
+              <div class="avatar">AT</div>
+              <div>
+                <strong>A. Thériault</strong>
+                <span>Manager, Regional Restaurant Group — Surrey, BC</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>"Setup took one afternoon. We pointed it at our vendor SFTP, uploaded our contract CSV, and it's been running every night since. We get an email when something doesn't match. That's it."</blockquote>
+            <div class="testimonial-author">
+              <div class="avatar">JL</div>
+              <div>
+                <strong>J. Larsen</strong>
+                <span>Operations, Food Distribution — Richmond, BC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Is It a Fit? ────────────────────────────── -->
+    <section class="fit-section" id="fit" aria-labelledby="fit-heading">
+      <div class="container">
+        <div class="section-label">Know Before You Commit</div>
+        <h2 class="section-heading" id="fit-heading">EDISync is intentionally narrow in scope. That's the point.</h2>
+        <p class="section-sub">We built this to solve one problem well, not to compete with full-scale EDI platforms. Here's an honest picture of who it's for.</p>
+        <div class="fit-grid">
+          <div class="fit-card fit-yes">
+            <h3>A good fit if you…</h3>
+            <ul>
+              <li>Receive EDI 810 invoices from one to a handful of vendors via SFTP</li>
+              <li>Keep your contract pricing in a spreadsheet or CSV</li>
+              <li>Currently verify invoice prices manually — or don't verify at all</li>
+              <li>Want something lightweight running overnight without ongoing maintenance</li>
+              <li>Are a small distributor, independent grocer, or regional hospitality operator</li>
+            </ul>
+          </div>
+          <div class="fit-card fit-no">
+            <h3>Look elsewhere if you need…</h3>
+            <ul>
+              <li>Full EDI translation and mapping across multiple document types</li>
+              <li>Integration with an ERP or accounting system</li>
+              <li>Support for EDI formats beyond X12 810 invoices</li>
+              <li>Enterprise user management, roles, or compliance workflows</li>
+              <li>Trading partner onboarding or certification support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How It Works ────────────────────────────── -->
+    <section class="how-it-works" id="how-it-works" aria-labelledby="hiw-heading">
+      <div class="container">
+        <div class="section-label">The Process</div>
+        <h2 class="section-heading" id="hiw-heading">Four steps. Setup once, runs every night.</h2>
+        <div class="steps-grid">
+
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Upload Your Contract Pricing</h3>
+              <p>Export your agreed pricing from your spreadsheet and upload the CSV or Excel file to EDISync. That becomes the baseline every invoice is checked against.</p>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 320 180" fill="none" aria-hidden="true">
+                <rect width="320" height="180" rx="8" fill="#f0f9ff"/>
+                <rect x="60" y="30" width="200" height="120" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                <rect x="75" y="45" width="120" height="8" rx="4" fill="#bfdbfe"/>
+                <rect x="75" y="61" width="170" height="6" rx="3" fill="#e2e8f0"/>
+                <rect x="75" y="74" width="170" height="6" rx="3" fill="#e2e8f0"/>
+                <rect x="75" y="87" width="170" height="6" rx="3" fill="#e2e8f0"/>
+                <rect x="75" y="100" width="170" height="6" rx="3" fill="#e2e8f0"/>
+                <rect x="75" y="113" width="90" height="6" rx="3" fill="#e2e8f0"/>
+                <circle cx="220" cy="138" r="18" fill="#1d4ed8"/>
+                <path d="M213 138l4 4 7-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="160" y="160" text-anchor="middle" font-size="11" fill="#64748b" font-family="Inter,sans-serif">contract_pricing.csv</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>Connect Your Vendor SFTP</h3>
+              <p>Add your vendor's SFTP credentials once. EDISync connects each night, downloads new EDI 810 invoice files, and archives what it's processed.</p>
+              <span class="step-badge">One-time setup</span>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 320 180" fill="none" aria-hidden="true">
+                <rect width="320" height="180" rx="8" fill="#f0fdf4"/>
+                <rect x="20" y="55" width="90" height="70" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                <text x="65" y="85" text-anchor="middle" font-size="10" fill="#64748b" font-family="Inter,sans-serif">Vendor</text>
+                <text x="65" y="99" text-anchor="middle" font-size="10" fill="#64748b" font-family="Inter,sans-serif">SFTP</text>
+                <rect x="210" y="55" width="90" height="70" rx="6" fill="#1d4ed8"/>
+                <text x="255" y="85" text-anchor="middle" font-size="10" fill="#fff" font-family="Inter,sans-serif">EDISync</text>
+                <text x="255" y="99" text-anchor="middle" font-size="10" fill="#bfdbfe" font-family="Inter,sans-serif">Server</text>
+                <path d="M115 90h90" stroke="#10b981" stroke-width="2" stroke-dasharray="5 3"/>
+                <polygon points="200,86 210,90 200,94" fill="#10b981"/>
+                <text x="160" y="145" text-anchor="middle" font-size="11" fill="#64748b" font-family="Inter,sans-serif">Nightly automated download</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Every Line Item Is Compared</h3>
+              <p>Each invoice line is matched against your contract price. Matches are confirmed. Differences are flagged with the item, the contracted price, the invoiced price, and the gap.</p>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 320 180" fill="none" aria-hidden="true">
+                <rect width="320" height="180" rx="8" fill="#fefce8"/>
+                <rect x="20" y="25" width="280" height="30" rx="4" fill="#e2e8f0"/>
+                <text x="40" y="45" font-size="9" fill="#475569" font-family="Inter,sans-serif">ITEM</text>
+                <text x="140" y="45" font-size="9" fill="#475569" font-family="Inter,sans-serif">CONTRACT</text>
+                <text x="210" y="45" font-size="9" fill="#475569" font-family="Inter,sans-serif">INVOICED</text>
+                <text x="272" y="45" font-size="9" fill="#475569" font-family="Inter,sans-serif">STATUS</text>
+                <rect x="20" y="61" width="280" height="26" rx="3" fill="#f0fdf4"/>
+                <text x="40" y="78" font-size="9" fill="#374151" font-family="Inter,sans-serif">Chicken Breast</text>
+                <text x="148" y="78" font-size="9" fill="#374151" font-family="Inter,sans-serif">$3.15</text>
+                <text x="218" y="78" font-size="9" fill="#374151" font-family="Inter,sans-serif">$3.15</text>
+                <text x="270" y="78" font-size="9" fill="#10b981" font-weight="bold" font-family="Inter,sans-serif">✓</text>
+                <rect x="20" y="93" width="280" height="26" rx="3" fill="#fef2f2"/>
+                <text x="40" y="110" font-size="9" fill="#374151" font-family="Inter,sans-serif">Salmon Fillet</text>
+                <text x="148" y="110" font-size="9" fill="#374151" font-family="Inter,sans-serif">$12.80</text>
+                <text x="218" y="110" font-size="9" fill="#ef4444" font-weight="bold" font-family="Inter,sans-serif">$14.20</text>
+                <text x="270" y="110" font-size="9" fill="#ef4444" font-weight="bold" font-family="Inter,sans-serif">⚠</text>
+                <rect x="20" y="125" width="280" height="26" rx="3" fill="#f0fdf4"/>
+                <text x="40" y="142" font-size="9" fill="#374151" font-family="Inter,sans-serif">Roma Tomatoes</text>
+                <text x="148" y="142" font-size="9" fill="#374151" font-family="Inter,sans-serif">$18.50</text>
+                <text x="218" y="142" font-size="9" fill="#374151" font-family="Inter,sans-serif">$18.50</text>
+                <text x="270" y="142" font-size="9" fill="#10b981" font-weight="bold" font-family="Inter,sans-serif">✓</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>You Get an Email. Only If There's Something Wrong.</h3>
+              <p>No noise. If everything matches, nothing is sent. When a price is off, you get a plain email listing exactly what, by how much — so you can call your vendor before paying.</p>
+            </div>
+            <div class="step-visual">
+              <svg viewBox="0 0 320 180" fill="none" aria-hidden="true">
+                <rect width="320" height="180" rx="8" fill="#fdf4ff"/>
+                <rect x="40" y="20" width="240" height="140" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                <rect x="40" y="20" width="240" height="36" rx="8" fill="#1d4ed8"/>
+                <rect x="40" y="44" width="240" height="12" fill="#1d4ed8"/>
+                <text x="160" y="42" text-anchor="middle" font-size="10" fill="#fff" font-family="Inter,sans-serif">EDISync: 2 price mismatches found</text>
+                <rect x="56" y="70" width="208" height="7" rx="3" fill="#e2e8f0"/>
+                <rect x="56" y="84" width="170" height="7" rx="3" fill="#e2e8f0"/>
+                <rect x="56" y="104" width="208" height="28" rx="4" fill="#fef2f2" stroke="#fecaca"/>
+                <text x="160" y="121" text-anchor="middle" font-size="9" fill="#dc2626" font-family="Inter,sans-serif">Salmon Fillet · Contract $12.80 · Billed $14.20 · Δ +$1.40/lb</text>
+                <rect x="56" y="138" width="120" height="14" rx="6" fill="#1d4ed8"/>
+                <text x="116" y="149" text-anchor="middle" font-size="9" fill="#fff" font-family="Inter,sans-serif">View Full Report →</text>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Features ───────────────────────────────── -->
+    <section class="features" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-label">What's Included</div>
+        <h2 class="section-heading" id="features-heading">Four things. That's the product.</h2>
+        <p class="section-sub">No add-ons to configure, no modules to enable. Here's what EDISync does.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-num">1</div>
+            <div>
+              <h3>Automated SFTP Download</h3>
+              <p>Connects to your vendor SFTP on a schedule and retrieves new EDI 810 invoice files. No manual downloading.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">2</div>
+            <div>
+              <h3>EDI X12 810 Parsing</h3>
+              <p>Parses standard EDI 810 invoice files into structured data — items, quantities, prices, vendor references. Only X12 810 is supported.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">3</div>
+            <div>
+              <h3>Contract Price Comparison</h3>
+              <p>Matches every invoice line against your uploaded contract CSV. Flags anything that doesn't match with the exact variance.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">4</div>
+            <div>
+              <h3>Email Alerts on Discrepancies</h3>
+              <p>Sends a plain, readable email when prices don't match. If everything checks out, no email is sent. That's the whole notification system.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA + Contact Form ──────────────────────── -->
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="container contact-inner">
+        <div class="contact-left">
+          <div class="section-label light">Get in Touch</div>
+          <h2 class="section-heading white" id="contact-heading">Think it might be the right fit? Let's talk.</h2>
+          <p class="contact-sub">We'll ask about your current setup — vendors, invoice volume, how you handle contracts today — and tell you honestly whether EDISync makes sense for you.</p>
+          <ul class="contact-list">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L9 14.414l-4-4a1 1 0 011.414-1.414L9 11.586l6.293-6.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Usually a 20-minute conversation
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L9 14.414l-4-4a1 1 0 011.414-1.414L9 11.586l6.293-6.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              No sales pressure — we'll say if it's not a fit
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L9 14.414l-4-4a1 1 0 011.414-1.414L9 11.586l6.293-6.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              If it is a fit, setup takes an afternoon
+            </li>
+          </ul>
+          <a href="tel:6048005781" class="phone-cta">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            Call us: 604-800-5781
+          </a>
+        </div>
+        <div class="contact-right">
+          <div class="form-card">
+            <h3>Send us a message</h3>
+            <form id="contact-form" data-worker="/api/contact" novalidate>
+              <!-- Honeypot -->
+              <div style="display:none !important" aria-hidden="true">
+                <input type="text" name="b_phone" tabindex="-1" value="" autocomplete="off">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="company">Company *</label>
+                  <input type="text" id="company" name="company" placeholder="Acme Grocers" required autocomplete="organization">
+                </div>
+                <div class="form-group">
+                  <label for="contact">Your Name *</label>
+                  <input type="text" id="contact" name="contact" placeholder="Jane Smith" required autocomplete="name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="email" placeholder="jane@acme.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" placeholder="604-555-0100" autocomplete="tel">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="message">Tell us about your setup</label>
+                <textarea id="message" name="message" rows="3" placeholder="e.g. we have 2 vendors sending EDI invoices and our contract pricing is in a spreadsheet..."></textarea>
+              </div>
+              <button type="submit" id="form-submit" class="btn btn-primary btn-full">
+                <span class="btn-label">Send Message</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+              <p class="form-privacy">We'll respond within one business day. No spam, ever.</p>
+            </form>
+            <div id="form-message" class="form-message" role="alert" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p><strong>EDISync</strong> — a product of <a href="https://veryboring.ai" target="_blank" rel="noopener">Very Boring Technologies</a></p>
+      <p class="footer-legal">
+        &copy; 2026 South Arm Technology Services Ltd. All rights reserved.&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="#">Privacy Policy</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="#">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ export function buildItServicesPage(file, content) {
   const nav = renderItNavigation(content.navigation || {});
   const footer = renderItFooter(content.footer || {});
 
-  if (file === "index.html" || file === "") {
+  if (file === "home.html" || file === "") {
     return {
       htmlById: {
         "top-bar": nav.topBar,
@@ -77,7 +77,56 @@ export function buildItServicesPage(file, content) {
 function renderItNavigation(data) {
   const topBar = `<div class="container"><div class="top-bar-content">${(data.branches || []).map((b) => `<a href="${escAttr(b.href || "#")}" class="${b.active ? "active" : ""}">${escHtml(b.name || "")}</a>`).join("")}</div></div>`;
   const nav = `
-    <a href="${escAttr(data.home_href || "index.html")}" class="logo">${escHtml(data.logo || "")}</a>
+    <a href="${escAttr(data.home_href || "index.html")}" class="logo">
+      ${escHtml(data.logo || "")}
+      <svg class="logo-tetris" viewBox="0 0 30 30" width="30" height="30" aria-hidden="true" focusable="false">
+        <!-- Grid Background -->
+        <circle cx="6" cy="4" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="4" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="4" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="9.5" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="9.5" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="9.5" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="15" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="15" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="15" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="20.5" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="20.5" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="20.5" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="26" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="26" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="26" r="2.2" class="tet-bg" />
+
+        <!-- Row 5 (Bottom) -->
+        <circle cx="6" cy="26" r="2.2" fill="#7dd3fc" class="tet-r5-l" />
+        <circle cx="24" cy="26" r="2.2" fill="#6ee7b7" class="tet-r5-r" />
+        <circle cx="15" cy="26" r="2.2" fill="#ffd166" class="tet-r5-m" />
+
+        <!-- Row 4 -->
+        <circle cx="6" cy="20.5" r="2.2" fill="#c084fc" class="tet-r4-l" />
+        <circle cx="24" cy="20.5" r="2.2" fill="#f87171" class="tet-r4-r" />
+        <circle cx="15" cy="20.5" r="2.2" fill="#7dd3fc" class="tet-r4-m" />
+
+        <!-- Row 3 -->
+        <circle cx="6" cy="15" r="2.2" fill="#6ee7b7" class="tet-r3-l" />
+        <circle cx="24" cy="15" r="2.2" fill="#ffd166" class="tet-r3-r" />
+        <circle cx="15" cy="15" r="2.2" fill="#c084fc" class="tet-r3-m" />
+
+        <!-- Row 2 -->
+        <circle cx="6" cy="9.5" r="2.2" fill="#f87171" class="tet-r2-l" />
+        <circle cx="24" cy="9.5" r="2.2" fill="#7dd3fc" class="tet-r2-r" />
+        <circle cx="15" cy="9.5" r="2.2" fill="#6ee7b7" class="tet-r2-m" />
+
+        <!-- Row 1 (Top) -->
+        <circle cx="6" cy="4" r="2.2" fill="#ffd166" class="tet-r1-l" />
+        <circle cx="24" cy="4" r="2.2" fill="#c084fc" class="tet-r1-r" />
+        <circle cx="15" cy="4" r="2.2" fill="#f87171" class="tet-r1-m" />
+      </svg>
+    </a>
     <ul class="nav-links" id="nav-links">
       ${(data.links || []).map((l) => `<li><a href="${escAttr(l.href || "#")}">${escHtml(l.text || "")}</a></li>`).join("")}
       <li class="nav-mobile-cta"><a href="${escAttr(data?.cta?.href || "#")}" class="btn btn-primary">${escHtml(data?.cta?.text || "Contact Us")}</a></li>
@@ -174,7 +223,7 @@ function renderItFooter(data) {
   return `
     <div class="container">
       <div class="footer-links">
-        <div class="footer-brand"><a href="index.html" class="logo">${escHtml(data?.brand?.name || "")}</a><p>${escHtml(data?.brand?.description || "")}</p></div>
+        <div class="footer-brand"><a href="home.html" class="logo">${escHtml(data?.brand?.name || "")}</a><p>${escHtml(data?.brand?.description || "")}</p></div>
         ${(data.sections || []).map((section) => `<div class="footer-section"><h4>${escHtml(section.title || "")}</h4><ul>${(section.links || []).map((link) => `<li>${link.href ? `<a href="${escAttr(link.href)}">${escHtml(link.text || "")}</a>` : escHtml(link.text || "")}</li>`).join("")}</ul></div>`).join("")}
       </div>
       <div class="footer-bottom"><p>${escHtml(data.copyright || "")}</p><div class="footer-badges"><a href="https://sonarcloud.io/summary/new_code?id=myusoutharm_veryboring" target="_blank" rel="noopener noreferrer"><img src="https://sonarcloud.io/api/project_badges/measure?project=myusoutharm_veryboring&metric=alert_status" alt="Quality Gate Status"></a><a href="https://codecov.io/gh/myusoutharm/veryboring" target="_blank" rel="noopener noreferrer"><img src="https://codecov.io/gh/myusoutharm/veryboring/graph/badge.svg?token=2XI5UAL2ZY" alt="codecov"></a></div></div>

@@ -16,7 +16,7 @@ const mockFooter = {
   legal_links: [],
 };
 
-describe("buildItServicesPage – index page", () => {
+describe("buildItServicesPage – home page", () => {
   const content = {
     navigation: mockNav,
     footer: mockFooter,
@@ -67,7 +67,7 @@ describe("buildItServicesPage – index page", () => {
   };
 
   it("returns htmlById with all expected section IDs", () => {
-    const page = buildItServicesPage("index.html", content);
+    const page = buildItServicesPage("home.html", content);
     expect(page).not.toBeNull();
     expect(page.htmlById).toHaveProperty("hero");
     expect(page.htmlById).toHaveProperty("services");
@@ -81,18 +81,18 @@ describe("buildItServicesPage – index page", () => {
   });
 
   it("hero HTML contains the slide headline", () => {
-    const page = buildItServicesPage("index.html", content);
+    const page = buildItServicesPage("home.html", content);
     expect(page.htmlById.hero).toContain("Managed IT Services");
   });
 
   it("services HTML contains service title", () => {
-    const page = buildItServicesPage("index.html", content);
+    const page = buildItServicesPage("home.html", content);
     expect(page.htmlById.services).toContain("Our Services");
     expect(page.htmlById.services).toContain("Security");
   });
 
   it("nav HTML contains nav links", () => {
-    const page = buildItServicesPage("index.html", content);
+    const page = buildItServicesPage("home.html", content);
     expect(page.htmlById["nav-content"]).toContain("Services");
     expect(page.htmlById["nav-content"]).toContain("Get Started");
   });
@@ -111,7 +111,7 @@ describe("buildItServicesPage – index page", () => {
         ],
       },
     };
-    const page = buildItServicesPage("index.html", xssContent);
+    const page = buildItServicesPage("home.html", xssContent);
     expect(page.htmlById.hero).not.toContain("<script>");
     expect(page.htmlById.hero).toContain("&lt;script&gt;");
   });

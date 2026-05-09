@@ -11,6 +11,10 @@ const SEO_META = {
       title: "Managed IT Services | Very Boring Technologies",
       description: "Security-first managed IT services for growing businesses. Flat-rate pricing, 24/7 support, and zero-trust architecture. Serving the Greater Vancouver area.",
     },
+    "home.html": {
+      title: "Managed IT Services | Very Boring Technologies",
+      description: "Security-first managed IT services for growing businesses. Flat-rate pricing, 24/7 support, and zero-trust architecture. Serving the Greater Vancouver area.",
+    },
     "services.html": {
       title: "Our IT Services | Very Boring Technologies",
       description: "Explore our full suite of managed IT services: security architecture, endpoint management, network management, backup & recovery, and unlimited support.",

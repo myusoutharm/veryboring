@@ -51,7 +51,7 @@ const minimalContent = {
   },
 };
 
-describe("applyServerRenderedHtml – it-services index", () => {
+describe("applyServerRenderedHtml – it-services home", () => {
   const content = {
     ...minimalContent,
     hero: {
@@ -88,22 +88,22 @@ describe("applyServerRenderedHtml – it-services index", () => {
   };
 
   it("injects hero content into the hero element", () => {
-    const out = applyServerRenderedHtml(baseHtml, "it-services", "index.html", content);
+    const out = applyServerRenderedHtml(baseHtml, "it-services", "home.html", content);
     expect(out).toContain("Managed IT");
   });
 
   it("injects navigation into nav-content", () => {
-    const out = applyServerRenderedHtml(baseHtml, "it-services", "index.html", content);
+    const out = applyServerRenderedHtml(baseHtml, "it-services", "home.html", content);
     expect(out).toContain("#services");
   });
 
   it("injects footer content", () => {
-    const out = applyServerRenderedHtml(baseHtml, "it-services", "index.html", content);
+    const out = applyServerRenderedHtml(baseHtml, "it-services", "home.html", content);
     expect(out).toContain("Very Boring Technologies");
   });
 
   it("returns the original HTML unchanged for an unknown folder", () => {
-    const out = applyServerRenderedHtml(baseHtml, "unknown-folder", "index.html", content);
+    const out = applyServerRenderedHtml(baseHtml, "unknown-folder", "home.html", content);
     expect(out).toBe(baseHtml);
   });
 });

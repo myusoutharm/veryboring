@@ -82,7 +82,56 @@ export function renderNavigation(data) {
 
   const nav = document.getElementById('nav-content');
   nav.innerHTML = `
-    <a href="${escapeAttr(data.home_href)}" class="logo">${escapeHtml(data.logo)}</a>
+    <a href="${escapeAttr(data.home_href)}" class="logo">
+      ${escapeHtml(data.logo)}
+      <svg class="logo-tetris" viewBox="0 0 30 30" width="30" height="30" aria-hidden="true" focusable="false">
+        <!-- Grid Background -->
+        <circle cx="6" cy="4" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="4" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="4" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="9.5" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="9.5" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="9.5" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="15" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="15" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="15" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="20.5" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="20.5" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="20.5" r="2.2" class="tet-bg" />
+        
+        <circle cx="6" cy="26" r="2.2" class="tet-bg" />
+        <circle cx="15" cy="26" r="2.2" class="tet-bg" />
+        <circle cx="24" cy="26" r="2.2" class="tet-bg" />
+
+        <!-- Row 5 (Bottom) -->
+        <circle cx="6" cy="26" r="2.2" fill="#7dd3fc" class="tet-r5-l" />
+        <circle cx="24" cy="26" r="2.2" fill="#6ee7b7" class="tet-r5-r" />
+        <circle cx="15" cy="26" r="2.2" fill="#ffd166" class="tet-r5-m" />
+
+        <!-- Row 4 -->
+        <circle cx="6" cy="20.5" r="2.2" fill="#c084fc" class="tet-r4-l" />
+        <circle cx="24" cy="20.5" r="2.2" fill="#f87171" class="tet-r4-r" />
+        <circle cx="15" cy="20.5" r="2.2" fill="#7dd3fc" class="tet-r4-m" />
+
+        <!-- Row 3 -->
+        <circle cx="6" cy="15" r="2.2" fill="#6ee7b7" class="tet-r3-l" />
+        <circle cx="24" cy="15" r="2.2" fill="#ffd166" class="tet-r3-r" />
+        <circle cx="15" cy="15" r="2.2" fill="#c084fc" class="tet-r3-m" />
+
+        <!-- Row 2 -->
+        <circle cx="6" cy="9.5" r="2.2" fill="#f87171" class="tet-r2-l" />
+        <circle cx="24" cy="9.5" r="2.2" fill="#7dd3fc" class="tet-r2-r" />
+        <circle cx="15" cy="9.5" r="2.2" fill="#6ee7b7" class="tet-r2-m" />
+
+        <!-- Row 1 (Top) -->
+        <circle cx="6" cy="4" r="2.2" fill="#ffd166" class="tet-r1-l" />
+        <circle cx="24" cy="4" r="2.2" fill="#c084fc" class="tet-r1-r" />
+        <circle cx="15" cy="4" r="2.2" fill="#f87171" class="tet-r1-m" />
+      </svg>
+    </a>
     <ul class="nav-links" id="nav-links">
       ${data.links.map(link => `<li><a href="${escapeAttr(link.href)}">${escapeHtml(link.text)}</a></li>`).join('')}
       <li class="nav-mobile-cta"><a href="${escapeAttr(data.cta.href)}" class="btn btn-primary">${escapeHtml(data.cta.text)}</a></li>
@@ -386,7 +435,7 @@ export function renderFooter(data) {
     <div class="container">
       <div class="footer-links">
         <div class="footer-brand">
-          <a href="index.html" class="logo">${escapeHtml(data.brand.name)}</a>
+          <a href="home.html" class="logo">${escapeHtml(data.brand.name)}</a>
           <p>${escapeHtml(data.brand.description)}</p>
         </div>
         ${data.sections.map(section => `

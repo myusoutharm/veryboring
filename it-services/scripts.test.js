@@ -25,7 +25,7 @@ function setItPageDom() {
 
 function setItContent(value) {
   window.__CONTENT__ = {
-    navigation: { branches: [], home_href: "index.html", logo: value, links: [], cta: { href: "#contact", text: "Contact" } },
+    navigation: { branches: [], home_href: "home.html", logo: value, links: [], cta: { href: "#contact", text: "Contact" } },
     hero: { slides: [{ headline: value, subheadline: value, ctas: [], visual_id: "security" }] },
     services: { section_title: value, section_description: value, items: [{ icon: value, title: value, description: value, link: "#service" }] },
     "why-us": { section_title: value, section_description: value, items: [{ title: value, description: value, link: "#why" }] },

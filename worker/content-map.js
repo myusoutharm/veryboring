@@ -1,6 +1,9 @@
 export function getContentKeys(folder, file) {
   if (folder === "it-services") {
     if (file === "index.html" || file === "") {
+      return [];
+    }
+    if (file === "home.html") {
       return ["navigation", "hero", "services", "why-us", "pricing", "testimonials", "contact", "footer"];
     }
     if (file === "services.html") {

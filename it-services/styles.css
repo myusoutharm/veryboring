@@ -161,7 +161,214 @@ nav {
   font-family: 'Outfit', sans-serif;
   letter-spacing: -1px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+/* ==================== TETRIS LOGO ANIMATIONS ==================== */
+.logo-tetris {
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo-tetris circle:not(.tet-bg) {
+  transform-origin: center;
+  opacity: 0;
+}
+
+.logo-tetris .tet-bg {
+  fill: var(--border-light);
+  opacity: 0.55;
+  transform-origin: center;
+}
+
+.logo-tetris .tet-r5-l { animation: tet-r5l 7s infinite ease-in-out; }
+.logo-tetris .tet-r5-r { animation: tet-r5r 7s infinite ease-in-out; }
+.logo-tetris .tet-r5-m { animation: tet-r5m 7s infinite ease-in-out; }
+
+.logo-tetris .tet-r4-l { animation: tet-r4l 7s infinite ease-in-out; }
+.logo-tetris .tet-r4-r { animation: tet-r4r 7s infinite ease-in-out; }
+.logo-tetris .tet-r4-m { animation: tet-r4m 7s infinite ease-in-out; }
+
+.logo-tetris .tet-r3-l { animation: tet-r3l 7s infinite ease-in-out; }
+.logo-tetris .tet-r3-r { animation: tet-r3r 7s infinite ease-in-out; }
+.logo-tetris .tet-r3-m { animation: tet-r3-m 7s infinite ease-in-out; }
+
+.logo-tetris .tet-r2-l { animation: tet-r2l 7s infinite ease-in-out; }
+.logo-tetris .tet-r2-r { animation: tet-r2r 7s infinite ease-in-out; }
+.logo-tetris .tet-r2-m { animation: tet-r2-m 7s infinite ease-in-out; }
+
+.logo-tetris .tet-r1-l { animation: tet-r1l 7s infinite ease-in-out; }
+.logo-tetris .tet-r1-r { animation: tet-r1r 7s infinite ease-in-out; }
+.logo-tetris .tet-r1-m { animation: tet-r1-m 7s infinite ease-in-out; }
+
+@keyframes tet-r5l {
+  0% { opacity: 0; transform: translateY(-22px); }
+  2% { opacity: 1; }
+  5.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r5r {
+  0%, 5.5% { opacity: 0; transform: translateY(-22px); }
+  7.5% { opacity: 1; }
+  11% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r5m {
+  0%, 11% { opacity: 0; transform: translateY(-22px); }
+  13% { opacity: 1; }
+  16.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes tet-r4l {
+  0%, 16.5% { opacity: 0; transform: translateY(-16.5px); }
+  18.5% { opacity: 1; }
+  22% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r4r {
+  0%, 22% { opacity: 0; transform: translateY(-16.5px); }
+  24% { opacity: 1; }
+  27.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r4m {
+  0%, 27.5% { opacity: 0; transform: translateY(-16.5px); }
+  29.5% { opacity: 1; }
+  33% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes tet-r3l {
+  0%, 33% { opacity: 0; transform: translateY(-11px); }
+  35% { opacity: 1; }
+  38.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r3r {
+  0%, 38.5% { opacity: 0; transform: translateY(-11px); }
+  40.5% { opacity: 1; }
+  44% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r3-m {
+  0%, 44% { opacity: 0; transform: translateY(-11px); }
+  46% { opacity: 1; }
+  49.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes tet-r2l {
+  0%, 49.5% { opacity: 0; transform: translateY(-5.5px); }
+  51.5% { opacity: 1; }
+  55% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r2r {
+  0%, 55% { opacity: 0; transform: translateY(-5.5px); }
+  57% { opacity: 1; }
+  60.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r2-m {
+  0%, 60.5% { opacity: 0; transform: translateY(-5.5px); }
+  62.5% { opacity: 1; }
+  66% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes tet-r1l {
+  0%, 66% { opacity: 0; transform: translateY(-5.5px); }
+  68% { opacity: 1; }
+  71.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r1r {
+  0%, 71.5% { opacity: 0; transform: translateY(-5.5px); }
+  73.5% { opacity: 1; }
+  77% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes tet-r1-m {
+  0%, 77% { opacity: 0; transform: translateY(-5.5px); }
+  79% { opacity: 1; }
+  82.5% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  87% { opacity: 0.2; }
+  89% { opacity: 1; }
+  91% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-tetris circle:not(.tet-bg) {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .logo-tetris .tet-bg {
+    opacity: 0.2 !important;
+  }
+}
+
 
 /* Nav links — desktop */
 .nav-links {

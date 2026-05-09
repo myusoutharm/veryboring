@@ -2,8 +2,13 @@ import { describe, it, expect } from "vitest";
 import { getContentKeys } from "./content-map.js";
 
 describe("getContentKeys – it-services", () => {
-  it("returns full key set for index page", () => {
+  it("returns empty key set for index page (static landing page)", () => {
     const keys = getContentKeys("it-services", "index.html");
+    expect(keys).toEqual([]);
+  });
+
+  it("returns full key set for home page", () => {
+    const keys = getContentKeys("it-services", "home.html");
     expect(keys).toEqual([
       "navigation",
       "hero",

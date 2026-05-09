@@ -15,6 +15,10 @@
   ],
   "links": [
     {
+      "text": "Home",
+      "href": "home.html"
+    },
+    {
       "text": "Services",
       "href": "services.html"
     },

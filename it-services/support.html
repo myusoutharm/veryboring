@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support | Very Boring Technologies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="subpage">
+
+  <div id="top-bar" class="top-bar"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="nav-content" id="nav-content"></div>
+    </div>
+  </nav>
+
+  <header class="subpage-header section-dark">
+    <div class="container">
+      <h1 id="page-title">Support</h1>
+      <p id="page-intro" class="hero-text"></p>
+    </div>
+  </header>
+
+  <main id="support-content" class="container" style="padding: 60px 0;">
+    <!-- Content will be injected here -->
+  </main>
+
+  <section id="contact" class="section-accent"></section>
+
+  <footer id="footer"></footer>
+
+  <script type="module">
+    import { escapeAttr, escapeHtml, renderNavigation, renderContact, renderFooter, handleAnchorLinks, initScrollAnimations } from './scripts.js?v=20260503b';
+
+    async function getContent(key, file) {
+      if (window.__CONTENT__ && window.__CONTENT__[key]) return window.__CONTENT__[key];
+      const res = await fetch(file);
+      return res.json();
+    }
+
+    async function loadSupport() {
+      try {
+        const navData = await getContent('navigation', 'content/navigation.json');
+        renderNavigation(navData);
+
+        const data = await getContent('support', 'content/support.json');
+
+        document.getElementById('page-title').textContent = data.page_title;
+        document.getElementById('page-intro').textContent = data.intro;
+
+        const container = document.getElementById('support-content');
+        container.innerHTML = `
+          <div class="support-methods" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 40px;">
+            ${data.contact_methods.map(method => `
+              <div class="card" style="padding: 24px; border-radius: 12px;">
+                <h3 style="margin: 0 0 8px;">${escapeHtml(method.label)}</h3>
+                ${method.href
+                  ? `<a href="${escapeAttr(method.href)}" style="font-size: 1.05rem;">${escapeHtml(method.value)}</a>`
+                  : `<p style="margin: 0; font-size: 1.05rem;">${escapeHtml(method.value)}</p>`
+                }
+              </div>
+            `).join('')}
+          </div>
+          <p style="color: var(--text-secondary, #666); font-size: 0.95rem;">${escapeHtml(data.response_note)}</p>
+        `;
+
+        const contactData = await getContent('contact', 'content/contact.json');
+        renderContact(contactData);
+
+        const footerData = await getContent('footer', 'content/footer.json');
+        renderFooter(footerData);
+
+        handleAnchorLinks();
+        initScrollAnimations();
+
+      } catch (error) {
+        console.error('Error loading support page:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadSupport);
+  </script>
+
+</body>
+
+</html>

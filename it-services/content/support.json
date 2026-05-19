@@ -1,0 +1,25 @@
+{
+  "page_title": "Support",
+  "intro": "We're here to help. Reach out by phone, email, or the form below.",
+  "contact_methods": [
+    {
+      "label": "Email",
+      "value": "contact@southarm.ca",
+      "href": "mailto:contact@southarm.ca",
+      "icon": "mail"
+    },
+    {
+      "label": "Phone",
+      "value": "604-800-5781",
+      "href": "tel:+16048005781",
+      "icon": "phone"
+    },
+    {
+      "label": "Address",
+      "value": "501-550 Broadway West, Vancouver BC V5Z 1E9, Canada",
+      "href": null,
+      "icon": "map-pin"
+    }
+  ],
+  "response_note": "We typically respond within one business day."
+}

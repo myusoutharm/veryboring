@@ -46,6 +46,14 @@ const SEO_META = {
       title: "AI Automation Pricing | Very Boring Technologies",
       description: "Transparent pricing for AI & Automation projects. Compare our Launch Partner program with our Standard development model.",
     },
+    "products.html": {
+      title: "Our Products | Very Boring Technologies",
+      description: "Battle-tested frontline products: Hoststand, SwiftOps, DCR, Scardy Squirrel, EasySignOut, EDISync, Squirrel Discount, and VoiceAgent. Built for operations.",
+    },
+    "product.html": {
+      title: "Our Products | Very Boring Technologies",
+      description: "Battle-tested frontline products: Hoststand, SwiftOps, DCR, Scardy Squirrel, EasySignOut, EDISync, Squirrel Discount, and VoiceAgent. Built for operations.",
+    },
   },
 };
 
@@ -80,7 +88,7 @@ export function getSitemapUrls(host) {
     return ["/", "/services.html", "/pricing.html", "/why-us.html"];
   }
   if (host === "veryboring.ai" || host === "www.veryboring.ai") {
-    return ["/", "/services.html", "/pricing.html"];
+    return ["/", "/products.html", "/services.html", "/pricing.html"];
   }
   return ["/it-services/", "/it-services/services.html", "/it-services/pricing.html", "/it-services/why-us.html", "/ai-and-automation/"];
 }

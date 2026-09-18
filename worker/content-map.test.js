@@ -102,6 +102,21 @@ describe("getContentKeys – ai-and-automation", () => {
       "footer",
     ]);
   });
+
+  it("returns correct keys for products.html and product.html", () => {
+    expect(getContentKeys("ai-and-automation", "products.html")).toEqual([
+      "navigation",
+      "products",
+      "contact",
+      "footer",
+    ]);
+    expect(getContentKeys("ai-and-automation", "product.html")).toEqual([
+      "navigation",
+      "products",
+      "contact",
+      "footer",
+    ]);
+  });
 });
 
 describe("getContentKeys – unknown folder", () => {

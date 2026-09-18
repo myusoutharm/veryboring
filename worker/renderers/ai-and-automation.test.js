@@ -204,3 +204,93 @@ describe("buildAiAndAutomationPage – pricing subpage", () => {
     expect(page.htmlById["pricing-faq"]).toContain("How long does a project take?");
   });
 });
+
+describe("buildAiAndAutomationPage – products subpage", () => {
+  const content = {
+    navigation: mockNav,
+    footer: mockFooter,
+    contact: mockContact,
+    products: {
+      page_title: "Our Products",
+      intro: "Battle-tested tools for frontline operations.",
+      products: [
+        {
+          id: "hoststand",
+          name: "Hoststand",
+          badge: "Table Management",
+          badge_color: "green",
+          url: "/product/hoststand/",
+          tagline: "No per-cover fees.",
+          problem: "Overpriced reservation platforms.",
+          solution: "Flat-rate monthly book with AI phone booking.",
+          features: ["Zero cover fee", "Live floor plan"],
+          metrics: [{ label: "Per-Cover Fee", value: "$0" }],
+          visual_type: "image",
+          image: "/product/hoststand/images/timeline.jpg",
+          cta_text: "Explore Hoststand",
+        },
+        {
+          id: "easysignout",
+          name: "EasySignOut",
+          badge: "Device Tracking",
+          badge_color: "green",
+          url: "/product/easysignout/",
+          tagline: "Simple iPad sign-out.",
+          problem: "Lost paper clipboards.",
+          solution: "Digital kiosk.",
+          features: ["5-sec checkout"],
+          metrics: [{ label: "Speed", value: "5s" }],
+          visual_type: "mockup_easysignout",
+          cta_text: "Explore EasySignOut",
+        },
+      ],
+    },
+  };
+
+  it("returns correct textById for the products page", () => {
+    const page = buildAiAndAutomationPage("products.html", content);
+    expect(page.textById["page-title"]).toBe("Our Products");
+    expect(page.textById["page-intro"]).toBe("Battle-tested tools for frontline operations.");
+  });
+
+  it("renders products-list HTML with product cards and links", () => {
+    const page = buildAiAndAutomationPage("products.html", content);
+    expect(page.htmlById["products-list"]).toContain("Hoststand");
+    expect(page.htmlById["products-list"]).toContain("No per-cover fees.");
+    expect(page.htmlById["products-list"]).toContain('href="/product/hoststand/"');
+    expect(page.htmlById["products-list"]).toContain("EasySignOut");
+    expect(page.htmlById["products-list"]).toContain("tab.easysignout.com");
+  });
+
+  it("also supports product.html alias", () => {
+    const page = buildAiAndAutomationPage("product.html", content);
+    expect(page.textById["page-title"]).toBe("Our Products");
+    expect(page.htmlById["products-list"]).toContain("Hoststand");
+  });
+
+  it("escapes special characters in product data", () => {
+    const xssContent = {
+      ...content,
+      products: {
+        page_title: "Products",
+        intro: "Intro",
+        products: [
+          {
+            id: "xss",
+            name: '<script>alert("xss")</script>',
+            badge: "Badge",
+            url: 'https://example.com/?q="><script>alert(1)</script>',
+            tagline: "<b>Safe</b>",
+            problem: "Prob",
+            solution: "Sol",
+            features: [],
+            metrics: [],
+          },
+        ],
+      },
+    };
+    const page = buildAiAndAutomationPage("products.html", xssContent);
+    expect(page.htmlById["products-list"]).not.toContain("<script>");
+    expect(page.htmlById["products-list"]).toContain("&lt;script&gt;");
+  });
+});

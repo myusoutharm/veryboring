@@ -1,0 +1,205 @@
+{
+  "page_title": "Products",
+  "eyebrow": "Battle-Tested Operational Software",
+  "intro": "Specialized software built for real operations. No vaporware, no hype, and zero AI slop—just reliable, purpose-built tools running daily on the frontline.",
+  "products": [
+    {
+      "id": "hoststand",
+      "name": "Hoststand",
+      "badge": "Table Management & AI Booking",
+      "badge_color": "green",
+      "url": "/product/hoststand/",
+      "tagline": "A reservation book that doesn't charge you per guest.",
+      "problem": "Legacy reservation platforms penalize growing venues with $1 to $1.50 per-cover fees while holding guest data hostage. Meanwhile, hosts miss phone bookings during peak rush.",
+      "solution": "Flat-rate monthly table management covering the reservation book, custom floor plan, live waitlist, and online booking. Includes an integrated voice AI receptionist that answers phone calls and books tables according to your host's exact rules.",
+      "features": [
+        "Zero per-cover fees — keep 100% of guest revenue",
+        "Autonomous AI phone host books directly into live floor inventory",
+        "Smart pacing controls prevent sudden kitchen rushes",
+        "Two-way SMS waitlist with zero physical pagers to manage"
+      ],
+      "metrics": [
+        { "label": "Per-Cover Fee", "value": "$0 / guest" },
+        { "label": "Pricing", "value": "Flat Monthly" },
+        { "label": "AI Booking", "value": "Voice + Web" }
+      ],
+      "visual_type": "image",
+      "image": "/product/hoststand/images/timeline.jpg",
+      "image_alt": "Hoststand real-time reservation book timeline",
+      "cta_text": "Explore Hoststand"
+    },
+    {
+      "id": "swiftops",
+      "name": "SwiftOps Suite",
+      "badge": "Frontline Restaurant IT",
+      "badge_color": "purple",
+      "url": "/product/swiftops/",
+      "tagline": "By Restaurant IT, for the frontline. Resolve emergencies directly from your phone.",
+      "problem": "When a POS terminal freezes or kitchen display bump bar locks up on a Friday night, IT managers shouldn't have to carry laptops through crowded dining rooms or wrestle with remote desktop logins.",
+      "solution": "Instant pocket remediation for hospitality tech. Restart crashed POS services, bump stuck items from Kitchen Display Systems (KDS), reboot VM hosts, and power-cycle kiosk tablets in seconds using one-tap phone actions.",
+      "features": [
+        "IT Ops Portal: Restart Windows POS services via secure SSH in 5 seconds",
+        "ScreenBumper: Clear stuck QSR kitchen display orders with one tap",
+        "Cloudflare SSO authentication with zero shared store passwords",
+        "Production-proven across 8 high-volume restaurant locations"
+      ],
+      "metrics": [
+        { "label": "Resolution Time", "value": "5 Seconds" },
+        { "label": "Active Fleet", "value": "8 Locations" },
+        { "label": "Hardware Needed", "value": "Phone Only" }
+      ],
+      "visual_type": "image",
+      "image": "/product/swiftops/image/hero.png",
+      "image_alt": "SwiftOps mobile frontline remediation console",
+      "cta_text": "Explore SwiftOps Suite"
+    },
+    {
+      "id": "dcr",
+      "name": "DCR",
+      "badge": "Cash & Tender Reconciliation",
+      "badge_color": "blue",
+      "url": "/product/dcr/",
+      "tagline": "Automate cash reconciliation. Reclaim 30–45 minutes per location every day.",
+      "problem": "Store managers spend 45 minutes every closing shift transcribing POS z-reports into spreadsheets, manually auditing credit card batches, and hunting down drawer shortages.",
+      "solution": "Nightly automated data pipeline directly connecting POS terminals and payment processors. Closing managers only enter physical cash counts, and any variance flags immediately in red before books are locked.",
+      "features": [
+        "Automated POS & processor data sync before closing managers arrive",
+        "Instant discrepancy detection with visual variance alerts",
+        "Enforced posting deadlines and tamper-proof locked audit trails",
+        "Multi-location corporate oversight with central SSO access"
+      ],
+      "metrics": [
+        { "label": "Time Saved", "value": "30–45 min/day" },
+        { "label": "Error Detection", "value": "Instant" },
+        { "label": "Audit Trail", "value": "100% Locked" }
+      ],
+      "visual_type": "image",
+      "image": "/product/dcr/screenshots/landing-final.png",
+      "image_alt": "DCR daily cash reconciliation interface",
+      "cta_text": "Explore DCR"
+    },
+    {
+      "id": "checkreporting",
+      "name": "Scardy Squirrel",
+      "badge": "Event Check & POS Reconciliation",
+      "badge_color": "purple",
+      "url": "/product/checkreporting/",
+      "tagline": "Run event check reconciliation in 3 minutes instead of hours.",
+      "problem": "Event managers lose hours matching paper POS checks to Tripleseat banquet bookings, taking blurry smartphone photos of receipts, and re-typing line items into client invoices.",
+      "solution": "Dedicated financial reconciliation engine built for event teams. Pulls guest checks directly from POS, automatically matches event dates, generates audit-ready PDF receipts, and attaches them directly to Tripleseat records.",
+      "features": [
+        "Automated POS check retrieval with line-item receipt matching",
+        "Native Tripleseat integration with auto-attaching PDF summaries",
+        "Multi-revenue center support across restaurants, lounges, and banquets",
+        "Client-ready final summaries and invoices generated in one click"
+      ],
+      "metrics": [
+        { "label": "Reconcile Time", "value": "3 Minutes" },
+        { "label": "Tripleseat", "value": "Auto-Attach" },
+        { "label": "Receipts", "value": "Verified PDF" }
+      ],
+      "visual_type": "image",
+      "image": "/product/checkreporting/assets/1_overview.jpg",
+      "image_alt": "Scardy Squirrel event check reporting and receipt reconciliation",
+      "cta_text": "Explore Scardy Squirrel"
+    },
+    {
+      "id": "easysignout",
+      "name": "EasySignOut",
+      "badge": "Device Fleet Tracking",
+      "badge_color": "green",
+      "url": "/product/easysignout/",
+      "tagline": "Your team shares iPads. Now you'll always know who has which one.",
+      "problem": "Paper sign-out clipboards get lost or ignored. Shared tablets go missing between shift handoffs, dead batteries sit undiscovered in lockers, and enterprise MDM is too cumbersome for shift staff.",
+      "solution": "A streamlined digital sign-out kiosk replacing paper sheets. Shift employees enter a PIN or scan their badge in 5 seconds to claim a tablet. Managers see a real-time status board of every device across the floor.",
+      "features": [
+        "5-second frictionless kiosk workflow designed for shift workers",
+        "Live status board showing current holders and duration out",
+        "Automated return reminders before shift changes to prevent loss",
+        "Zero complex MDM profiles, certificates, or IT overhead required"
+      ],
+      "metrics": [
+        { "label": "Sign-Out Time", "value": "5 Seconds" },
+        { "label": "Fleet Capacity", "value": "10–500 iPads" },
+        { "label": "Deployment", "value": "Under 1 Week" }
+      ],
+      "visual_type": "mockup_easysignout",
+      "image_alt": "EasySignOut live tablet tracking dashboard",
+      "cta_text": "Explore EasySignOut"
+    },
+    {
+      "id": "edisync",
+      "name": "EDISync",
+      "badge": "EDI 810 Invoice Price Verification",
+      "badge_color": "blue",
+      "url": "/product/edisync/",
+      "tagline": "Know when your vendor's invoice doesn't match your contract — automatically.",
+      "problem": "Food distributors and supply vendors frequently bill above contracted pricing rates. Accounting teams cannot realistically check thousands of individual line items across weekly delivery invoices.",
+      "solution": "An automated invoice auditor that downloads EDI 810 invoices nightly via SFTP, verifies every single line item against your contractual price sheet, and emails immediate mismatch alerts before bills are paid.",
+      "features": [
+        "Nightly automated retrieval of EDI 810 invoices over secure SFTP",
+        "Line-by-line contract comparison with configurable tolerance limits",
+        "Morning variance digest highlighting exact overcharge dollar amounts",
+        "Built specifically for independent operators, grocers, and restaurant groups"
+      ],
+      "metrics": [
+        { "label": "Audit Coverage", "value": "100% of Lines" },
+        { "label": "Overcharge Alert", "value": "Instant Email" },
+        { "label": "Format", "value": "EDI 810 / SFTP" }
+      ],
+      "visual_type": "mockup_edisync",
+      "image_alt": "EDISync invoice price verification preview",
+      "cta_text": "Explore EDISync"
+    },
+    {
+      "id": "discountcard",
+      "name": "Squirrel Discount",
+      "badge": "Squirrel POS Data Pipeline",
+      "badge_color": "purple",
+      "url": "/product/discountcard/",
+      "tagline": "Automate Squirrel POS discount and employee card usage processing.",
+      "problem": "Retrieving employee meal discounts, VIP comps, and partner discount transactions from legacy Squirrel POS terminals requires manual SSH terminal sessions and tedious spreadsheet parsing.",
+      "solution": "Dedicated automation bridge for Squirrel POS. Securely connects to terminals via Paramiko SSH, retrieves raw transaction logs, validates card numbers against central policy rosters, and generates clean accounting reports.",
+      "features": [
+        "Automated SSH transaction retrieval directly from Squirrel POS terminals",
+        "Policy verification against centralized employee and VIP card rosters",
+        "Multi-venue support with consolidated accounting summaries",
+        "Complete transaction-level audit trail for finance and loss prevention"
+      ],
+      "metrics": [
+        { "label": "Terminal Access", "value": "Paramiko SSH" },
+        { "label": "Processing", "value": "100% Automated" },
+        { "label": "Compatibility", "value": "Squirrel POS" }
+      ],
+      "visual_type": "image",
+      "image": "/product/discountcard/image/0_overview.jpg",
+      "image_alt": "Squirrel Discount POS usage dashboard and audit report",
+      "cta_text": "Explore Squirrel Discount"
+    },
+    {
+      "id": "voiceagent",
+      "name": "VoiceAgent",
+      "badge": "Conversational AI & Telephony",
+      "badge_color": "green",
+      "url": "/product/voiceagent/",
+      "tagline": "Intelligent Voice AI receptionist that answers every call with consistency.",
+      "problem": "Front desk staff and hosts get overwhelmed during peak rush. Ringing phones go unanswered, placing potential customers on hold or sending high-value reservations and catering inquiries to voicemail.",
+      "solution": "Autonomous voice AI receptionist answering customer calls with zero delay. Answers natural questions, checks availability, books reservations, performs warm transfers with spoken context, and texts instant confirmation links.",
+      "features": [
+        "Immediate call pickup with zero hold times or caller drop-offs",
+        "Natural conversational dialogue with intelligent interruption handling",
+        "Warm call transfers with live context briefings to floor staff",
+        "Seamless PBX & CRM integration with Twilio, Telnyx, Yeastar, and HubSpot"
+      ],
+      "metrics": [
+        { "label": "Answer Time", "value": "Immediate" },
+        { "label": "Availability", "value": "24/7 / 365" },
+        { "label": "Telephony", "value": "PBX + SIP" }
+      ],
+      "visual_type": "mockup_voiceagent",
+      "image": "/product/voiceagent/images/hero-placeholder.svg",
+      "image_alt": "VoiceAgent conversational AI phone assistant interface",
+      "cta_text": "Explore VoiceAgent"
+    }
+  ]
+}

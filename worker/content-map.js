@@ -31,6 +31,9 @@ export function getContentKeys(folder, file) {
     if (file === "pricing.html") {
       return ["navigation", "pricing_detailed", "contact", "footer"];
     }
+    if (file === "products.html" || file === "product.html") {
+      return ["navigation", "products", "contact", "footer"];
+    }
     return ["navigation", "hero", "services", "process", "launch-partner", "pricing", "metrics", "testimonials", "contact", "footer"];
   }
 

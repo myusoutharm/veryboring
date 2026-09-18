@@ -8,9 +8,10 @@
     {
       "title": "Services",
       "links": [
-        { "text": "AI & Automation", "href": "#services" },
-        { "text": "Launch Partner Program", "href": "#launch-partner" },
-        { "text": "Pricing", "href": "#pricing" },
+        { "text": "Products", "href": "products.html" },
+        { "text": "AI & Automation", "href": "/ai-and-automation/home.html#services" },
+        { "text": "Launch Partner Program", "href": "/ai-and-automation/home.html#launch-partner" },
+        { "text": "Pricing", "href": "pricing.html" },
         { "text": "IT Services", "href": "/it-services" }
       ]
     },

@@ -138,6 +138,9 @@ export default {
       if (path === "/" || path === "") {
         return renderPage(env, url, "/ai-and-automation/", "ai-and-automation");
       }
+      if (path === "/product" || path === "/product/" || path === "/products" || path === "/products/") {
+        return renderPage(env, url, "/ai-and-automation/", "ai-and-automation", "products.html");
+      }
       if (isProjectFolder) {
         return maybeRenderPage(env, request, url, path);
       }
@@ -155,6 +158,9 @@ export default {
     }
 
     if (!siteFolder && isProjectFolder) {
+      if (path === "/product" || path === "/product/" || path === "/products" || path === "/products/") {
+        return renderPage(env, url, "/ai-and-automation/", "ai-and-automation", "products.html");
+      }
       return maybeRenderPage(env, request, url, path);
     }
 

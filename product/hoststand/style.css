@@ -418,6 +418,145 @@ p {
     margin-bottom: 4px;
 }
 
+/* AI booking: a phone call beside what Hoststand does for each line. */
+
+.ai-head {
+    margin: 0;
+    padding: 0;
+}
+
+.ai-sub {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.45rem;
+    margin: 8px 0 18px;
+}
+
+.convo {
+    background: var(--card);
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.convo-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    border-bottom: 1px solid var(--rule);
+}
+
+.convo-row:last-child {
+    border-bottom: 0;
+}
+
+.convo-row>* {
+    padding: 20px 24px;
+}
+
+.convo-labels {
+    background: var(--paper-2);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.convo-labels>span {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.said {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    line-height: 1.5;
+}
+
+.said p {
+    margin: 0 0 8px;
+}
+
+.said b {
+    display: block;
+    font-family: var(--sans);
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.did {
+    border-left: 1px solid var(--rule);
+}
+
+.did p {
+    color: var(--ink-2);
+    margin: 6px 0 0;
+}
+
+code {
+    font-family: var(--mono);
+    font-size: .88em;
+}
+
+.did code {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.can-cant {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 56px;
+}
+
+.ai-foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px;
+    margin-top: 48px;
+    align-items: start;
+}
+
+.ai-foot .note {
+    margin-top: 0;
+}
+
+.dev-box {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 6px;
+    padding: 24px 26px;
+}
+
+.dev-box h3 {
+    color: var(--paper);
+    margin-bottom: 12px;
+}
+
+.dev-box ul {
+    margin: 0 0 16px;
+    padding-left: 18px;
+    color: #d9d0bf;
+    font-size: .95rem;
+}
+
+.dev-box li {
+    margin-bottom: 6px;
+}
+
+.dev-box code {
+    color: #f2b8a2;
+}
+
+.dev-box a {
+    color: #fff;
+    font-weight: 500;
+}
+
 /* House rules, set like a menu with dotted leaders. */
 
 .menu {
@@ -552,6 +691,7 @@ p {
 }
 
 .checks,
+.crosses,
 .dashes,
 .plain,
 .offer {
@@ -561,6 +701,7 @@ p {
 }
 
 .checks li,
+.crosses li,
 .dashes li {
     position: relative;
     padding: 8px 0 8px 28px;
@@ -569,6 +710,7 @@ p {
 }
 
 .checks li::before,
+.crosses li::before,
 .dashes li::before {
     position: absolute;
     left: 2px;
@@ -579,6 +721,11 @@ p {
 .checks li::before {
     content: "\2713";
     color: var(--ok);
+}
+
+.crosses li::before {
+    content: "\2715";
+    color: var(--accent);
 }
 
 .dashes li::before {
@@ -904,9 +1051,38 @@ p {
     }
 
     .status-cols,
+    .can-cant,
+    .ai-foot,
     .form-row {
         grid-template-columns: minmax(0, 1fr);
         gap: 0;
+    }
+
+    .can-cant>div+div,
+    .ai-foot>*+* {
+        margin-top: 32px;
+    }
+
+    .convo-labels {
+        display: none;
+    }
+
+    .convo-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .convo-row>* {
+        padding: 16px 18px;
+    }
+
+    .said {
+        padding-bottom: 4px !important;
+    }
+
+    .did {
+        margin: 0 18px 16px;
+        padding: 2px 0 2px 14px !important;
+        border-left: 2px solid var(--accent);
     }
 
     .status-cols>div+div {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoststand | Reservations and table management, no per-cover fees</title>
     <meta name="description"
-        content="Hoststand runs your reservation book, floor plan, waitlist and online booking for one flat monthly price. No per-cover fees. Floor plan imported from your POS. Now onboarding founding restaurants.">
+        content="Hoststand runs your reservation book, floor plan, waitlist and online booking for one flat monthly price, and lets AI voice agents book by the same rules as your host. No per-cover fees. Now onboarding founding restaurants.">
     <link rel="canonical" href="https://veryboring.ai/product/hoststand/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Hoststand: a reservation book that doesn't charge you per guest">
@@ -31,7 +31,7 @@
             <a href="#top" class="wordmark" aria-label="Hoststand home">Hoststand</a>
             <nav class="nav" id="main-nav" aria-label="Main">
                 <a href="#friday">How it works</a>
-                <a href="#guests">Your guests</a>
+                <a href="#ai">AI booking</a>
                 <a href="#fees">Fees</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#questions">Questions</a>
@@ -52,8 +52,9 @@
                 <h1>A reservation book that doesn't charge you per guest.</h1>
                 <div class="hero-row">
                     <p class="lead">Hoststand runs the host stand: the book, the floor, the waitlist and
-                        online booking, for one flat monthly price. Your floor plan comes straight from your
-                        POS, and the guests who book with you stay yours.</p>
+                        online booking, for one flat monthly price. It was built so AI can take bookings
+                        too: a voice agent answering your phone books by the same rules as your host. And
+                        the guests who book with you stay yours.</p>
                     <div class="hero-actions">
                         <a href="#contact" class="btn">Become a founding restaurant</a>
                         <p class="hero-call">or call <a href="tel:6048005781">604-800-5781</a></p>
@@ -85,6 +86,15 @@
                             <p>Guests booked from your Google listing, the Reserve button on Apple Maps, your
                                 Instagram bio and your website. Every channel books against the same tables and
                                 the same rules, so nothing gets double-booked.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time>5:10 pm</time>
+                        <div>
+                            <h3>The phone rings while the host is seating a six-top.</h3>
+                            <p>An AI phone host picks up, checks the real book, holds a table and texts the
+                                guest a code to confirm. By the time the host looks up, the booking is on the
+                                screen. <a href="#ai">See how that works.</a></p>
                         </div>
                     </li>
                     <li>
@@ -142,6 +152,117 @@
             </div>
         </section>
 
+        <!-- AI booking -->
+        <section class="section ai" id="ai">
+            <div class="container">
+                <div class="narrow ai-head">
+                    <h2>Built for AI from the first line of code</h2>
+                    <p class="section-intro">Hoststand has a standard door for AI built in: MCP, the Model
+                        Context Protocol. Voice agents and AI assistants plug into it and get the same booking
+                        engine your host uses, with the limits a public channel needs. Nobody has to give a
+                        bot a login to the host screen.</p>
+                </div>
+
+                <h3 class="ai-sub">What happens during an AI phone booking</h3>
+                <div class="convo" role="table" aria-label="An AI phone booking, step by step">
+                    <div class="convo-row convo-labels" role="row">
+                        <span role="columnheader">On the phone</span>
+                        <span role="columnheader">Inside Hoststand</span>
+                    </div>
+                    <div class="convo-row" role="row">
+                        <div class="said" role="cell">
+                            <p><b>Guest</b> Do you have a table for four tomorrow, around seven?</p>
+                        </div>
+                        <div class="did" role="cell">
+                            <code>check_availability</code>
+                            <p>Returns the times that fit your rules: 7:00, 7:15, 7:45. The AI never sees table
+                                numbers or your floor plan, so it can't offer a table you don't sell.</p>
+                        </div>
+                    </div>
+                    <div class="convo-row" role="row">
+                        <div class="said" role="cell">
+                            <p><b>AI</b> I have 7:00 or 7:15. Which works for you?</p>
+                            <p><b>Guest</b> 7:15. It's Sam, 604-555-0142.</p>
+                        </div>
+                        <div class="did" role="cell">
+                            <code>create_hold</code>
+                            <p>Holds a table for a few minutes and texts Sam a six-digit code. Nothing is booked
+                                yet. If the call drops, the hold runs out and the table goes back on sale.</p>
+                        </div>
+                    </div>
+                    <div class="convo-row" role="row">
+                        <div class="said" role="cell">
+                            <p><b>Guest</b> The code is 482913.</p>
+                        </div>
+                        <div class="did" role="cell">
+                            <code>confirm_reservation</code>
+                            <p>Books it. Sam gets a confirmation text with a link to change or cancel, and the
+                                booking shows up on the host's screen with voice AI as its channel.</p>
+                        </div>
+                    </div>
+                    <div class="convo-row" role="row">
+                        <div class="said" role="cell">
+                            <p><b>Guest, next day</b> We're running about fifteen minutes late.</p>
+                        </div>
+                        <div class="did" role="cell">
+                            <code>mark_running_late</code>
+                            <p>Holds the table for them and flags it for the host. The phone system tells
+                                Hoststand who's calling, so Sam doesn't have to prove anything to say they're
+                                late.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="can-cant">
+                    <div>
+                        <h3>What an AI agent can do</h3>
+                        <ul class="checks">
+                            <li>Answer questions about hours, seating like the patio, and special events</li>
+                            <li>Check availability and book, confirmed by a texted code</li>
+                            <li>Look up, change or cancel the guest's own booking</li>
+                            <li>Tell you a guest is running late</li>
+                            <li>Put a guest on the waitlist, check their place, or take them off</li>
+                            <li>Give callers a walk-in wait estimate</li>
+                            <li>Re-send a lost confirmation link to the caller's phone</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>What it can't do</h3>
+                        <ul class="crosses">
+                            <li>See table numbers, your floor plan, or anyone else's booking</li>
+                            <li>Book tables you keep for walk-ins, or get around your pacing, last-seating and
+                                large-party rules</li>
+                            <li>Touch a booking without proof it's the guest's: the texted code or the link
+                                from their confirmation</li>
+                            <li>Seat parties, move tables or mark no-shows. Those stay with your staff.</li>
+                            <li>Hammer the system. Attempts are limited per phone number, and wrong codes
+                                cancel the hold.</li>
+                            <li>Work unseen. Everything it books carries voice AI as its channel, on the booking
+                                and in the record of who changed what.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ai-foot">
+                    <p class="note">Need a voice agent? <a href="../voiceagent/">VoiceAgent</a> is our own AI
+                        phone host. Already have one? Any voice platform or AI assistant that supports MCP can
+                        connect to Hoststand.</p>
+                    <aside class="dev-box" aria-label="For AI and voice platform developers">
+                        <h3>Building a voice or AI product?</h3>
+                        <ul>
+                            <li>One MCP endpoint per restaurant, 15 guest tools</li>
+                            <li>Structured answers and error codes your agent can act on: <code>slot_taken</code>,
+                                <code>party_too_large</code>, <code>hold_expired</code></li>
+                            <li>Hold, then confirm. A retried call never double-books.</li>
+                            <li>Optional bearer token on the endpoint; opt-in caller ID for phone platforms</li>
+                        </ul>
+                        <a href="mailto:nonfun@veryboring.ai?subject=Hoststand%20MCP%20integration">Talk to us
+                            about integrating</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
         <!-- Floor -->
         <section class="section split" id="floor">
             <div class="container split-inner">
@@ -186,9 +307,8 @@
                         <li><strong>Full? They don't leave.</strong> When there's nothing left, the page offers
                             the waitlist instead of a dead end.</li>
                     </ul>
-                    <p class="note">Want the phone answered too? Pair Hoststand with <a
-                            href="../voiceagent/">VoiceAgent</a>, our AI phone host, and calls you miss during
-                        service become bookings in the same book.</p>
+                    <p class="note">Want the phone answered too? An AI phone host books into the same book,
+                        by the same rules. <a href="#ai">Here's how.</a></p>
                 </div>
             </div>
         </section>
@@ -219,7 +339,12 @@
                     </div>
                     <div>
                         <dt>Walk-in tables</dt>
-                        <dd>Kept off online booking. The host can still seat them.</dd>
+                        <dd>Kept off online and AI booking. The host can still seat them.</dd>
+                    </div>
+                    <div>
+                        <dt>Channels</dt>
+                        <dd>Decide what the booking page, the AI phone host and your staff can each book, by
+                            shift, section or table.</dd>
                     </div>
                     <div>
                         <dt>Large parties</dt>
@@ -286,6 +411,7 @@
                             <li>Reservation book and timeline</li>
                             <li>Live floor plan, imported from Squirrel POS</li>
                             <li>Online booking page for Maps, Instagram and your site</li>
+                            <li>AI booking for voice agents and assistants, over MCP</li>
                             <li>Text confirmations, reminders and change links</li>
                             <li>Waitlist with table offers by text</li>
                             <li>Service periods, seating pace and house rules</li>
@@ -297,6 +423,8 @@
                         <h3>In progress</h3>
                         <ul class="dashes">
                             <li>Booking directly inside Google Maps (Reserve with Google)</li>
+                            <li>An AI assistant for your own staff: ask the book questions, or make changes, in
+                                plain English</li>
                             <li>Native iPad app for the host stand (in testing; the web app runs on any iPad
                                 today)</li>
                             <li>More POS systems, starting with whatever our founding restaurants use</li>
@@ -337,6 +465,18 @@
                 <details>
                     <summary>Do you take a cut of each booking?</summary>
                     <p>No. You pay a flat monthly price per location. Busy months don't cost you more.</p>
+                </details>
+                <details>
+                    <summary>Can an AI agent double-book or invent a table?</summary>
+                    <p>No. It can only offer times Hoststand gives it, and every booking goes through the same
+                        engine and rules as your host. Nothing is booked until the guest enters the code we text
+                        them.</p>
+                </details>
+                <details>
+                    <summary>Do I have to use your AI phone host?</summary>
+                    <p>No. Any voice agent or AI assistant that supports MCP can connect. If you don't have one,
+                        <a href="../voiceagent/">VoiceAgent</a> is ours. And if you'd rather keep AI off the
+                        phone, leave it off; everything else works the same.</p>
                 </details>
                 <details>
                     <summary>Is my guest list mine?</summary>

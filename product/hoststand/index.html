@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoststand | Reservations and table management, no per-cover fees</title>
+    <meta name="description"
+        content="Hoststand runs your reservation book, floor plan, waitlist and online booking for one flat monthly price. No per-cover fees. Floor plan imported from your POS. Now onboarding founding restaurants.">
+    <link rel="canonical" href="https://veryboring.ai/product/hoststand/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hoststand: a reservation book that doesn't charge you per guest">
+    <meta property="og:description"
+        content="Bookings, the floor, the waitlist and online booking for one flat monthly price. Now onboarding founding restaurants.">
+    <meta property="og:url" content="https://veryboring.ai/product/hoststand/">
+    <meta property="og:image" content="https://veryboring.ai/product/hoststand/images/timeline.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f1c17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23f5f0e6'%3EH%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#top" class="wordmark" aria-label="Hoststand home">Hoststand</a>
+            <nav class="nav" id="main-nav" aria-label="Main">
+                <a href="#friday">How it works</a>
+                <a href="#guests">Your guests</a>
+                <a href="#fees">Fees</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#questions">Questions</a>
+                <a href="#contact" class="btn btn-small">Get early access</a>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false"
+                aria-controls="main-nav">
+                <span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <p class="kicker">Early access. Now onboarding our first restaurants.</p>
+                <h1>A reservation book that doesn't charge you per guest.</h1>
+                <div class="hero-row">
+                    <p class="lead">Hoststand runs the host stand: the book, the floor, the waitlist and
+                        online booking, for one flat monthly price. Your floor plan comes straight from your
+                        POS, and the guests who book with you stay yours.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn">Become a founding restaurant</a>
+                        <p class="hero-call">or call <a href="tel:6048005781">604-800-5781</a></p>
+                    </div>
+                </div>
+            </div>
+            <figure class="container shot shot-wide">
+                <a href="images/timeline.jpg" target="_blank" rel="noopener"><img src="images/timeline.jpg"
+                        width="2400" height="1400"
+                        alt="Hoststand timeline for a Friday night: each table is a row, each reservation a bar coloured by status."></a>
+                <figcaption>The book at 7:20 on a Friday. Purple is seated, orange is being bussed, blue is
+                    still to come. Red means someone needs the host's attention: here, a two-top that hasn't
+                    arrived.</figcaption>
+            </figure>
+        </section>
+
+        <!-- A Friday night -->
+        <section class="section friday" id="friday">
+            <div class="container narrow">
+                <h2>One Friday night, start to finish</h2>
+                <p class="section-intro">Most reservation software is sold on a feature list. Here's what
+                    Hoststand does over one busy service instead.</p>
+
+                <ol class="log">
+                    <li>
+                        <time>4:45 pm</time>
+                        <div>
+                            <h3>The book is already full of the right bookings.</h3>
+                            <p>Guests booked from your Google listing, the Reserve button on Apple Maps, your
+                                Instagram bio and your website. Every channel books against the same tables and
+                                the same rules, so nothing gets double-booked.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time>5:30 pm</time>
+                        <div>
+                            <h3>The kitchen doesn't get 40 covers at once.</h3>
+                            <p>You set how many covers or parties can arrive in each time slot. Once 7:30 is
+                                full, online guests only see the times that still have room. The host can still
+                                override it for a regular.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time>6:05 pm</time>
+                        <div>
+                            <h3>A four-top cancels, and nobody has to pick up the phone.</h3>
+                            <p>They tap the link in their confirmation text. The table opens up, and Hoststand
+                                can text it to the next party on the waitlist that fits.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time>6:40 pm</time>
+                        <div>
+                            <h3>Walk-ins join the waitlist at the door.</h3>
+                            <p>They leave a name and a mobile number, then go have a drink. When a table opens
+                                they get a text and accept or decline from their phone. No pagers.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time>7:20 pm</time>
+                        <div>
+                            <h3>A two-top is twenty minutes late.</h3>
+                            <p>The booking turns red on the book. If they call to say they're running late,
+                                the host marks it and the table is held until then. If they don't show, one tap
+                                marks the no-show and frees the table.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time>8:10 pm</time>
+                        <div>
+                            <h3>A party of eight walks in.</h3>
+                            <p>Hoststand knows which tables sit next to each other and offers the ones that can
+                                be pushed together, not three two-tops at opposite ends of the room.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time>11:30 pm</time>
+                        <div>
+                            <h3>Close out.</h3>
+                            <p>Covers, no-shows and where each booking came from are on one screen. Every
+                                change is recorded with who made it, so "who moved table 12?" has an answer.
+                                Export the night to a spreadsheet whenever you want.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Floor -->
+        <section class="section split" id="floor">
+            <div class="container split-inner">
+                <div class="split-text">
+                    <h2>Your floor plan comes from your POS</h2>
+                    <p>Nobody wants to redraw the dining room. Hoststand imports your tables, seats and sections
+                        from your POS layout, so the floor on the host's screen is the floor your servers already
+                        know.</p>
+                    <p>When the layout changes, import it again. New tables come in, and the settings you've made
+                        in Hoststand, like walk-in-only tables or which tables join for big parties, stay as you
+                        left them.</p>
+                    <p class="note">Squirrel POS is supported today. On a different POS? Tell us which one;
+                        it decides what we build next.</p>
+                </div>
+                <figure class="shot">
+                    <a href="images/floor.jpg" target="_blank" rel="noopener"><img src="images/floor.jpg"
+                            width="2400" height="1400" loading="lazy"
+                            alt="Live floor plan showing tables coloured by status with minutes seated or until the next booking."></a>
+                    <figcaption>The live floor. Each table shows how long the party has been seated, or how long
+                        until the next booking.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Guests -->
+        <section class="section guests" id="guests">
+            <div class="container split-inner reverse">
+                <figure class="phone">
+                    <img src="images/booking-phone.jpg" width="1170" height="2280" loading="lazy"
+                        alt="Mobile booking page for a restaurant, showing date, party size and available times.">
+                </figure>
+                <div class="split-text">
+                    <h2>Booking your restaurant shouldn't need an app</h2>
+                    <p>Guests pick a date, a party size and a time on your own booking page. There's no app to
+                        download and no account to create. They confirm with a code sent by text.</p>
+                    <ul class="plain">
+                        <li><strong>One link, everywhere.</strong> Put it on your Google listing, the Reserve
+                            button on Apple Maps, Instagram and your website.</li>
+                        <li><strong>Changes without phone calls.</strong> The confirmation text has a link to
+                            change the time, the party size, or cancel.</li>
+                        <li><strong>Reminders.</strong> A text before the booking, with the same link.</li>
+                        <li><strong>Full? They don't leave.</strong> When there's nothing left, the page offers
+                            the waitlist instead of a dead end.</li>
+                    </ul>
+                    <p class="note">Want the phone answered too? Pair Hoststand with <a
+                            href="../voiceagent/">VoiceAgent</a>, our AI phone host, and calls you miss during
+                        service become bookings in the same book.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules -->
+        <section class="section rules" id="rules">
+            <div class="container narrow">
+                <h2>Your rules, the same on every channel</h2>
+                <p class="section-intro">Set them once. The host, the booking page and the phone all follow
+                    them.</p>
+                <dl class="menu">
+                    <div>
+                        <dt>Service periods</dt>
+                        <dd>Lunch, dinner, late night, each with its own hours. Late service that runs past
+                            midnight works too.</dd>
+                    </div>
+                    <div>
+                        <dt>Last seating</dt>
+                        <dd>No online bookings too close to closing.</dd>
+                    </div>
+                    <div>
+                        <dt>Seating pace</dt>
+                        <dd>A limit on covers or parties arriving in each slot.</dd>
+                    </div>
+                    <div>
+                        <dt>Turn times</dt>
+                        <dd>How long a table is booked for, plus time to reset it.</dd>
+                    </div>
+                    <div>
+                        <dt>Walk-in tables</dt>
+                        <dd>Kept off online booking. The host can still seat them.</dd>
+                    </div>
+                    <div>
+                        <dt>Large parties</dt>
+                        <dd>Ask for your approval before the booking is confirmed.</dd>
+                    </div>
+                    <div>
+                        <dt>Events and closures</dt>
+                        <dd>Block a table, a section or the whole room for a private event or a holiday.</dd>
+                    </div>
+                    <div>
+                        <dt>Staff</dt>
+                        <dd>Staff, manager and owner roles, and a record of who changed what.</dd>
+                    </div>
+                    <div>
+                        <dt>Locations</dt>
+                        <dd>Each location has its own book, floor and hours.</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- Fee calculator -->
+        <section class="section fees" id="fees">
+            <div class="container split-inner">
+                <div class="split-text">
+                    <h2>What does "per cover" add up to?</h2>
+                    <p>Many booking systems charge a fee for every guest seated through their network. It's a
+                        small number on each booking and a large one on the year.</p>
+                    <p>Put in the figures from your last invoice. It's worth checking how many of those
+                        "network" guests found you on Google or Apple Maps first.</p>
+                    <p class="note">Hoststand is a flat monthly price. We don't charge per guest, and we
+                        never will.</p>
+                </div>
+                <form class="receipt" id="fee-calculator" aria-labelledby="receipt-title" novalidate>
+                    <p class="receipt-title" id="receipt-title">Per-cover fees</p>
+                    <label>
+                        <span>Guests booked through your booking app, per month</span>
+                        <input type="number" id="fee-covers" name="covers" min="0" step="10" value="600"
+                            inputmode="numeric">
+                    </label>
+                    <label>
+                        <span>Fee per guest on your invoice ($)</span>
+                        <input type="number" id="fee-rate" name="rate" min="0" step="0.05" value="1.00"
+                            inputmode="decimal">
+                    </label>
+                    <div class="receipt-lines" aria-live="polite">
+                        <p><span>Per month</span><strong id="fee-monthly">$600</strong></p>
+                        <p class="receipt-total"><span>Per year</span><strong id="fee-yearly">$7,200</strong></p>
+                    </div>
+                    <p class="receipt-foot">With Hoststand: $0 per guest.</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Honest status -->
+        <section class="section status" id="status">
+            <div class="container narrow">
+                <h2>Where Hoststand is today</h2>
+                <p class="section-intro">We're early, and we'd rather tell you than have you find out.</p>
+                <div class="status-cols">
+                    <div>
+                        <h3>Working now</h3>
+                        <ul class="checks">
+                            <li>Reservation book and timeline</li>
+                            <li>Live floor plan, imported from Squirrel POS</li>
+                            <li>Online booking page for Maps, Instagram and your site</li>
+                            <li>Text confirmations, reminders and change links</li>
+                            <li>Waitlist with table offers by text</li>
+                            <li>Service periods, seating pace and house rules</li>
+                            <li>Several locations under one account</li>
+                            <li>Spreadsheet export</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>In progress</h3>
+                        <ul class="dashes">
+                            <li>Booking directly inside Google Maps (Reserve with Google)</li>
+                            <li>Native iPad app for the host stand (in testing; the web app runs on any iPad
+                                today)</li>
+                            <li>More POS systems, starting with whatever our founding restaurants use</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing / founding offer -->
+        <section class="section pricing" id="pricing">
+            <div class="container narrow">
+                <h2>Founding restaurants</h2>
+                <p class="section-intro">We're starting with a small group of restaurants and working closely
+                    with each one. If that sounds like you, we'd like to talk.</p>
+                <ul class="offer">
+                    <li><strong>A flat monthly price per location.</strong> No per-cover fees, no commission on
+                        bookings. We'll quote it on the first call.</li>
+                    <li><strong>Setup is on us.</strong> We import your floor plan, set up your hours and rules
+                        with you, and stay on call through your first weekend.</li>
+                    <li><strong>Your founding rate stays yours.</strong></li>
+                    <li><strong>A direct line to the people building it.</strong> What you ask for shapes what
+                        we build next.</li>
+                </ul>
+                <a href="#contact" class="btn">Apply for early access</a>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section faq" id="questions">
+            <div class="container narrow">
+                <h2>Questions restaurants ask us</h2>
+                <details>
+                    <summary>Do my guests need to download anything?</summary>
+                    <p>No. They book on a web page from their phone or laptop, and everything after that happens
+                        by text message.</p>
+                </details>
+                <details>
+                    <summary>Do you take a cut of each booking?</summary>
+                    <p>No. You pay a flat monthly price per location. Busy months don't cost you more.</p>
+                </details>
+                <details>
+                    <summary>Is my guest list mine?</summary>
+                    <p>Yes. You can export your bookings to a spreadsheet at any time. We don't run a diner
+                        marketplace, and we don't show your guests other restaurants.</p>
+                </details>
+                <details>
+                    <summary>Which POS systems do you work with?</summary>
+                    <p>Squirrel today. If you're on something else, tell us which one on the form below. The POS
+                        our founding restaurants use is where we go next.</p>
+                </details>
+                <details>
+                    <summary>What does it run on?</summary>
+                    <p>Any modern browser: an iPad at the host stand, a laptop in the office, a phone on the
+                        floor. A native iPad app is in testing.</p>
+                </details>
+                <details>
+                    <summary>How does switching work?</summary>
+                    <p>We plan it with you. We import your floor, set your hours and rules together, and pick a
+                        quiet night to switch over so nothing gets double-booked.</p>
+                </details>
+                <details>
+                    <summary>What does it cost?</summary>
+                    <p>A flat monthly price per location, quoted on the first call. Founding restaurants keep
+                        their rate.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Lead form -->
+        <section class="section contact" id="contact">
+            <div class="container contact-inner">
+                <div class="contact-text">
+                    <h2>Tell us about your restaurant</h2>
+                    <p>A few details help us come to the first call prepared. We'll reply within one business
+                        day.</p>
+                    <p class="contact-alt">Rather talk?<br>
+                        Call <a href="tel:6048005781">604-800-5781</a><br>
+                        or email <a href="mailto:nonfun@veryboring.ai">nonfun@veryboring.ai</a></p>
+                </div>
+                <div class="contact-card">
+                    <form id="contact-form" class="lead-form" data-worker="/api/contact">
+                        <div class="honeypot" aria-hidden="true">
+                            <input type="text" name="b_phone" tabindex="-1" value="" autocomplete="off">
+                        </div>
+                        <div class="form-row">
+                            <label>Your name
+                                <input type="text" name="firstname" data-hs="firstname" autocomplete="name"
+                                    required>
+                            </label>
+                            <label>Restaurant
+                                <input type="text" name="company" data-hs="company"
+                                    autocomplete="organization" required>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>Email
+                                <input type="email" name="email" data-hs="email" autocomplete="email" required>
+                            </label>
+                            <label>Phone
+                                <input type="tel" name="phone" data-hs="phone" autocomplete="tel">
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>City
+                                <input type="text" name="city" data-lead="City" autocomplete="address-level2">
+                            </label>
+                            <label>Locations
+                                <select name="locations" data-lead="Locations">
+                                    <option value="1">1</option>
+                                    <option value="2-3">2 to 3</option>
+                                    <option value="4-5">4 to 5</option>
+                                    <option value="6+">6 or more</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>Reservations today
+                                <select name="current_system" data-lead="Reservations today">
+                                    <option value="">Choose one</option>
+                                    <option>Phone and a paper book</option>
+                                    <option>OpenTable</option>
+                                    <option>Resy</option>
+                                    <option>SevenRooms</option>
+                                    <option>Tock</option>
+                                    <option>Yelp Guest Manager</option>
+                                    <option>Something else</option>
+                                    <option>We don't take reservations yet</option>
+                                </select>
+                            </label>
+                            <label>POS
+                                <select name="pos" data-lead="POS">
+                                    <option value="">Choose one</option>
+                                    <option>Squirrel</option>
+                                    <option>Toast</option>
+                                    <option>Square</option>
+                                    <option>Lightspeed</option>
+                                    <option>TouchBistro</option>
+                                    <option>Something else</option>
+                                    <option>Not sure</option>
+                                </select>
+                            </label>
+                        </div>
+                        <label>What's the most annoying part of reservations right now?
+                            <textarea name="notes" data-lead="Notes" rows="3"></textarea>
+                        </label>
+                        <textarea name="message" data-hs="message" hidden></textarea>
+                        <button type="submit" id="form-submit" class="btn btn-block">Send</button>
+                        <p class="form-fine">We'll only use this to get back to you.</p>
+                    </form>
+                    <div id="form-message" class="form-message" role="status" style="display:none"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p><span class="wordmark wordmark-small">Hoststand</span> is a product of <a
+                    href="https://veryboring.ai" rel="noopener">Very Boring Technologies</a>.</p>
+            <p class="footer-legal">&copy; 2026 South Arm Technology Services Ltd. &middot; <a
+                    href="/privacy.html">Privacy</a></p>
+        </div>
+    </footer>
+
+    <div class="mobile-bar" id="mobile-bar">
+        <a href="tel:6048005781" class="btn btn-ghost">Call</a>
+        <a href="#contact" class="btn">Get early access</a>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 {
-  "page_title": "Products",
+  "page_title": "Software built for the frontline",
   "eyebrow": "Battle-Tested Operational Software",
-  "intro": "Specialized software built for real operations. No vaporware, no hype, and zero AI slop—just reliable, purpose-built tools running daily on the frontline.",
+  "intro": "Specialized tools for restaurants and multi-location operators. Each one solves a single, unglamorous problem — reservations, cash-ups, invoices, lost iPads — and runs in production every day.",
   "products": [
     {
       "id": "hoststand",
@@ -50,6 +50,7 @@
       ],
       "visual_type": "image",
       "image": "/product/swiftops/image/hero.png",
+      "image_frame": "plain",
       "image_alt": "SwiftOps mobile frontline remediation console",
       "cta_text": "Explore SwiftOps Suite"
     },
@@ -201,5 +202,13 @@
       "image_alt": "VoiceAgent conversational AI phone assistant interface",
       "cta_text": "Explore VoiceAgent"
     }
-  ]
+  ],
+  "closing": {
+    "title": "Don't see your exact problem?",
+    "text": "Every product here started with a real operational headache. If something is eating your team's hours, tell us about it — we'll say plainly whether software can fix it.",
+    "cta_text": "Talk to us",
+    "cta_url": "#contact",
+    "secondary_text": "See pricing",
+    "secondary_url": "pricing.html"
+  }
 }

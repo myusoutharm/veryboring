@@ -212,7 +212,9 @@ describe("buildAiAndAutomationPage – products subpage", () => {
     contact: mockContact,
     products: {
       page_title: "Our Products",
+      eyebrow: "Battle-Tested",
       intro: "Battle-tested tools for frontline operations.",
+      closing: { title: "Need more?", text: "Ask us.", cta_text: "Talk", cta_url: "#contact", secondary_text: "Pricing", secondary_url: "pricing.html" },
       products: [
         {
           id: "hoststand",
@@ -251,6 +253,23 @@ describe("buildAiAndAutomationPage – products subpage", () => {
     const page = buildAiAndAutomationPage("products.html", content);
     expect(page.textById["page-title"]).toBe("Our Products");
     expect(page.textById["page-intro"]).toBe("Battle-tested tools for frontline operations.");
+    expect(page.textById["page-eyebrow"]).toBe("Battle-Tested");
+  });
+
+  it("renders the jump index, numbered cards with anchors, and closing CTA", () => {
+    const page = buildAiAndAutomationPage("products.html", content);
+    expect(page.htmlById["products-index"]).toContain('href="#product-hoststand"');
+    expect(page.htmlById["products-index"]).toContain('href="#product-easysignout"');
+    expect(page.htmlById["products-list"]).toContain('id="product-hoststand"');
+    expect(page.htmlById["products-list"]).toContain(">02<");
+    expect(page.htmlById["products-list"]).toContain("product-image-chrome");
+    expect(page.htmlById["products-cta"]).toContain("Need more?");
+    expect(page.htmlById["products-cta"]).toContain('href="pricing.html"');
+  });
+
+  it("renders an empty CTA when no closing content is provided", () => {
+    const page = buildAiAndAutomationPage("products.html", { ...content, products: { ...content.products, closing: undefined } });
+    expect(page.htmlById["products-cta"]).toBe("");
   });
 
   it("renders products-list HTML with product cards and links", () => {

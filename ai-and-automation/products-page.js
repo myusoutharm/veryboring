@@ -6,26 +6,34 @@ async function getContent(key, file) {
   return res.json();
 }
 
-export function renderProductRow(product) {
+function accentOf(product) {
+  return escapeAttr(product.badge_color || 'purple');
+}
+
+export function renderProductRow(product, index = 0) {
+  const num = String(index + 1).padStart(2, '0');
   return `
-    <article class="product-row-card" data-url="${escapeAttr(product.url)}" tabindex="0" role="link" aria-label="${escapeAttr(product.name)} - ${escapeAttr(product.tagline)}">
+    <article class="product-row-card accent-${accentOf(product)}" id="product-${escapeAttr(product.id || '')}" data-url="${escapeAttr(product.url)}" tabindex="0" role="link" aria-label="${escapeAttr(product.name)} - ${escapeAttr(product.tagline)}">
+      <div class="product-card-head">
+        <div class="product-badge-row">
+          <span class="product-num" aria-hidden="true">${num}</span>
+          <span class="product-badge badge-${accentOf(product)}">${escapeHtml(product.badge)}</span>
+        </div>
+        <h2 class="product-title">
+          <a href="${escapeAttr(product.url)}" class="product-title-link">${escapeHtml(product.name)}</a>
+        </h2>
+        <p class="product-tagline">${escapeHtml(product.tagline)}</p>
+      </div>
+
       <div class="product-row-grid">
         <div class="product-row-info">
-          <div class="product-badge-row">
-            <span class="product-badge badge-${escapeAttr(product.badge_color || 'purple')}">${escapeHtml(product.badge)}</span>
-          </div>
-          <h2 class="product-title">
-            <a href="${escapeAttr(product.url)}" class="product-title-link">${escapeHtml(product.name)}</a>
-          </h2>
-          <p class="product-tagline">${escapeHtml(product.tagline)}</p>
-          
           <div class="product-narrative">
-            <div class="narrative-block">
-              <span class="narrative-label">Operational Problem:</span>
+            <div class="narrative-block narrative-problem">
+              <span class="narrative-label">The problem</span>
               <p>${escapeHtml(product.problem)}</p>
             </div>
-            <div class="narrative-block">
-              <span class="narrative-label">Frontline Solution:</span>
+            <div class="narrative-block narrative-solution">
+              <span class="narrative-label">The fix</span>
               <p>${escapeHtml(product.solution)}</p>
             </div>
           </div>
@@ -38,28 +46,55 @@ export function renderProductRow(product) {
               </li>
             `).join('')}
           </ul>
-
-          <div class="product-metrics-strip">
-            ${(product.metrics || []).map(m => `
-              <div class="product-metric-item">
-                <span class="metric-val">${escapeHtml(m.value)}</span>
-                <span class="metric-lbl">${escapeHtml(m.label)}</span>
-              </div>
-            `).join('')}
-          </div>
-
-          <div class="product-actions">
-            <a href="${escapeAttr(product.url)}" class="btn btn-primary btn-product">
-              ${escapeHtml(product.cta_text || 'Explore Product')} <span aria-hidden="true">→</span>
-            </a>
-          </div>
         </div>
 
         <div class="product-row-visual">
           ${renderProductVisual(product)}
         </div>
       </div>
+
+      <div class="product-card-foot">
+        <div class="product-metrics-strip">
+          ${(product.metrics || []).map(m => `
+            <div class="product-metric-item">
+              <span class="metric-val">${escapeHtml(m.value)}</span>
+              <span class="metric-lbl">${escapeHtml(m.label)}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="product-actions">
+          <a href="${escapeAttr(product.url)}" class="btn btn-primary btn-product">
+            ${escapeHtml(product.cta_text || 'Explore Product')} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
     </article>
+  `;
+}
+
+export function renderProductIndex(products) {
+  return (products || []).map(p => `
+    <a class="products-index-link accent-${accentOf(p)}" href="#product-${escapeAttr(p.id || '')}">
+      <span class="products-index-dot" aria-hidden="true"></span>${escapeHtml(p.name)}
+    </a>
+  `).join('');
+}
+
+export function renderProductsCta(closing) {
+  if (!closing || !closing.title) return '';
+  return `
+    <div class="container">
+      <div class="products-cta-card">
+        <div class="products-cta-copy">
+          <h2>${escapeHtml(closing.title)}</h2>
+          <p>${escapeHtml(closing.text || '')}</p>
+        </div>
+        <div class="products-cta-actions">
+          <a href="${escapeAttr(closing.cta_url || '#contact')}" class="btn btn-primary">${escapeHtml(closing.cta_text || 'Talk to us')}</a>
+          ${closing.secondary_text ? `<a href="${escapeAttr(closing.secondary_url || 'pricing.html')}" class="btn btn-outline">${escapeHtml(closing.secondary_text)}</a>` : ''}
+        </div>
+      </div>
+    </div>
   `;
 }
 
@@ -191,9 +226,16 @@ export function renderProductVisual(product) {
   }
 
   // Default: screenshot image
+  const img = `<img src="${escapeAttr(product.image)}" alt="${escapeAttr(product.image_alt || product.name)}" loading="lazy" class="product-preview-img" />`;
+  if (product.image_frame === 'plain') {
+    return `<div class="product-image-container product-image-plain">${img}</div>`;
+  }
   return `
     <div class="product-image-container">
-      <img src="${escapeAttr(product.image)}" alt="${escapeAttr(product.image_alt || product.name)}" loading="lazy" class="product-preview-img" />
+      <div class="product-image-chrome" aria-hidden="true">
+        <span class="mock-dot red"></span><span class="mock-dot yellow"></span><span class="mock-dot green"></span>
+      </div>
+      ${img}
     </div>
   `;
 }
@@ -211,9 +253,18 @@ export async function loadProductsPage() {
     const introEl = document.getElementById('page-intro');
     if (introEl) introEl.textContent = data.intro || '';
 
+    const eyebrowEl = document.getElementById('page-eyebrow');
+    if (eyebrowEl) eyebrowEl.textContent = data.eyebrow || '';
+
+    const indexEl = document.getElementById('products-index');
+    if (indexEl) indexEl.innerHTML = renderProductIndex(data.products);
+
+    const ctaEl = document.getElementById('products-cta');
+    if (ctaEl) ctaEl.innerHTML = renderProductsCta(data.closing);
+
     const container = document.getElementById('products-list');
     if (container) {
-      container.innerHTML = (data.products || []).map(p => renderProductRow(p)).join('');
+      container.innerHTML = (data.products || []).map((p, i) => renderProductRow(p, i)).join('');
 
       // Wire row clickability: clicking anywhere on a row card navigates to the product page
       container.querySelectorAll('.product-row-card').forEach(card => {
@@ -249,7 +300,7 @@ export async function loadProductsPage() {
   }
 }
 
-if (typeof document !== 'undefined' && !process?.env?.VITEST) {
+if (typeof document !== 'undefined' && !import.meta.env?.VITEST) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadProductsPage);
   } else {

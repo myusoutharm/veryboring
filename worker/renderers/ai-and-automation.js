@@ -43,11 +43,14 @@ export function buildAiAndAutomationPage(file, content) {
       htmlById: {
         "top-bar": nav.topBar,
         "nav-content": nav.nav,
+        "products-index": renderAiProductIndex(content.products?.products || []),
         "products-list": renderAiProducts(content.products || {}),
+        "products-cta": renderAiProductsCta(content.products?.closing),
         contact: contact,
         footer: footer,
       },
       textById: {
+        "page-eyebrow": content.products?.eyebrow || "",
         "page-title": content.products?.page_title || "Products",
         "page-intro": content.products?.intro || "",
       },
@@ -236,50 +239,81 @@ function formatPricingValue(value) {
 
 function renderAiProducts(data) {
   const products = data.products || [];
-  return products.map((p) => `
-    <article class="product-row-card" data-url="${escAttr(p.url || "#")}" tabindex="0" role="link" aria-label="${escAttr(p.name || "")} - ${escAttr(p.tagline || "")}">
+  return products.map((p, i) => `
+    <article class="product-row-card accent-${escAttr(p.badge_color || "purple")}" id="product-${escAttr(p.id || "")}" data-url="${escAttr(p.url || "#")}" tabindex="0" role="link" aria-label="${escAttr(p.name || "")} - ${escAttr(p.tagline || "")}">
+      <div class="product-card-head">
+        <div class="product-badge-row">
+          <span class="product-num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+          <span class="product-badge badge-${escAttr(p.badge_color || "purple")}">${escHtml(p.badge || "")}</span>
+        </div>
+        <h2 class="product-title">
+          <a href="${escAttr(p.url || "#")}" class="product-title-link">${escHtml(p.name || "")}</a>
+        </h2>
+        <p class="product-tagline">${escHtml(p.tagline || "")}</p>
+      </div>
       <div class="product-row-grid">
         <div class="product-row-info">
-          <div class="product-badge-row">
-            <span class="product-badge badge-${escAttr(p.badge_color || "purple")}">${escHtml(p.badge || "")}</span>
-          </div>
-          <h2 class="product-title">
-            <a href="${escAttr(p.url || "#")}" class="product-title-link">${escHtml(p.name || "")}</a>
-          </h2>
-          <p class="product-tagline">${escHtml(p.tagline || "")}</p>
           <div class="product-narrative">
-            <div class="narrative-block">
-              <span class="narrative-label">Operational Problem:</span>
+            <div class="narrative-block narrative-problem">
+              <span class="narrative-label">The problem</span>
               <p>${escHtml(p.problem || "")}</p>
             </div>
-            <div class="narrative-block">
-              <span class="narrative-label">Frontline Solution:</span>
+            <div class="narrative-block narrative-solution">
+              <span class="narrative-label">The fix</span>
               <p>${escHtml(p.solution || "")}</p>
             </div>
           </div>
           <ul class="product-features">
             ${(p.features || []).map((f) => `<li><span class="feature-check" aria-hidden="true">✔</span><span>${escHtml(f)}</span></li>`).join("")}
           </ul>
-          <div class="product-metrics-strip">
-            ${(p.metrics || []).map((m) => `
-              <div class="product-metric-item">
-                <span class="metric-val">${escHtml(m.value || "")}</span>
-                <span class="metric-lbl">${escHtml(m.label || "")}</span>
-              </div>
-            `).join("")}
-          </div>
-          <div class="product-actions">
-            <a href="${escAttr(p.url || "#")}" class="btn btn-primary btn-product">
-              ${escHtml(p.cta_text || "Explore Product")} <span aria-hidden="true">→</span>
-            </a>
-          </div>
         </div>
         <div class="product-row-visual">
           ${renderAiProductVisual(p)}
         </div>
       </div>
+      <div class="product-card-foot">
+        <div class="product-metrics-strip">
+          ${(p.metrics || []).map((m) => `
+            <div class="product-metric-item">
+              <span class="metric-val">${escHtml(m.value || "")}</span>
+              <span class="metric-lbl">${escHtml(m.label || "")}</span>
+            </div>
+          `).join("")}
+        </div>
+        <div class="product-actions">
+          <a href="${escAttr(p.url || "#")}" class="btn btn-primary btn-product">
+            ${escHtml(p.cta_text || "Explore Product")} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
     </article>
   `).join("");
+}
+
+function renderAiProductIndex(products) {
+  return products.map((p) => `
+    <a class="products-index-link accent-${escAttr(p.badge_color || "purple")}" href="#product-${escAttr(p.id || "")}">
+      <span class="products-index-dot" aria-hidden="true"></span>${escHtml(p.name || "")}
+    </a>
+  `).join("");
+}
+
+function renderAiProductsCta(closing) {
+  if (!closing || !closing.title) return "";
+  return `
+    <div class="container">
+      <div class="products-cta-card">
+        <div class="products-cta-copy">
+          <h2>${escHtml(closing.title)}</h2>
+          <p>${escHtml(closing.text || "")}</p>
+        </div>
+        <div class="products-cta-actions">
+          <a href="${escAttr(closing.cta_url || "#contact")}" class="btn btn-primary">${escHtml(closing.cta_text || "Talk to us")}</a>
+          ${closing.secondary_text ? `<a href="${escAttr(closing.secondary_url || "pricing.html")}" class="btn btn-outline">${escHtml(closing.secondary_text)}</a>` : ""}
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function renderAiProductVisual(p) {
@@ -331,5 +365,9 @@ function renderAiProductVisual(p) {
         <div class="mockup-window-footer"><span>Zero Wait Time</span><span class="stat-ok">Instant SMS confirmation sent</span></div>
       </div>`;
   }
-  return `<div class="product-image-container"><img src="${escAttr(p.image || "")}" alt="${escAttr(p.image_alt || p.name || "")}" loading="lazy" class="product-preview-img" /></div>`;
+  const img = `<img src="${escAttr(p.image || "")}" alt="${escAttr(p.image_alt || p.name || "")}" loading="lazy" class="product-preview-img" />`;
+  if (p.image_frame === "plain") {
+    return `<div class="product-image-container product-image-plain">${img}</div>`;
+  }
+  return `<div class="product-image-container"><div class="product-image-chrome" aria-hidden="true"><span class="mock-dot red"></span><span class="mock-dot yellow"></span><span class="mock-dot green"></span></div>${img}</div>`;
 }
